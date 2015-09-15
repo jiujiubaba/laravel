@@ -21,3 +21,5 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
 	Route::get('articles', 'ArticlesController@index');
 	Route::get('articles/store', 'ArticlesController@store');
 });
+Route::get('/login', 'AuthController@login');
+Route::get('/getCode', 'AuthController@getCode');

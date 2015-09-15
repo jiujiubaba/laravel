@@ -3,9 +3,9 @@
 return [
 
     'default'   => [
-        'length'    => 5,
+        'length'    => 4,
         'width'     => 120,
-        'height'    => 36,
+        'height'    => 50,
         'quality'   => 90,
     ],
 
