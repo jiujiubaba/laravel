@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Request;
 use App\Http\Controllers\Controller;
-use Symfony\Component\DomCrawler\Crawler;
+use Validator;
 
 class IndexController extends Controller
 {
@@ -17,22 +15,20 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $html = '
-<!DOCTYPE html>
-<html>
-    <body>
-        <p class="message">Hello World!</p>
-        <p>Hello Crawler!</p>
-    </body>
-</html>';
-
-
-$crawler = new Crawler($html);
-
-dd($crawler);
-foreach ($crawler as $domElement) {
-    print_r($domElement->nodeName);
-}
+        if (Request::getMethod() == 'POST')
+        {
+            $rules = ['captcha' => 'required|captcha'];
+            $validator = Validator::make(Request::input(), $rules);
+            if ($validator->fails())
+            {
+                echo '<p style="color: #ff0000;">Incorrect!</p>';
+            }
+            else
+            {
+                echo '<p style="color: #00ff30;">Matched :)</p>';
+            }
+        }
+        return view('users.login');
     }
 
     /**
