@@ -17,7 +17,22 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('users.login');
+        $html = '
+<!DOCTYPE html>
+<html>
+    <body>
+        <p class="message">Hello World!</p>
+        <p>Hello Crawler!</p>
+    </body>
+</html>';
+
+
+$crawler = new Crawler($html);
+
+dd($crawler);
+foreach ($crawler as $domElement) {
+    print_r($domElement->nodeName);
+}
     }
 
     /**
