@@ -1,0 +1,21 @@
+{
+  "name": "laravel",
+  "version": "0.0.1",
+  "homepage": "https://github.com/laravel/laravel",
+  "authors": [
+    "kevin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4",
+    "bootstrap": "3.3.5"
+  },
+  "appPath": "frontend/app"
+}
