@@ -86,6 +86,7 @@ body{
 	line-height: 50px;
 	color: #75797b;
 	float:left;
+	background: #d45656;
 }
 
 .form-data-code{
@@ -304,7 +305,14 @@ body{
  </body>
 <script src="/js/index.js"></script>
 <script>
-$();
+
+$('#ck').click(function(event) {
+	var _this = $(this);
+	$.get('/getCode',function(data){
+		_this.attr('src', data);
+});
+});
+
 </script>
 </html>
 
