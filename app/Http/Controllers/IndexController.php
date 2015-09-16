@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Request;
 use App\Http\Controllers\Controller;
-use Validator;
+use Validator, Auth;
 
 class IndexController extends Controller
 {
@@ -15,20 +15,12 @@ class IndexController extends Controller
      */
     public function index()
     {
-        if (Request::getMethod() == 'POST')
-        {
-            $rules = ['captcha' => 'required|captcha'];
-            $validator = Validator::make(Request::input(), $rules);
-            if ($validator->fails())
-            {
-                echo '<p style="color: #ff0000;">Incorrect!</p>';
-            }
-            else
-            {
-                echo '<p style="color: #00ff30;">Matched :)</p>';
-            }
-        }
-        return view('users.login');
+        // Auth::logout();
+       return 'index';
+    }
+
+    public function a(){
+        return 'a';
     }
 
     /**

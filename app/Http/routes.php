@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'Check'], function(){
+	Route::get('/', 'IndexController@index');
+	Route::get('/a', 'IndexController@a');
 });
-Route::any('/index','IndexController@index' );
 
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
 	Route::get('index', 'IndexController@index');
@@ -23,3 +23,5 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
 });
 Route::get('/login', 'AuthController@login');
 Route::get('/getCode', 'AuthController@getCode');
+Route::post('/loginTo','AuthController@loginTo');
+Route::get('/r', 'AuthController@register');

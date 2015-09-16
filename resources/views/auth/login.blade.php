@@ -86,7 +86,6 @@ body{
 	line-height: 50px;
 	color: #75797b;
 	float:left;
-	background: #d45656;
 }
 
 .form-data-code{
@@ -284,19 +283,19 @@ body{
      <input type="hidden" id="md" value="1">
      <div class="login-area">
     <div id="form1">
-    <form id="J-form-login1" action="#" target="#">
+    <form id="J-form-login1" action="#">
         <div style="clear:both; height:62px;">
-        <input type="text" name="username" class="user-name" value="" placeholder="用户名" autocomplete="off" title="用户名">
+        <input type="text" name="username" class="user-name" id="username" value="" placeholder="用户名" autocomplete="off" title="用户名">
         </div>
          <div style="clear:both; height:62px;">
-        <input type="password" name="passwd" class="user-name" value="" placeholder="密码" autocomplete="off" title="密码">
+        <input type="password" name="passwd" class="user-name" id="passwd" value="" placeholder="密码" autocomplete="off" title="密码">
         </div>
         <div style="clear:both; height:62px;">
-        <input type="text" name="user-code" class="user-code form-data-code" value="" placeholder="验证码" autocomplete="off" title="验证码" maxlength="4">
+        <input type="text" name="captcha" class="user-code form-data-code" value="" placeholder="验证码" autocomplete="off" title="验证码" maxlength="4" id="vcode">
         <img id="ck" src="{{ captcha_src() }}" style="cursor:pointer;float:right;" onclick="this.src='{{ captcha_src() }}'" 
         align="absbottom" title="点击刷新"></div>
-        <input type="hidden" name="nextGo" value="AJAX">
-        <div style="clear:both; height:62px;"><input type="submit" class="user-login-button disabled sub" value="登录"></div> 
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <div style="clear:both; height:62px;"><input type="button" class="user-login-button" value="登录" style="background: #d45656;" id="submit"></div> 
     </form>
     </div>
 	<div style="margin:10px auto; clear:both; text-align:center; color:#adadad; font-size:12px;">为了避免假冒nncny的站点偷窃您的用户名和密码，我们采用新的登录方式以保证您的账户安全</div>
@@ -311,6 +310,13 @@ $('#ck').click(function(event) {
 	$.get('/getCode',function(data){
 		_this.attr('src', data);
 });
+});
+
+$('#submit').click(function(event) {
+	$.post('/loginTo', $('#J-form-login1').serialize(), function(data){
+		console.log(data);
+	});
+	console.log($('#J-form-login1').serialize());
 });
 
 </script>

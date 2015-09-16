@@ -7,7 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Captcha;
+use Captcha, Hash, Request, Auth;
 
 class AuthController extends Controller
 {
@@ -64,11 +64,46 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(){
-        return view('users.login');
+    /**
+     * 登录页面显示
+     */
+    public function login()
+    {
+        return view('auth.login');
     }
 
-    public function getCode(){
+    public function loginTo()
+    {
+        $rules = [
+            'captcha' => 'required|captcha',
+        ];
+        $validator = Validator::make(Request::all(), $rules);
+        if ($validator->fails()) {
+            return '验证码错误';
+        }
+         if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
+            return '登录成功';
+        }
+        return Request::all();
+    }
+    /**
+     * 获取验证码
+     */
+    public function getCode()
+    {
         return Captcha::src();
+    }
+
+    public function register(){
+        $user = [
+            'username' => 'ceshi',
+            'password' => Hash::make('123456'),
+            'nickname'  => '赵四'
+        ];
+        $u = User::saveData($user);
+        if ($u)
+            return 1;
+        else
+            return 0;
     }
 }
