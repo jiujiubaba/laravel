@@ -14,8 +14,10 @@
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('/', 'IndexController@index');
 	Route::get('/a', 'IndexController@a');
+	Route::get('/account', 'UserController@index');
 });
 
+// 后台路由
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
 	Route::get('index', 'IndexController@index');
 	Route::get('articles', 'ArticlesController@index');
