@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'Check'], function(){
+Route::group(['middleware' => 'auth'], function(){
 	Route::get('/', 'IndexController@index');
 	Route::get('/a', 'IndexController@a');
 });
