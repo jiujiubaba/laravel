@@ -11,9 +11,9 @@
 |
 */
 
-Route::group(['middleware' => 'Check'], function(){
+Route::group(['middleware' => 'auth'], function(){
 	Route::get('/', 'IndexController@index');
-	Route::get('/a', 'IndexController@a');
+	Route::get('/account', 'UserController@index');
 });
 
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
