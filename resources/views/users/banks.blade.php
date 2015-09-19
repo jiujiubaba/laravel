@@ -57,7 +57,7 @@
                 <h4 class="modal-title" id="myModalLabel">绑定银行卡</h4>
             </div>
             <div class="modal-body">
-                <form id="J-form-login">
+                <form id="J-form-banks">
                     <div class="table-area">
                         <div class="ui-content mt20">
                             <div>
@@ -110,31 +110,9 @@
 <script src="/asset/js/plugins.js"></script>
 <script>
 $('#bt').modal(function(){
-    console.log('ddd');
+    var a= $('#J-form-banks').serialize();
+    console.log(a);
 });
-
-// $('#bt').click(function(event) {
-//     var modal = $('#myModal');
-//     if (modal.css('display') == 'none') {
-//         modal.show();
-//         $('.modal-backdrop').show();
-//     } else{
-//         modal.hide();
-//         $('.modal-backdrop').hide();
-//     }
-//     console.log(); 
-
-// });
-
-// $('#myModal').find('.closes').click(function(event) {
-//     var modal = $('#myModal'); 
-//      modal.hide();
-//         $('.modal-backdrop').hide();
-// });
-
-// $().find().click(function(event) {
-    
-// });
 </script>
 
 <script src="/asset/js/index.js"></script>
