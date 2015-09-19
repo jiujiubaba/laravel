@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Auth::logout();
+        
+        return '';
         $user = Auth::user();
         $data = [
             'username'  => $user->username,
