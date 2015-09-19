@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Validator, Auth;
+use Validator, Auth, App\Bank;
 
 
 class UserController extends Controller
@@ -15,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        
-        return '';
+
+        return Bank::test();
         $user = Auth::user();
         $data = [
             'username'  => $user->username,
@@ -57,16 +57,5 @@ class UserController extends Controller
         $user->nickname = $nickname;
         $user->save();
         return $this->success('修改成功');
-    }
-
-    /**
-     * 我的银行卡页面
-     *  
-     * @date   2015-09-19
-     * @return [type]     [description]
-     */
-    public function banks()
-    {
-        return view('users.banks');
     }
 }

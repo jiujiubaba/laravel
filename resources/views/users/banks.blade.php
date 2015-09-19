@@ -64,12 +64,9 @@
                                 <span class="ui-title inline">开户银行：</span>
                                 <select class="ui-input select" name="bankid">
                                     <option value="">选择银行卡</option>
-                                    <option value="|工商银行">工商银行</option>
-                                    <option value="|建设银行">建设银行</option>
-                                    <option value="|农业银行">农业银行</option>
-                                    <option value="|招商银行">招商银行</option>
-                                    <option value="|中国银行">中国银行</option>
-                                    <option value="|交通银行">交通银行</option>
+                                    @foreach ($banks as $bank)
+                                        <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mt15">
