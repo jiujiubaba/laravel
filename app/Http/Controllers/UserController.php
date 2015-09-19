@@ -1,87 +1,68 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth,Request;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * 我的账户首页
      */
     public function index()
     {
-        return view('users.index');
+        // Auth::logout();
+        $user = Auth::user();
+        $data = [
+            'username'  => $user->username,
+            'nickname'  => $user->nickname,
+            'level'     => $user->level,
+            'scores'    => $user->scores,
+            'cash'      => $user->cash,
+            'type'      => $user->type,
+            'qq'        => $user->qq,
+            'fandian'   => $user->fandian 
+        ];
+        return view('users.index', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    * 修改资料页面
+    *  
+    * @date   2015-09-19
+    * @return [type]     [description]
+    */
+    public function edit()
     {
-        //
+        return view('users.edit');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
+     * 修改昵称
+     *  
+     * @date   2015-09-19
+     * @return [type]     [description]
      */
-    public function store(Request $request)
+    public function updateNickname()
     {
-        //
+        $nickname = Request::input('nickname');
+        if (!$nickname)
+            return $this->failure('昵称不能为空');
+        $user = Auth::user();
+        $user->nickname = $nickname;
+        $user->save();
+        return $this->success('修改成功');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * 我的银行卡页面
+     *  
+     * @date   2015-09-19
+     * @return [type]     [description]
      */
-    public function show($id)
+    public function banks()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('users.banks');
     }
 }

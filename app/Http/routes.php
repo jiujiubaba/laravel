@@ -14,6 +14,9 @@
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('/', 'IndexController@index');
 	Route::get('/account', 'UserController@index');
+	Route::get('/account/edit', 'UserController@edit');
+	Route::get('/account/banks', 'UserController@banks');
+	Route::post('/update-nickname', 'UserController@updateNickname');
 });
 
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){

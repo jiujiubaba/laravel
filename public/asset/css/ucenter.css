@@ -1,32 +1,47 @@
 .common-info {
-  padding: 30px 35px 0 30px;
-  font-size: 12px;
-  background-color: #f6f6f6;
-  background-position: 635px 6px;
-  background-repeat: no-repeat; }
-  .common-info .content-title {
+    padding: 30px 35px 0 30px;
+    font-size: 12px;
+    background-color: #f6f6f6;
+    background-position: 635px 6px;
+    background-repeat: no-repeat;
+}
+
+.common-info .content-title {
     font-size: 32px;
     color: #4b4b4b;
-    padding-left: 20px; }
-  .common-info .content-nav {
-    margin: 30px 0 0 0; }
-    .common-info .content-nav li {
-      float: left;
-      margin: 0 5px 0 0;
-      padding: 15px 20px;
-      border-radius: 5px 5px 0 0; }
-      .common-info .content-nav li a {
-        font-size: 18px;
-        color: #555; }
-      .common-info .content-nav li.current {
-        background-color: #fff; }
-      .common-info .content-nav li.current a {
-        color: #e16262; }
+    padding-left: 20px;
+}
+
+.common-info .content-nav {
+    margin: 30px 0 0 0;
+}
+
+.common-info .content-nav li {
+    float: left;
+    margin: 0 5px 0 0;
+    padding: 15px 20px;
+    border-radius: 5px 5px 0 0;
+}
+
+.common-info .content-nav li a {
+    font-size: 18px;
+    color: #555;
+}
+
+.common-info .content-nav li.current {
+    background-color: #fff;
+}
+
+.common-info .content-nav li.current a {
+    color: #e16262;
+}
 
 .table-area {
-  width: 850px;
-  margin: 0 auto; }
-  .table-area .dashed {
+    width: 850px;
+    margin: 0 auto;
+}
+
+.table-area .dashed {
     position: relative;
     width: 815px;
     margin: 0 auto;
@@ -35,50 +50,68 @@
     border-radius: 10px;
     line-height: 25px;
     font-size: 12px;
-    color: #666; }
-    .table-area .dashed h4 {
-      position: absolute;
-      top: -13px;
-      left: 30px;
-      color: #888;
-      width: 70px;
-      text-align: center;
-      background: #fff; }
-  .table-area .table-list {
+    color: #666;
+}
+
+.table-area .dashed h4 {
+    position: absolute;
+    top: -13px;
+    left: 30px;
+    color: #888;
+    width: 70px;
+    text-align: center;
+    background: #fff;
+}
+
+.table-area .table-list {
     width: 100%;
     font-family: verdana, arial, sans-serif;
     font-size: 11px;
     color: #333333;
     border-width: 1px;
     border-color: #666666;
-    border-collapse: collapse; }
-    .table-area .table-list th {
-      padding: 8px;
-      background-color: #eee7ff;
-      margin: 2px 0 0 0;
-      border-radius: 5px;
-      color: #000;
-      height: 30px;
-      line-height: 30px;
-      border: 2px solid #fff;
-      overflow: hidden;
-      font-size: 13px;
-      vertical-align: middle; }
-    .table-area .table-list td {
-      padding: 8px;
-      background-color: #f5f1ff;
-      margin: 2px 0 0 0;
-      border-radius: 5px;
-      color: #000;
-      border: 2px solid #fff;
-      overflow: hidden;
-      font-size: 13px;
-      vertical-align: middle; }
-    .table-area .table-list tr:hover {
-      background-color: #eee; }
-    .table-area .table-list a {
-      color: #888; }
+    border-collapse: collapse;
+}
+
+.table-area .table-list th {
+    padding: 8px;
+    background-color: #eee7ff;
+    margin: 2px 0 0 0;
+    border-radius: 5px;
+    color: #000;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.table-area .table-list td {
+    padding: 8px;
+    background-color: #f5f1ff;
+    margin: 2px 0 0 0;
+    border-radius: 5px;
+    color: #000;
+    border: 2px solid #fff;
+    overflow: hidden;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.table-area .table-list tr:hover {
+    background-color: #eee;
+}
+
+.table-area .table-list a {
+    color: #888;
+}
 
 .table-area {
-  width: 850px;
-  margin: 0 auto; }
+    width: 850px;
+    margin: 0 auto;
+}
+
+.table-area .add-banks{
+    margin:10px;
+}

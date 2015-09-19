@@ -83,6 +83,8 @@ class AuthController extends Controller
         }
          if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
             return '登录成功';
+        }else{
+            return '用户名或密码错误';
         }
         return Request::all();
     }
