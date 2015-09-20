@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/account', 'UserController@index');
 	Route::get('/account/edit', 'UserController@edit');
 	Route::get('/account/banks', 'BankController@index');
+	Route::get('/recharge', 'UserBankController@index');
 	Route::post('/banks/add', 'BankController@store');
 	Route::post('/update-nickname', 'UserController@updateNickname');
 });

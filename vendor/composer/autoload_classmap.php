@@ -6,9 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AbledTrait' => $baseDir . '/app/Traits/AbledTrait.php',
     'AddDataToBanksTable' => $baseDir . '/database/migrations/2015_09_19_135204_add_data_to_banks_table.php',
     'App\\Article' => $baseDir . '/app/Article.php',
     'App\\Bank' => $baseDir . '/app/Bank.php',
+    'App\\CashFlow' => $baseDir . '/app/CashFlow.php',
     'App\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Events\\Event' => $baseDir . '/app/Events/Event.php',
@@ -19,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\ArticlesController' => $baseDir . '/app/Http/Controllers/Backend/ArticlesController.php',
     'App\\Http\\Controllers\\Backend\\IndexController' => $baseDir . '/app/Http/Controllers/Backend/IndexController.php',
     'App\\Http\\Controllers\\BankController' => $baseDir . '/app/Http/Controllers/BankController.php',
+    'App\\Http\\Controllers\\CashFlowController' => $baseDir . '/app/Http/Controllers/CashFlowController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\IndexController' => $baseDir . '/app/Http/Controllers/IndexController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
@@ -34,6 +37,8 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\UserBank' => $baseDir . '/app/UserBank.php',
+    'App\\UserRecharge' => $baseDir . '/app/UserRecharge.php',
     'CreateBanksTable' => $baseDir . '/database/migrations/2015_09_12_071416_create_banks_table.php',
     'CreateBetsTable' => $baseDir . '/database/migrations/2015_09_12_011343_create_bets_table.php',
     'CreateCashFlowsTable' => $baseDir . '/database/migrations/2015_09_12_141052_create_cash_flows_table.php',
@@ -44,6 +49,8 @@ return array(
     'CreatePlaysTable' => $baseDir . '/database/migrations/2015_09_11_232124_create_plays_table.php',
     'CreateUserBanksTable' => $baseDir . '/database/migrations/2015_09_12_071625_create_user_banks_table.php',
     'CreateUserLevelsTable' => $baseDir . '/database/migrations/2015_09_12_134414_create_user_levels_table.php',
+    'CreateUserRechargesTable' => $baseDir . '/database/migrations/2015_09_20_231146_create_user_recharges_table.php',
+    'CreateUserWithdrawsTable' => $baseDir . '/database/migrations/2015_09_20_233236_create_user_withdraws_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
