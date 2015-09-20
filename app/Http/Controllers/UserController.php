@@ -15,8 +15,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        return Bank::test();
         $user = Auth::user();
         $data = [
             'username'  => $user->username,

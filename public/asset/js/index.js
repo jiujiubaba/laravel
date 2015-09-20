@@ -30,3 +30,4 @@ $('#update_coin_passwd').click(function(event) {
 	console.log($('#form2').serialize());
 });
 
+

@@ -17,11 +17,12 @@ class CreateUserBanksTable extends Migration
             $table->string('whoable_type')->comment('');
             $table->string('whoable_id')->comment('');
             $table->tinyInteger('status')->comment('状态，0关闭，1 开启');
-            $table->string('bank_id')->comment('银行地址id');
-            $table->string('username')->comment('用户名');
+            $table->string('bank_id')->comment('银行id');
+            $table->string('address')->comment('开户行地址');
+            $table->string('name')->comment('开户名称');
             $table->string('account')->comment('账户');
             $table->string('bank_name')->comment('银行名称');
-            $table->tinyInteger('sort')->comment('排序');
+            $table->tinyInteger('is_default')->comment('是否默认');
             $table->softDeletes();
             $table->timestamps();
         });

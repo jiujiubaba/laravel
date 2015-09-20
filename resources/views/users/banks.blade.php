@@ -27,18 +27,35 @@
                 <th>卡号</th>
                 <th>绑定时间</th>
                 <th>状态</th>
+                <th>默认</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>建设银行</td>
-                <td><a href="#">********5555</a></td>
-                <td>2015-09-14</td>
-                <td>审核中</td>
-                <td><a href="#" onclick="showlock(30568,'')">锁定</a></td>
-            </tr>
+            @if ($userBanks) 
+                @foreach ($userBanks as $userBank)
+                <tr>
+                    <td>{{ $userBank['num'] }}</td>
+                    <td>{{ $userBank['bank_name'] }}</td>
+                    <td><a href="#">{{ $userBank['account'] }}</a></td>
+                    <td>{{ $userBank['created_at'] }}</td>
+                    <td>@if($userBank['status'] == 0) 
+                            关闭                    
+                        @else
+                            开启
+                        @endif
+                    </td>
+                    <td>@if($userBank['is_default'] == 0) 
+                            否                    
+                        @else
+                            是
+                        @endif</td>
+                    <td><a href="#" onclick="showlock(30568,'')">开启</a> | <a href="">关闭</a></td>
+                </tr>
+                @endforeach
+            @else
+                <tr><td colspan="7" align="center">暂无数据</td></tr>
+            @endif
         </tbody>
     </table>
     <div class="add-banks text-center">
@@ -70,12 +87,8 @@
                                 </select>
                             </div>
                             <div class="mt15">
-                                <span class="ui-title inline">开户银行省份：</span>
-                                <input type="text" class="ui-input input" id="shengfen" name="shengfen">
-                            </div>
-                            <div class="mt15">
-                                <span class="ui-title inline">开户银行城市：</span>
-                                <input type="text" class="ui-input input" id="chengshi" name="chengshi">
+                                <span class="ui-title inline">开户银行地址：</span>
+                                <input type="text" class="ui-input input" id="shengfen" name="address">
                             </div>
                             <div class="mt15">
                                 <span class="ui-title inline">开户人姓名：</span>
@@ -91,6 +104,7 @@
                             </div>
                             <div class="mt10">
                                 <span class="ui-title inline"></span>
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <button class="btn important-thumb btn-important edit-button" id="user-login-button" type="button" disabled="" style="background-color:#CCC" >立即绑定</button>
                             </div>
                         </div>
@@ -108,7 +122,9 @@
 <script>
 $('#bt').modal(function(){
     var a= $('#J-form-banks').serialize();
-    console.log(a);
+    $.post('/banks/add', a, function(data){
+        console.log(a);
+    });    
 });
 </script>
 
