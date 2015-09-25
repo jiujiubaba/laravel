@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/update-nickname', 'UserController@updateNickname');
 });
 
+Route::get('/tt', function(){
+	return view('backend.index');
+});
+
 // 后台路由
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
 	Route::get('index', 'IndexController@index');
