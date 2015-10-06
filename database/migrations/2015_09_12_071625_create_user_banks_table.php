@@ -22,7 +22,7 @@ class CreateUserBanksTable extends Migration
             $table->string('name')->comment('开户名称');
             $table->string('account')->comment('账户');
             $table->string('bank_name')->comment('银行名称');
-            $table->tinyInteger('is_default')->comment('是否默认');
+            $table->tinyInteger('is_lock')->comment('是否锁定');
             $table->softDeletes();
             $table->timestamps();
         });

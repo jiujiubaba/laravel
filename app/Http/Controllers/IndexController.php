@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Request;
@@ -16,7 +15,7 @@ class IndexController extends Controller
     public function index()
     {
         // Auth::logout();
-       return 'index';
+       return view('index');
     }
 
     public function a(){

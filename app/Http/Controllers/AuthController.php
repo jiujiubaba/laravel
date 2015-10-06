@@ -79,14 +79,13 @@ class AuthController extends Controller
         ];
         $validator = Validator::make(Request::all(), $rules);
         if ($validator->fails()) {
-            return '验证码错误';
+            return $this->failure('验证码错误');
         }
-         if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
-            return '登录成功';
-        }else{
-            return '用户名或密码错误';
+        if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
+            return $this->success('登录成功');
         }
-        return Request::all();
+        
+        return $this->failure('用户名或密码错误');
     }
     /**
      * 获取验证码

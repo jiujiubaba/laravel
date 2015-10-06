@@ -1,11 +1,9 @@
 <?php
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Validator, Auth, App\Bank;
+use Request, Validator, Auth, App\Bank, Hash;
 
 
 class UserController extends Controller
@@ -55,5 +53,32 @@ class UserController extends Controller
         $user->nickname = $nickname;
         $user->save();
         return $this->success('修改成功');
+    }
+
+    /**
+     * 修改密码
+     *  
+     * @date   2015-09-19
+     * @return [type]     [description]
+     */
+    public function updatePassword()
+    {
+        $old_pass = Request::input('old_pass');
+        $user = Auth::user();
+        if ($user->password != Hash::make($old_pass)) {
+            return $this->failure('密码错误');
+        }
+        
+        $user->old_password = $user->password;
+        $user->password = Hash::make(Request::input('new_pass'));
+        if (!$user->save()) {
+            return $this->failure('密码修改失败');
+        }
+        return $this->success('密码修改成功');
+    }
+
+    public function updatePayment()
+    {
+        
     }
 }

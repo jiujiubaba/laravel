@@ -26,8 +26,7 @@
                 <th>银行名称</th>
                 <th>卡号</th>
                 <th>绑定时间</th>
-                <th>状态</th>
-                <th>默认</th>
+                <th>是否锁定</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -39,18 +38,18 @@
                     <td>{{ $userBank['bank_name'] }}</td>
                     <td><a href="#">{{ $userBank['account'] }}</a></td>
                     <td>{{ $userBank['created_at'] }}</td>
-                    <td>@if($userBank['status'] == 0) 
-                            关闭                    
-                        @else
-                            开启
-                        @endif
-                    </td>
-                    <td>@if($userBank['is_default'] == 0) 
+                    <td>@if($userBank['is_lock'] == 0) 
                             否                    
                         @else
                             是
                         @endif</td>
-                    <td><a href="#" onclick="showlock(30568,'')">开启</a> | <a href="">关闭</a></td>
+                    <td><a class="J-delete-bank" data-num="{{ $userBank['id'] }}" data-target="delete">
+                        @if ($userBank['is_lock'] == 1)
+                            解锁
+                        @else 
+                            锁定
+                        @endif
+                    </a></td>
                 </tr>
                 @endforeach
             @else
@@ -66,8 +65,23 @@
 
 </div>
 
+<!-- 删除弹出层 -->
+<div id="delete" class="dialog">
+    <div class="dialog-title">
+        <button type="button" class="close closes"><span aria-hidden="true">×</span></button>
+        <h5 class="modal-title" id="myModalLabel">温馨提示</h5>
+    </div>
+    <div class="dialog-body">
+        你确定要删除么？
+    </div>
+    <div class="dialog-footer">
+        <button type="button" class="btn btn-danger closes">取消</button>
+        <button type="button" class="btn btn-success success">确定</button>
+    </div>
+</div>
+
 <div class="modal" id="myModal">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog slideInDown animated" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -79,7 +93,7 @@
                         <div class="ui-content mt20">
                             <div>
                                 <span class="ui-title inline">开户银行：</span>
-                                <select class="ui-input select" name="bankid">
+                                <select class="ui-input select" name="bankid" id="idcard">
                                     <option value="">选择银行卡</option>
                                     @foreach ($banks as $bank)
                                         <option value="{{ $bank->id }}">{{ $bank->name }}</option>
@@ -92,11 +106,11 @@
                             </div>
                             <div class="mt15">
                                 <span class="ui-title inline">开户人姓名：</span>
-                                <input type="text" class="ui-input input" id="uname" name="uname" value="帐篷" readonly="">
+                                <input type="text" class="ui-input input" id="uname" name="uname" value="">
                             </div>
                             <div class="mt15">
                                 <span class="ui-title inline">银行卡号：</span>
-                                <input type="text" class="ui-input input" id="banknum" name="banknum" autocomplete="off" onkeyup="clearNoNum(this);">
+                                <input type="number" class="ui-input input" id="banknum" name="banknum" autocomplete="off" onkeyup="">
                             </div>
                             <div class="mt15">
                                 <span class="ui-title inline">资金密码：</span>
@@ -105,7 +119,6 @@
                             <div class="mt10">
                                 <span class="ui-title inline"></span>
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                <button class="btn important-thumb btn-important edit-button" id="user-login-button" type="button" disabled="" style="background-color:#CCC" >立即绑定</button>
                             </div>
                         </div>
                     </div>
@@ -118,17 +131,59 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('scripts')
 <script src="/asset/js/plugins.js"></script>
 <script>
-$('#bt').modal(function(){
+
+$(function(){
+    var _token = "<?php echo csrf_token(); ?>";
+    $('#bt').modal(function(){
+    // if ($('#idcard').)
+    if ($('#idcard').val() == '') {
+        return swal('error', '请选择银行卡');
+    }else if ($('#shengfen').val() == '') {
+        return swal('error', '请填写开户行地址');
+    }else if ($('#uname').val() == '') {
+        return swal('error', '请填写开户人姓名');
+    }else if ($('#banknum').val() == '') {
+        return swal('error', '请填写银行卡号');
+    }else if ($('#pass').val() == '') {
+        return swal('error', '请填写资金密码');
+    }
+
     var a= $('#J-form-banks').serialize();
     $.post('/banks/add', a, function(data){
         console.log(a);
-    });    
+    });
 });
+    $('.J-delete-bank').modal(function(arg){
+        console.log(arg);
+        console.log(arg.attr('data-num'));
+        $('body').showLoading();
+        var num = arg.attr('data-num');
+        $.post('/banks/delete',{'num':num,'_token':_token}, function(data){
+            $('body').hideLoading();
+            if (data.result) {
+                location.reload();
+                swal('success', data.message);
+            } else {
+                swal('error', '删除失败');
+            }
+        });
+        return true;
+    });
+    $('#test').click(function(){
+        console.log('sdf');
+        $('body').hideLoading();
+    });
+// $('body').hideLoading();
+
+    // $('body').showLoading();
+})
 </script>
 
-<script src="/asset/js/index.js"></script>
 @stop
 
 

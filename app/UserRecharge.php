@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Perecdent;
 
-class UserRecharge extends Model
+class UserRecharge extends Perecdent
 {
     //
 }

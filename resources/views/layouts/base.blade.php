@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <title>我的账户</title>
     <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+    @yield('style')
+    <!-- css公共样式 -->
     <link rel="stylesheet" href="/asset/css/common.css">
     <link rel="stylesheet" href="/asset/css/index.css">
     <link rel="stylesheet" href="/asset/css/ucenter.css">
+    <!-- css动画插件 -->
+    <!-- <link rel="stylesheet" href="/asset/css/animate.min.css"> -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/3.1.1/font/fontawesome-webfont.svg">
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/asset/js/jquery.min.js"></script>
+    <script src="/asset/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/asset/js/jquery.validate.min.js"></script>
 </head>
 
 <body>
@@ -22,10 +27,10 @@
         </div>
         <ul class="nav-list" id="nav-list">
             <li class="">
-                <a href="#">我的帐户</a>
+                <a href="/account">我的帐户</a>
             </li>
             <li class="bank">
-                <a href="#">银行充提</a>
+                <a href="/banks">银行充提</a>
             </li>
             <li class="bethistory">
                 <a href="#">投注记录</a>
@@ -55,8 +60,8 @@
             <div class="user-info">
                 <div class="user-level-info">
                     <div>
-                        <a href="javascript:void(0)" class="user-name">赵四</a>
-                        <span class="mark" href="javascript:void(0)">vip1</span>
+                        <a href="javascript:void(0)" class="user-name">{{ Auth::user()->nickname }}</a>
+                        <span class="mark" href="javascript:void(0)">vip{{Auth::user()->level}}</span>
                     </div>
                     <div class="process">
                         <div class="current-process" style="width:20%"></div>
@@ -64,7 +69,7 @@
                 </div>
                 <div class="balance">
                     <span>余额：</span>
-                    <em id="lostmoney">0</em> 元
+                    <em id="lostmoney">{{ Auth::user()->cash }}</em> 元
                     <a href="javascript:void(0)" title="刷新余额" class="refresh"><i class="icon-refresh"></i></a>
                 </div>
                 <div class="control">
@@ -159,6 +164,6 @@
         
     </div>
 </body>
-<script src="./js/index.js"></script>
-
+<!-- <script src="./js/index.js"></script> -->
+@yield('scripts')
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/asset/css/common.css">
     <link rel="stylesheet" href="/asset/css/index.css">
@@ -273,8 +273,8 @@ body{
 
     </style>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/asset/js/jquery.min.js"></script>
+    <script src="/asset/js/bootstrap.min.js"></script>
 </head>
 
 <body style="background:url(http://999.niucaivip.com/tpl/black//images/newtpl/dl_07.jpg) no-repeat bottom center fixed #fff; height:830px;">
@@ -302,7 +302,7 @@ body{
         <div style="font-size:12px; text-align:center;"><a href="javascript:void(0)" onclick="showGetPas()" style=" color:#C30; margin-right:20px; ">忘记密码</a></div>
     <a href="http://se.360.cn/" target="_blank" style="display:none">360安全浏览器</a>
  </body>
-<script src="/js/index.js"></script>
+<!-- <script src="/js/index.js"></script> -->
 <script>
 
 $('#ck').click(function(event) {
@@ -313,8 +313,13 @@ $('#ck').click(function(event) {
 });
 
 $('#submit').click(function(event) {
+	$(this).val("登录中....");
 	$.post('/loginTo', $('#J-form-login1').serialize(), function(data){
-		console.log(data);
+		if (data.result) {
+			window.location.href = '/';
+		}else{
+			alert(data.message);
+		}
 	});
 	console.log($('#J-form-login1').serialize());
 });

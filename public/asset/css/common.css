@@ -684,7 +684,7 @@ input.disabled {
 
 .ui-btn {
     /*width: ;*/
-    padding:0px 20px;
+    padding: 0px 20px;
     height: 30px;
     line-height: 30px;
     color: #fff;
@@ -692,7 +692,6 @@ input.disabled {
     cursor: pointer;
     background: #ea6b6c;
 }
-
 
 .ui-modal {
     position: fixed;
@@ -711,7 +710,7 @@ input.disabled {
 .ui-modal-content {
     position: relative;
     background-color: #fff;
-    top:30px;
+    top: 30px;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #999;
@@ -821,4 +820,163 @@ input.disabled {
 
 .head-nav li.pifuimgs:hover {
     background-position: 0px -420px;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes shake {
+    from,
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes shake {
+    from,
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+@-webkit-keyframes slideInDown {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideInDown {
+    -webkit-animation-name: slideInDown;
+    animation-name: slideInDown;
+}
+
+
+/*loading加载样式*/
+
+.p-loading {}
+
+.dialog {
+    position: fixed;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    /*border-radius: 6px;*/
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    display: none;
+    z-index: 1050;
+    width: 360px;
+    top: 100px;
+    /*margin: 30px auto;*/
+    min-height: 100px;
+}
+
+.dialog .dialog-title {
+    padding: 10px 10px;
+    /*background: #D75959;*/
+    /*color: #fff;*/
+    border-bottom: 1px solid #e5e5e5;
+}
+.dialog .dialog-body{
+    padding: 20px 10px;
+}
+.dialog .dialog-footer {
+    padding: 5px 10px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+
+.dialog-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
 }
