@@ -39,6 +39,11 @@ Route::get('/tt', function(){
 	return view('backend.index');
 });
 
+Route::get('/test', function(){
+	$hash = md5('asdfasdf');
+	return base62Encode(111, $hash);
+});
+
 // 后台登录
 Route::get('/backend/login', 'Backend\AuthController@login');
 Route::post('/backend/check', 'Backend\AuthController@checkLogin');
