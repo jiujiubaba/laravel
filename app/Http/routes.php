@@ -39,10 +39,17 @@ Route::get('/tt', function(){
 	return view('backend.index');
 });
 
+// 后台登录
+Route::get('/backend/login', 'Backend\AuthController@login');
+Route::post('/backend/check', 'Backend\AuthController@checkLogin');
+
 // 后台路由
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
+	// Route::get('/');
 	Route::get('/users', 'UsersController@index');
 });
+
+
 Route::get('/login', 'AuthController@login');
 Route::get('/getCode', 'AuthController@getCode');
 Route::post('/loginTo','AuthController@loginTo');

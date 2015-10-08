@@ -262,36 +262,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>开奖数据</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">体现请求</a></li>
-                <li><a href="#">体现记录</a></li>
-                <li><a href="#">充值记录</a></li>
-                <li><a href="#">普通投注</a></li>
-                <li><a href="#">帐变明细</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>体现请求</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>体现记录</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>充值记录</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>普通投注</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>帐变明细</a></li>
               </ul>
             </li>
 
             <!-- 用户管理 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-user"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">添加会员</a></li>
-                <li><a href="#">用户列表</a></li>
-                <li><a href="#">银行信息</a></li>
-                <li><a href="#">登录日志</a></li>
-                <li><a href="#">用户限额设置</a></li>
+                <li><a href="#"><i class="fa fa-user-plus"></i>添加会员</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>用户列表</a></li>
+                <li><a href="#"><i class="fa fa-credit-card"></i>银行信息</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>用户限额设置</a></li>
               </ul>
             </li>
 
             <!-- 系统设置 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-cogs"></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">系统设置</a></li>
-                <li><a href="#">公告中心</a></li>
-                <li><a href="#">收款设置</a></li>
-                <li><a href="#">菜种管理</a></li>
-                <li><a href="#">玩法管理</a></li>
-                <li><a href="#">等级设置</a></li>
+                <li><a href="#"><i class="fa fa-cogs"></i>系统设置</a></li>
+                <li><a href="#"><i class="fa fa-commenting-o"></i>公告中心</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>收款设置</a></li>
+                <li><a href="#"><i class="fa fa-gg"></i>菜种管理</a></li>
+                <li><a href="#"><i class="fa fa-gamepad"></i>玩法管理</a></li>
+                <li><a href="#"><i class="fa fa-level-up"></i>等级设置</a></li>
               </ul>
             </li>
 
@@ -299,28 +299,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>积分兑换管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">兑换管理</a></li>
-                <li><a href="#">兑换记录</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>兑换管理</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>兑换记录</a></li>
               </ul>
             </li>
 
             <!-- 管理人员 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>管理人员</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-users"></i> <span>管理人员</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">管理员列表</a></li>
-                <li><a href="#">操作日志</a></li>
-                <li><a href="#">登录日志</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
               </ul>
             </li>
 
             <!-- 时间管理 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>时间管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-hourglass-half"></i> <span>时间管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">管理员列表</a></li>
-                <li><a href="#">操作日志</a></li>
-                <li><a href="#">登录日志</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->

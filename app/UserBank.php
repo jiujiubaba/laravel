@@ -8,4 +8,9 @@ class UserBank extends Perecdent
     {
     	return self::where('whoable_type', $obj->modelName())->where('whoable_id', $obj->id);
     }
+
+    public function add()
+    {
+    	
+    }
 }
