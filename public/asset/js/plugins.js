@@ -1,5 +1,5 @@
 // 插件
-function swal(type, tips) {
+function swals(type, tips) {
     var tip = '';
     tips = tips !== 'undefined' ? tips : '成功啦！';
     if (type == 'success') {

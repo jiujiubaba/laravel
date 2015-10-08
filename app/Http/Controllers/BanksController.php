@@ -7,18 +7,6 @@ use App\Traits\AbledTrait;
 
 class BanksController extends Controller
 {
-    // 银行充提首页
-    public function index()
-    {
-        // $data = [];
-        // $user = Auth::user();
-        // $data['username'] = $user->username;
-        // $data['banks'] = UserBank::where('user_id', $user->id)->get();
-        // $data['cash'] = $user->cash;
-        // $data
-        return view('banks.index');
-    }
-
     // 账户银行
     public function banks()
     {
@@ -47,10 +35,11 @@ class BanksController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
+     * 添加银行卡
+     *  
+     * @date   2015-10-07
+     * @param  Request    $request [description]
+     * @return [type]              [description]
      */
     public function store(Request $request)
     {
@@ -92,6 +81,12 @@ class BanksController extends Controller
         return $this->success('添加银行成功');
     }
 
+    /**
+     * 申请提现页面
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
     public function withdraw()
     {
         $data = [];
@@ -104,6 +99,12 @@ class BanksController extends Controller
         return view('banks.withdraw', $data);
     }
 
+    /**
+     * 申请提现
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
     public function applyWithdraw()
     {
         if (!Request::has('money', 'pay_pass')) {
@@ -125,19 +126,58 @@ class BanksController extends Controller
         return UserWithdraw::apply($user, $userBank, (float)Request::input('money'));
     }
 
+    /**
+     * 申请提现记录
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
     public function withdrawRecord()
     {
         return view('banks.withdraw_record');
     }
 
+    /**
+     * 充值首页
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
+    public function index()
+    {
+        $data = [];
+        $user = Auth::user();
+        $banks = Bank::getRecharge();
+        $data = ['banks' => $banks]; 
+        
+        return view('banks.index', $data);
+    }
+
+    /**
+     * 充值页面
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
     public function recharge()
     {
         return view('banks.alipay');
     }
 
+    /**
+     * 充值记录
+     *  
+     * @date   2015-10-07
+     * @return [type]     [description]
+     */
     public function rechargeRecord()
     {
         return view('banks.recharge_record');
+    }
+
+    public function alipay()
+    {
+        return view('banks.alipay');
     }
 
     /**

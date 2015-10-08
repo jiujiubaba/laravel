@@ -14,8 +14,7 @@ class CreateUserBanksTable extends Migration
     {
         Schema::create('user_banks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('whoable_type')->comment('');
-            $table->string('whoable_id')->comment('');
+            $table->integer('user_id')->comment('用户id');
             $table->tinyInteger('status')->comment('状态，0关闭，1 开启');
             $table->string('bank_id')->comment('银行id');
             $table->string('address')->comment('开户行地址');

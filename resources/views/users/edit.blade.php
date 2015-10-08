@@ -114,22 +114,33 @@ $(function(){
     $('#update_nickname').click(function(){
         var _this = $(this);
         if ($('#nickname').val() == '') {
-            return swal('error', '昵称不能为空');
+            return swal("昵称不能为空！", "", "error");
         }
-        
-        $('body').showDialog('温馨提示', '确定修改昵称么？', function(){
+        swal({
+            title: "确定修改昵称么?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#5cb85c',
+            confirmButtonText: '确定',
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            //closeOnCancel: false
+        },
+        function(){
             $('body').showLoading();
             $.post('/account/update-nickname',$('#form3').serialize()+'&_token=' +token, function(data){
                 $('body').hideLoading();
                 if (data.result) {
                     location.reload();
-                    swal('success', data.message);
+                    swal(data.message, "", "success");
                 } else {
-                    swal('error', '删除失败');
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
                 }
             });
         });
     });
+
+
 
     $('#update_passwd').click(function(){
         console.log('sdf');
@@ -143,7 +154,17 @@ $(function(){
             return swal('error', '两次输入密码不一致');
         }
 
-        $('body').showDialog('温馨提示', '确定修改密码么？', function(){
+        swal({
+            title: "确定修改密码么?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#5cb85c',
+            confirmButtonText: '确定',
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            //closeOnCancel: false
+        },
+        function(){
             $('body').showLoading();
             $.post('/account/update-password',$('#form1').serialize()+'&_token=' +token, function(data){
                 $('body').hideLoading();
@@ -155,7 +176,6 @@ $(function(){
                 }
             });
         });
-        
     });
 });
 </script>

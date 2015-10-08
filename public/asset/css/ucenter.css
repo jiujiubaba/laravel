@@ -1,14 +1,17 @@
+.content-info{
+    padding-bottom: 10px;
+}
 .common-info {
     padding: 30px 35px 0 30px;
     font-size: 12px;
-    background-color: #f6f6f6;
+    background-color: #34393d;
     background-position: 635px 6px;
     background-repeat: no-repeat;
 }
 
 .common-info .content-title {
     font-size: 32px;
-    color: #4b4b4b;
+    color: #fff;
     padding-left: 20px;
 }
 
@@ -25,7 +28,7 @@
 
 .common-info .content-nav li a {
     font-size: 18px;
-    color: #555;
+    color: #fff;
 }
 
 .common-info .content-nav li.current {
@@ -114,4 +117,85 @@
 
 .table-area .add-banks{
     margin:10px;
+}
+
+/**
+ * 银行充值样式
+ */
+.bank-icon-list li {
+    width: 240px;
+    height: 60px;
+    margin: 10px 10px 0 0;
+    padding: 0;
+    background: #f6f6f6 url(../images/bank-icon-list.png) 0 0 no-repeat
+}
+
+.bank-icon-list label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer
+}
+
+.bank-icon-list input {
+    margin: 25px 0 0 20px;
+    vertical-align: middle
+}
+
+.bank-icon-list .gongshang {
+    background-position: 56px 14px
+}
+
+.bank-icon-list .zhifubao {
+    background-position: 56px -195px
+}
+.bank-icon-list .caifutong {
+    background-position: 56px -250px
+}
+
+.bank-icon-list .zhongyin {
+    background-position: -228px 14px
+}
+.bank-icon-list .zhongxin {
+    background-position: -230px -195px
+}
+.bank-icon-list .youzheng {
+    background-position: -230px -126px
+}
+.bank-icon-list .guangda {
+    background-position: -490px -126px
+}
+
+.bank-icon-list .nongye {
+    background-position: -485px 14px
+}
+
+.bank-icon-list .guangfa {
+    background-position: -705px 14px
+}
+
+.bank-icon-list .zhaoshang {
+    background-position: 55px -53px
+}
+
+.bank-icon-list .minsheng {
+    background-position: -218px -53px
+}
+
+.bank-icon-list .jianshe {
+    background-position: -483px -53px
+}
+
+.bank-icon-list .jiaotong {
+    background-position: -705px -53px
+}
+
+.bank-icon-list .current {
+    background-color: #fff
+}
+
+.other-bank {
+    width: 185px;
+    margin: 10px 0 0 10px;
+    background: #fff
 }

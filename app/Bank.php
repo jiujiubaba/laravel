@@ -10,4 +10,12 @@ class Bank extends Perecdent
     {
     	return 'test';
     }
+
+    public static function getRecharge()
+    {
+    	return self::where('recharge_status', 1)
+    				->where('status', 1)
+    				->orderBy('sort', 'desc')
+    				->get();
+    }
 }

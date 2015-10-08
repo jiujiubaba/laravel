@@ -12,76 +12,36 @@
     </ul>
 </div>
 <div class="table-area">
-    <form name="form3" id="form3">
-        <h4 class="ui-form-title mt20">
-                账户<span style=" color:#ea6b6c; font-weight:bold">提现</span>
-            </h4>
-        <div class="ui-content mt20">
-            <div>
-                <span class="ui-title inline">账户名：</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red">sdf</em>
-                </span>
-            </div>
-            <div>
-                <span class="ui-title inline">账户余额</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red"></em>
-                </span>
-            </div>
-            <div>
-                <span class="ui-title inline">资金密码</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red"></em>
-                </span>
-            </div>
-            <div>
-                <span class="ui-title inline">银行名称</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red"></em>
-                </span>
-            </div>
-            <div>
-                <span class="ui-title inline">银行开户行地址</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red"></em>
-                </span>
-            </div>
-            <div>
-                <span class="ui-title inline">提款金额</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
-                <span class="ml20">
-                    <em class="color-red"></em>
-                </span>
-            </div>
-            <div class="mt10">
-                <span class="ui-title inline"></span>
-                <input class="btn edit-button important-thumb btn-important" type="button" id="update_nickname" data-target="update" value="修 改">
-            </div>
-            
-        </div>
-    </form>
-</div>
+    <form method="post" onsubmit="return req()">
+    <div class="mt20 clearfix">
+        选择银行：
+        <ul class="mt20 bank-icon-list">
+            @foreach ($banks as $bank)
+            <li class="{{ $bank->logo }} input f-left">
+                <label>
+                    <input name="bank" class="inline" type="radio" value="{{ $bank->alias }}" onclick="" title="{{ $bank->name }}">
+                </label>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    <input type="hidden" id="bankid" name="bankid" value="">
+    <input type="hidden" id="pay" name="pay" value="f90819a365775b72303d0e9317550993|d85a58b0783926a9c5ea2b616d978cd6">
+    <input type="hidden" id="isproxy" value="0">
+    <h4 class="info-layout-title mt20 fs-16">充值金额</h4>
+    <div class="mt20">
+        <input type="text" class="input" name="money" id="money" maxlength="7" autocomplete="off" onkeyup="isnum(this.value)" onblur="yzmoney(this.value)"> 元
+        <span class="fs-12 ml20"> (单笔最低充值金额为 100 RMB / 最高 50000 RMB)</span>
+        <br>
+        <span id="dxmoney" class="fs-12" style="margin-top:5px;"></span>
+    </div>
+    <div>
+        <div id="tsmsg" style="color:#F00; padding-top:10px;"></div>
+        <input type="submit" class="btn important-nothumb mt30" value="下一步">
+    </div>
+</form>
 
-<!-- 删除弹出层 -->
-<!-- <div id="Dialog" class="dialog">
-    <div class="dialog-title">
-        <button type="button" class="close closes"><span aria-hidden="true">×</span></button>
-        <h5 class="modal-title" id="myModalLabel">温馨提示</h5>
-    </div>
-    <div class="dialog-body" id="dialog-content">
-        确定修改么？
-    </div>
-    <div class="dialog-footer">
-        <button type="button" class="btn btn-danger closes">取消</button>
-        <button type="button" class="btn btn-success success">确定</button>
-    </div>
-</div> -->
+</div>
 @stop
 
 @section('scripts')

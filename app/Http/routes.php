@@ -26,8 +26,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/banks/delete', 'BanksController@destroy');
 	Route::get('/banks/withdraw', 'BanksController@withdraw');
 	Route::post('/banks/apply-withdraw', 'BanksController@applyWithdraw');
+	Route::get('/banks/withdraw-record', 'BanksController@withdrawRecord');
 	Route::get('/banks/recharge', 'BanksController@recharge');
-
+	Route::get('/banks/recharge-record', 'BanksController@rechargeRecord');
+	Route::get('/banks/alipay', 'BanksController@alipay');
 });
 
 
