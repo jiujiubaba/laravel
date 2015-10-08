@@ -55,26 +55,17 @@ class BanksController extends Controller
         // {
         //     return $messages = $validator->messages();
         // }
+        // 
+
+        $bank = Bank::where('alias', $input['bankname'])->first();
+        if (!$bank) {
+            return $this->failure('不存在该银行');
+        }
 
         $user = Auth::user();
 
-        if (UserBank::who($user)->exists()) {
-            $is_lock = 0;
-        }else{
-            $is_lock = 1;
-        }
+        $userBank = UserBank::add($user, $bank, $input['address'], $input['uname'], $input['banknum']);
 
-        $bank = UserBank::saveData([
-            'bank_id'       => $input['bankid'],
-            'whoable_type'  => $user->modelName(),
-            'whoable_id'    => $user->id,
-            'address'       => $input['address'],
-            'name'          => $input['uname'],
-            'bank_name'     => Bank::find($input['bankid'])->name,
-            'account'       => $input['banknum'],
-            'status'        => 1,
-            'is_lock'       => $is_lock
-        ]);
         if (!$bank) {
             return $this->failure('添加银行失败');
         }
@@ -92,9 +83,11 @@ class BanksController extends Controller
         $data = [];
         $user = Auth::user();
         $data['username'] = $user->username;
-        $data['userBank'] = UserBank::who($user)
+
+        $userBank = UserBank::userId($user->id)
                                 ->where('is_lock', 1)
                                 ->first();
+
         $data['cash'] = $user->cash;
         return view('banks.withdraw', $data);
     }
@@ -111,7 +104,7 @@ class BanksController extends Controller
             return $this->failure('参数错误');
         }
         $user = Auth::user();
-        $userBank = UserBank::who($user)->where('is_lock', 1)->first();
+        $userBank = UserBank::userId($user->id)->where('is_lock', 1)->first();
         if (!$userBank) {
             return $this->failure('您还没有锁定银行卡');
         }

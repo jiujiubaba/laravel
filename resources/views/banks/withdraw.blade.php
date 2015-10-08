@@ -15,6 +15,7 @@
         <h4 class="ui-form-title mt20">
             账户<span style=" color:#ea6b6c; font-weight:bold">提现</span>
         </h4>
+        @if ($userBank)
         <div class="ui-content mt20">         
             <div class="mt15">
                 <span class="ui-title inline">银行名称：</span>
@@ -50,6 +51,11 @@
                 <input class="ui-btn" type="button" id="apply-withdraw" data-target="update" value="提款">
             </div>
         </div>
+        @else
+
+
+
+        @endif
     </form>
 </div>
 @stop

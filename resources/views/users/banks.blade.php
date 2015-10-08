@@ -93,10 +93,10 @@
                         <div class="ui-content mt20">
                             <div>
                                 <span class="ui-title inline">开户银行：</span>
-                                <select class="ui-input select" name="bankid" id="idcard">
+                                <select class="ui-input select" name="bankname" id="idcard">
                                     <option value="">选择银行卡</option>
                                     @foreach ($banks as $bank)
-                                        <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                        <option value="{{ $bank->alias }}">{{ $bank->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
