@@ -8,6 +8,7 @@
         <li><a href="/account/messages">我的消息(0)</a></li>
         <li><a href="/account/banks">我的银行卡</a></li>
         <li><a href="/account/edit">资料修改</a></li>
+         <li><a href="/account/notices">最新通知</a></li>
         <li><a href="#">奖金详情</a></li>
     </ul>
 </div>

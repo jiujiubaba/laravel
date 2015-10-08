@@ -1,6 +1,7 @@
-.content-info{
+.content-info {
     padding-bottom: 10px;
 }
+
 .common-info {
     padding: 30px 35px 0 30px;
     font-size: 12px;
@@ -115,13 +116,15 @@
     margin: 0 auto;
 }
 
-.table-area .add-banks{
-    margin:10px;
+.table-area .add-banks {
+    margin: 10px;
 }
+
 
 /**
  * 银行充值样式
  */
+
 .bank-icon-list li {
     width: 240px;
     height: 60px;
@@ -149,6 +152,7 @@
 .bank-icon-list .zhifubao {
     background-position: 56px -195px
 }
+
 .bank-icon-list .caifutong {
     background-position: 56px -250px
 }
@@ -156,12 +160,15 @@
 .bank-icon-list .zhongyin {
     background-position: -228px 14px
 }
+
 .bank-icon-list .zhongxin {
     background-position: -230px -195px
 }
+
 .bank-icon-list .youzheng {
     background-position: -230px -126px
 }
+
 .bank-icon-list .guangda {
     background-position: -490px -126px
 }
@@ -198,4 +205,76 @@
     width: 185px;
     margin: 10px 0 0 10px;
     background: #fff
+}
+
+/**
+ * 网银转账确认
+ */
+.ap_ul {
+    width: 850px;
+    margin-top: 5px;
+    text-align: center
+}
+
+.ap_ul li {
+    display: inline-block;
+    color: #888;
+    outline-style: none;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin: 2px 2px 0 0;
+}
+
+#ap_title li {
+    background-color: #ebebeb;
+    font-size: 12px;
+}
+
+#ap_content li {
+    background-color: #f6f6f6;
+    font-size: 13px;
+}
+
+.wid {
+    width: 126px;
+}
+
+.fz {
+    padding-left: 10px;
+    cursor: pointer
+}
+
+.copy-tips {
+    position: fixed;
+    z-index: 999;
+    bottom: 70%;
+    left: 50%;
+    margin: 0 0 -20px -80px;
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: progid: DXImageTransform.Microsoft.Gradient(startColorstr=#30000000, endColorstr=#30000000);
+    padding: 3px;
+}
+
+.copy-tips-wrap {
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid #F4D9A6;
+    background-color: #FFFDEE;
+    font-size: 14px;
+}
+
+/**
+ * 会员列表
+ */
+.info-layout-title {
+    width: 875px;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+    font-size: 14px
+}
+
+.info-layout-title span {
+    cursor: pointer
 }

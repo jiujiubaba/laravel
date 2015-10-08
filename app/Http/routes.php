@@ -28,8 +28,25 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/banks/apply-withdraw', 'BanksController@applyWithdraw');
 	Route::get('/banks/withdraw-record', 'BanksController@withdrawRecord');
 	Route::get('/banks/recharge', 'BanksController@recharge');
+	Route::post('/banks/comfirm', 'BanksController@confirm');
 	Route::get('/banks/recharge-record', 'BanksController@rechargeRecord');
 	Route::get('/banks/alipay', 'BanksController@alipay');
+
+	// 代理管理路由
+	Route::get('/agent', 'AgentController@index');
+	Route::get('/agent/register', 'AgentController@register');
+	Route::get('/agent/share', 'AgentController@share');
+	Route::get('/agent/bonuses', 'AgentController@bonuses');
+
+	// 团队管理
+	Route::get('/team', 'TeamController@index');
+	Route::get('/team/games-record', 'TeamController@gamesRecord');
+	Route::get('/team/account-change', 'TeamController@accountChange');
+	Route::get('/team/recharge-record', 'TeamController@rechargeRecord');
+	Route::get('/team/withdraw-record', 'TeamController@withdrawRecord');
+
+	// 积分商城
+	Route::get('/integral', 'IntegralController@index');
 });
 
 

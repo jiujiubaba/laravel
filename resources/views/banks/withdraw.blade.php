@@ -52,8 +52,47 @@
             </div>
         </div>
         @else
-
-
+        <div class="ui-content mt20">         
+            <div class="mt15">
+                <span class="ui-title inline">银行名称：</span>
+                <select class="ui-input select" name="bankname" id="idcard">
+                    <option value="">选择银行卡</option>
+                    @foreach ($banks as $bank)
+                        <option value="{{ $bank->alias }}">{{ $bank->name }}</option>
+                    @endforeach
+                </select>
+            </div> 
+            <div class="mt15">
+                <span class="ui-title inline">卡/折号：</span>
+                <input type="number" class="ui-input input" id="money" name="money" autocomplete="off">
+            </div>
+            <div class="mt15">
+                <span class="ui-title inline">银行开户地址：</span>
+                <input type="number" class="ui-input input" id="money" name="money" autocomplete="off">
+            </div>
+            <div class="mt15">
+                <span class="ui-title inline">用户名：</span>
+                <input type="number" class="ui-input input" id="money" name="money" autocomplete="off">
+            </div>       
+            <div class="mt15">
+                <span class="ui-title inline">账户余额：</span>
+                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{$cash}}">{{ $cash }}</span>元
+            </div>
+            <div class="mt15">
+                <span class="ui-title inline">提款金额</span>
+                <input type="number" class="ui-input input" id="money" name="money" autocomplete="off">
+            </div>
+            <div class="mt15">
+                <span class="ui-title inline">资金密码：</span>
+                <input type="password" class="ui-input input" id="pay-pass" name="pay_pass" autocomplete="off" onkeyup="">
+            </div>          
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div class="mt10">
+                <span class="ui-title inline"></span>
+                <input class="ui-btn" type="button" id="apply-withdraw" data-target="update" value="提款">
+            </div>
+        </div>
+    
 
         @endif
     </form>

@@ -58,7 +58,7 @@ function base62Encode($num, $hash) {
 		$res = $base{$r} . $res;
 	}
 	// dd(substr($hash,0,4));
-	return $res
+	return $res;
 }
 
 /**

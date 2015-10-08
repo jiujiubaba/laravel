@@ -68,21 +68,7 @@ function changeMoneyToChinese(money) {
     } else if (DecimalNum == '') {
         ChineseStr += cnInteger;
     }
-    return  ;
-}
-
-function formatFloat(num) {
-    num = num.replace(/^[^\d]/g, '');
-    num = num.replace(/[^\d.]/g, '');
-    num = num.replace(/\.{2,}/g, '.');
-    num = num.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
-    if (num.indexOf(".") != -1) {
-        var data = num.split('.');
-        num = (data[0].substr(0, 15)) + '.' + (data[1].substr(0, 1));
-    } else {
-        num = num.substr(0, 15);
-    }
-    return num;
+    return ChineseStr;
 }
 
 function moneyFormat(num) {
@@ -98,6 +84,35 @@ function moneyFormat(num) {
     } else {
         return v;
     }
+}
+
+function yzmoney(v){ 
+    var t = moneyFormat(v);
+    $("#money").val(t);
+    $("#dxmoney").html(changeMoneyToChinese(v));
+}
+
+function isnum(v){
+    var t = formatFloat(v);
+    if(t>50000){
+        t=50000;
+    }
+    $("#money").val(t);
+    $("#dxmoney").html(changeMoneyToChinese(v));        
+}
+
+function formatFloat(num) {
+    num = num.replace(/^[^\d]/g, '');
+    num = num.replace(/[^\d.]/g, '');
+    num = num.replace(/\.{2,}/g, '.');
+    num = num.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    if (num.indexOf(".") != -1) {
+        var data = num.split('.');
+        num = (data[0].substr(0, 15)) + '.' + (data[1].substr(0, 1));
+    } else {
+        num = num.substr(0, 15);
+    }
+    return num;
 }
 
 function copyToClipboard(obj) {

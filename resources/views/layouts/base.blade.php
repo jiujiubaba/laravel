@@ -39,23 +39,19 @@
                 <a href="/banks">银行充提</a>
             </li>
             <li class="bethistory">
-                <a href="#">投注记录</a>
+                <a href="/">投注记录</a>
             </li>
             <li class="repory">
                 <a href="#">帐户报表</a>
             </li>
             <li class="proxy">
-                <a href="#">代理管理</a>
-            </li>
-            <li class="activity">
-                <!-- onClick="('/?mod=a)"-->
-                <a href="#" target="_blank">优惠活动</a>
+                <a href="/agent">代理管理</a>
             </li>
             <li class="culture">
-                <a href="#">企业文化</a>
+                <a href="/team">团队管理</a>
             </li>
-            <li class="helpcenter">
-                <a href="#">真人娱乐</a>
+            <li class="activity">
+                <a href="/integral">积分商城</a>
             </li>
         </ul>
     </div>

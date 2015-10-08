@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use Request, Auth, Validator, Hash;
 use App\Http\Controllers\Controller;
-use App\Bank, App\UserBank, App\UserWithdraw;
+use App\Bank, App\UserBank, App\UserWithdraw, App\AdminBank;
 use App\Traits\AbledTrait;
 
 class BanksController extends Controller
@@ -14,7 +14,7 @@ class BanksController extends Controller
         $banks = Bank::where('status', 1)->select(['id', 'name'])->get();
         $data['banks'] = $banks;
         $data['userBanks'] = [];
-        $userBanks = UserBank::who($user)
+        $userBanks = UserBank::where('user_id', $user->id)
                             ->where('status', 1)
                             ->get();
         // dd($userBanks);
@@ -67,9 +67,9 @@ class BanksController extends Controller
         $userBank = UserBank::add($user, $bank, $input['address'], $input['uname'], $input['banknum']);
 
         if (!$bank) {
-            return $this->failure('添加银行失败');
+            return failure('添加银行失败');
         }
-        return $this->success('添加银行成功');
+        return success('添加银行成功');
     }
 
     /**
@@ -83,11 +83,18 @@ class BanksController extends Controller
         $data = [];
         $user = Auth::user();
         $data['username'] = $user->username;
+        // $userBank = [];
 
-        $userBank = UserBank::userId($user->id)
+        $userBank = UserBank::where('user_id', $user->id)
                                 ->where('is_lock', 1)
                                 ->first();
-
+        $data['userBank'] = $userBank;
+        if (!$userBank) {
+            $data['banks'] = Bank::where('withdraw_status', 1)
+                        ->select(['name', 'alias'])
+                        ->get();
+        }
+        
         $data['cash'] = $user->cash;
         return view('banks.withdraw', $data);
     }
@@ -140,7 +147,10 @@ class BanksController extends Controller
     {
         $data = [];
         $user = Auth::user();
-        $banks = Bank::getRecharge();
+        $banks = AdminBank::where('admin_banks.status', 1)
+                    ->leftJoin('banks', 'admin_banks.bank_id', '=', 'banks.id')
+                    ->orderBy('banks.sort', 'desc')
+                    ->get();
         $data = ['banks' => $banks]; 
         
         return view('banks.index', $data);
@@ -155,6 +165,33 @@ class BanksController extends Controller
     public function recharge()
     {
         return view('banks.alipay');
+    }
+
+    /**
+     * 转账
+     *  
+     * @date   2015-10-08
+     * @return [type]     [description]
+     */
+    public function confirm()
+    {
+        $money = (int)Request::input('money');
+        if ($money > 50000 || $money < 100)
+            return redirect('/banks')->with('message', 'Login Failed');
+
+        $bank = Bank::where('banks.alias', Request::input('bank'))
+                    ->leftJoin('admin_banks', 'banks.id', '=', 'admin_banks.bank_id')
+                    ->first();
+
+        if (!$bank) {
+            return redirect('/banks')->with('message', 'Login Failed');
+        }
+        $data['adminBank'] = $bank;
+        $data['money'] = $money;
+        $data['rand'] = str_random(5);
+        // dd($bank->toJson());
+        return view('banks.confirm', $data);
+
     }
 
     /**

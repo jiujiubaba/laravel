@@ -5,7 +5,6 @@
     <h4 class="content-title">银行充提</h4>
     <ul class="content-nav clearfix">
         <li ><a href="/banks">网银转账</a></li>
-        <li class="current"><a href="/banks/alipay">支付宝转账</a></li>
         <li ><a href="/banks/withdraw">提现</a></li>
         <li ><a href="/banks/withdraw-record">提现记录</a></li>
         <li ><a href="/banks/recharge-record">充值记录</a></li>
