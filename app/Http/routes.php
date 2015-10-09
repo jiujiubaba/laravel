@@ -11,7 +11,10 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function(){	
+// 前台用户相关
+Route::group(['middleware' => 'auth'], function(){
+	// 首页
+	Route::get('/', 'IndexController@index');	
 	// 我的账户相关路由
 	Route::get('/account', 'UserController@index');
 	Route::get('/account/edit', 'UserController@edit');
@@ -48,9 +51,6 @@ Route::group(['middleware' => 'auth'], function(){
 	// 积分商城
 	Route::get('/integral', 'IntegralController@index');
 });
-
-
-Route::get('/', 'IndexController@index');
 
 Route::get('/tt', function(){
 	return view('backend.index');
