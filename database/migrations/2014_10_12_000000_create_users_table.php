@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->tinyInteger('type')->comment('会员类型0 普通会员 1代理');
+            $table->tinyInteger('status')->default(0)->comment('会员状态 0 正常使用 1 禁用');
+            $table->tinyInteger('category')->default(0)->comment('用户种类 1 后台管理员 0 普通用户');
             $table->decimal('fandian', 10, 1)->comment('用户返点');
             $table->decimal('bdw_fandian', 10, 1)->comment('不定位返点');
             $table->string('qq',15)->comment('');

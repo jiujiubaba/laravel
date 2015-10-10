@@ -6,6 +6,12 @@ use Curl, Cache, Request;
 
 class AuthController extends Controller
 {
+    /**
+     * 登录样式
+     *
+     * @date   2015-10-09
+     * @return [type]     [description]
+     */
     public function login()
     {
 
@@ -32,34 +38,29 @@ class AuthController extends Controller
         return view('backend.login', $data);
     }
 
+    /**
+     * 检查登录是否成功
+     *
+     * @date   2015-10-09
+     * @return [type]     [description]
+     */
     public function checkLogin()
     {
-        //下边两个设置很重要
-        // Config::set('auth.model', 'App\Admin');
-        // Config::set('auth.table', 'admins');
+        if (!Request::has('username', 'password')) {
+            return failure('请输入用户名或密码');
+        }
 
-        return Request::all();
-        //
-        // $username = Input::get('username');
-        // $password = Input::get('password');
-        $rememberme = true;
-        if (Input::get('rememberme')){
-            $rememberme = true;
+        $admin = Admin::where('username', Request::input('username'))->first();
+        if (!$admin) {
+            return failure('用户不存在');
         }
-        else{
-            $rememberme = false;
-        }
-        if(Auth::attempt([
-            'username' => $username,'password' => $password
-        ],$rememberme))             
+
+        if (!Hash::check(Request::input('password'), $admin->password))
         {
-            //登录成功
-            return redirect(action('admin\AdminController@index'));
+            return failure('用户名或密码错误');
         }
-        else {
-            //登录失败
-            return redirect(action('admin\AdminController@login'))
-            ->withErrors("用户名或者密码不正确");
-        }
+
+        Auth::loginUsingId($admin->user_id);
+        return success('登录成功');
     }
 }

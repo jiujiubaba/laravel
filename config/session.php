@@ -110,6 +110,7 @@ return [
     */
 
     'cookie' => 'laravel_session',
+    'admin_cookie'  => 'backend_session',
 
     /*
     |--------------------------------------------------------------------------

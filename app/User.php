@@ -39,4 +39,12 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
         $this->cash = $this->cash - $money;
         return $this->save();
     }
+
+    public function admin()
+    {
+        if ($this->category == 1) {
+            return Admin::where('user_id', $this->id);
+        }
+        return null;
+    }
 }

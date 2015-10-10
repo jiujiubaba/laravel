@@ -57,24 +57,27 @@ Route::get('/tt', function(){
 });
 
 Route::get('/test', function(){
-	$hash = md5('asdfasdf');
-	return base62Encode(111, $hash);
+	// $hash = md5('asdfasdf');
+	// return base62Encode(111, $hash);
+	$token = md5('123123');
+	return  Session::setName(Config::get('session.admin_cookie'));
 });
+Route::get('/login', 'AuthController@login');
+Route::post('/loginTo','AuthController@loginTo');
+Route::get('/getCode', 'AuthController@getCode');
 
-// 后台登录
+/*
+	================  后台相关路由  ===============
+ */
 Route::get('/backend/login', 'Backend\AuthController@login');
 Route::post('/backend/check', 'Backend\AuthController@checkLogin');
 
 // 后台路由
-Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function(){
+Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'admin_auth'], function(){
 	// Route::get('/');
 	Route::get('/users', 'UsersController@index');
 });
 
-
-Route::get('/login', 'AuthController@login');
-Route::get('/getCode', 'AuthController@getCode');
-Route::post('/loginTo','AuthController@loginTo');
 Route::get('/r', 'AuthController@register');
 
 Route::get('/rr', function(){
