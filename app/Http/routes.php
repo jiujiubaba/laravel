@@ -52,16 +52,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/integral', 'IntegralController@index');
 });
 
-Route::get('/tt', function(){
-	return view('backend.index');
-});
-
-Route::get('/test', function(){
-	// $hash = md5('asdfasdf');
-	// return base62Encode(111, $hash);
-	$token = md5('123123');
-	return  Session::setName(Config::get('session.admin_cookie'));
-});
 Route::get('/login', 'AuthController@login');
 Route::post('/loginTo','AuthController@loginTo');
 Route::get('/getCode', 'AuthController@getCode');
@@ -74,10 +64,34 @@ Route::post('/backend/check', 'Backend\AuthController@checkLogin');
 
 // 后台路由
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'admin_auth'], function(){
-	// Route::get('/');
+	Route::get('/', 'IndexController@index');
+
+	// 用户管理路由
 	Route::get('/users', 'UsersController@index');
+
+	// 管理员管理路由
+	Route::get('/admins', 'AdminController@index');
 });
 
+
+/**
+ * =================== 测试相关路由 =================
+ */
+
+Route::get('/tt', function(){
+	return view('backend.index');
+});
+
+Route::get('/logout', function(){
+	return Auth::logout();
+});
+
+Route::get('/test', function(){
+	// $hash = md5('asdfasdf');
+	// return base62Encode(111, $hash);
+	$token = md5('123123');
+	return  Session::setName(Config::get('session.admin_cookie'));
+});
 Route::get('/r', 'AuthController@register');
 
 Route::get('/rr', function(){

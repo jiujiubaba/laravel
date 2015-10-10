@@ -23,7 +23,7 @@ class CreateAdminsTable extends Migration
             $table->integer('sign_in_cnt')->default(0)->comment('登录次数统计');
             $table->dateTime('last_sign_in_at')->comment('最后登录时间');
             $table->integer('user_id')->comment('用户id');
-            $table->integer('last_sign_id_ip')->comment('最后登录ip');
+            $table->string('last_sign_in_ip', 20)->comment('最后登录ip');
             $table->integer('failed_attempts')->comment('登录失败次数');
             $table->integer('locked_at')->comment('锁定时间');
             $table->softDeletes();

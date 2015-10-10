@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\User, App\Admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -97,12 +97,25 @@ class AuthController extends Controller
 
     public function register(){
         $user = [
-            'username' => 'ceshi',
-            'password' => Hash::make('123456'),
-            'nickname'  => '赵四'
+            'username'  => 'admin',
+            'password'  => Hash::make('123456'),
+            'nickname'  => '赵四',
+            'category'  => 1
         ];
         $u = User::saveData($user);
-        if ($u)
+
+        $admin = [
+            'username' => 'admin',
+            'password'  => Hash::make('123456'),
+            'name'      => 'admin',
+            'status'    => 0,
+            'user_id'   => $u->id
+        ];
+
+        $a = Admin::saveData($admin);
+
+
+        if ($a)
             return 1;
         else
             return 0;

@@ -33,10 +33,12 @@ function success(){
  * @return [type]              [description]
  */
 function failure($message, $code = 1){
-    if(is_null($code)){
-        throw new ResultException($message);
-    }
-    throw new ResultException($message, $code);
+    return [
+		'result' => false,
+		'message' => $message,
+		'error_code' => $code
+	];
+
 }
 
 /**

@@ -54,14 +54,14 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <form action="/backend/check" method="post">
+        <form id="f-login" >
           <div class="input-group has-feedback" style="margin-bottom:15px;">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input type="email" name="email" class="form-control" placeholder="Email">
+            <input type="text" name="username" class="form-control" placeholder="用户名">
           </div>
           <div class="input-group has-feedback" style="margin-bottom:15px;">
             <span class="input-group-addon" style="font-size: 20px;"><i class="fa fa-lock"></i></span>
-            <input type="password" name="password" class="form-control" placeholder="password">
+            <input type="password" name="password" class="form-control" placeholder="密码">
           </div>
           <div class="input-group has-feedback" style="margin-bottom:15px;">
             <input type="text" name="vcode" class="form-control" placeholder="验证码" style="width:218px;margin-right:20px;">
@@ -72,7 +72,7 @@
             <div class="col-xs-12">
               <div class="checkbox icheck">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">登  录</button>
+                <button type="button" class="btn btn-primary btn-block btn-flat" id="submit" >登  录</button>
               </div>
             </div><!-- /.col -->
           </div>
@@ -88,6 +88,18 @@
         _this.attr('src', data);
       });
     });
+
+    $('#submit').click(function(){
+      var t = $('#f-login').serialize();
+      $.post('/backend/check', t, function(data){
+        if (data.result) {
+          window.location.href = '/backend/';
+        }else{
+          console.log(data.message);
+        }
+      });
+    });
+
   });
   </script>
 </html>

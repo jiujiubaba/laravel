@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
+use Closure, Auth;
 
 class AdminAuthMiddleware
 {
@@ -15,14 +15,14 @@ class AdminAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('/backend/login');
-            }
+        if ($request->ajax()) {
+            return response('Unauthorized.', 401);
         }
+        
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->guest('/backend/login');
+        }
         if ($user->category != 1) {
             return redirect()->guest('/backend/login');
         }

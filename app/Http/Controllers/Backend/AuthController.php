@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use Curl, Cache, Request;
+use Controller, Curl, Cache, Request, Hash, Validator, Auth;
+use App\Admin;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -50,6 +51,14 @@ class AuthController extends Controller
             return failure('请输入用户名或密码');
         }
 
+        // $rules = [
+        //     'captcha' => 'required|captcha',
+        // ];
+        // $validator = Validator::make(Request::all(), $rules);
+        // if ($validator->fails()) {
+        //     return $this->failure('验证码错误');
+        // }
+
         $admin = Admin::where('username', Request::input('username'))->first();
         if (!$admin) {
             return failure('用户不存在');
@@ -59,6 +68,11 @@ class AuthController extends Controller
         {
             return failure('用户名或密码错误');
         }
+
+        $admin->increment('sign_in_cnt');
+        $admin->last_sign_in_at = Carbon::now();
+        $admin->last_sign_in_ip = Request::getClientIp();
+        $admin->save();
 
         Auth::loginUsingId($admin->user_id);
         return success('登录成功');

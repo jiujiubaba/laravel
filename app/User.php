@@ -33,6 +33,11 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
      */
     protected $hidden = ['password', 'remember_token'];
 
+    public function test()
+    {
+        return 'sdf';
+    }
+
     public function decreaseCash($money = 0)
     {
         if (!$money) return false;
@@ -43,7 +48,7 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
     public function admin()
     {
         if ($this->category == 1) {
-            return Admin::where('user_id', $this->id);
+            return Admin::where('user_id', $this->id)->first();
         }
         return null;
     }

@@ -1,19 +1,13 @@
-<?php
-namespace App\Http\Controllers\Backend;
-use App\Http\Controllers\Controller;
+<?php namespace App\Http\Controllers\Backend;
+use Controller, Auth;
 use Request;
-use App\Article;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        return view('backend.users.index');
+        $data = [];
+        return view('backend.users.index', $data);
     }
 
     /**

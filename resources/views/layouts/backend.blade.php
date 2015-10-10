@@ -3,11 +3,12 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+<?php ($admin = Auth::user()->admin()) ?>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>后台管理系统</title>
+    <title>@yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -17,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/backend/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/backend/css/AdminLTE.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -90,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#">
                           <div class="pull-left">
                             <!-- User Image -->
-                            <img src="backend/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
                           </div>
                           <!-- Message title and timestamp -->
                           <h4>
@@ -169,14 +170,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="backend/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                  <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">{{ $admin->name }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="backend/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
                       Alexander Pierce - Web Developer
                       <small>Member since Nov. 2012</small>
@@ -222,10 +223,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="backend/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>{{ $admin->name }}</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -248,19 +249,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Optionally, you can add icons to the links -->
             <!-- 业务流水 -->
             <li class="treeview active">
-              <a href="#"><i class="fa fa-link"></i> <span>业务流水</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-bank"></i> <span>业务流水</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">体现请求</a></li>
-                <li><a href="#">体现记录</a></li>
-                <li><a href="#">充值记录</a></li>
-                <li><a href="#">普通投注</a></li>
-                <li><a href="#">帐变明细</a></li>
+                <li><a href="#"><i class="fa fa-calendar-check-o"></i>体现请求</a></li>
+                <li><a href="#"><i class="fa fa-calendar-check-o"></i>体现记录</a></li>
+                <li><a href="#"><i class="fa fa-calendar-check-o"></i>充值记录</a></li>
+                <li><a href="#"><i class="fa fa-calendar-check-o"></i>普通投注</a></li>
+                <li><a href="#"><i class="fa fa-calendar-check-o"></i>帐变明细</a></li>
               </ul>
             </li>
 
             <!-- 开奖数据 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>开奖数据</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-area-chart"></i> <span>开奖数据</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-users"></i>体现请求</a></li>
                 <li><a href="#"><i class="fa fa-users"></i>体现记录</a></li>
@@ -297,10 +298,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- 积分兑换管理 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>积分兑换管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-star"></i> <span>积分兑换</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-users"></i>兑换管理</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>兑换记录</a></li>
+                <li><a href="#"><i class="fa fa-gift"></i>兑换管理</a></li>
+                <li><a href="#"><i class="fa fa-building"></i>兑换记录</a></li>
               </ul>
             </li>
 
@@ -308,42 +309,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-users"></i> <span>管理人员</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-users"></i>管理员列表</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>操作日志</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>登录日志</a></li>
               </ul>
             </li>
 
             <!-- 时间管理 -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-hourglass-half"></i> <span>时间管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="#"><i class="fa fa-calendar"></i> <span>时间管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-users"></i>管理员列表</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>操作日志</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-paw"></i>登录日志</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
       </aside>
+    
+      
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <ol class="breadcrumb" style="float:left;">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-          @yield('content')
-          <!-- Your Page Content Here -->
-
-        </section><!-- /.content -->
+        @yield('content')
       </div><!-- /.content-wrapper -->
 
       <!-- Main Footer -->
@@ -353,8 +343,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
-      </footer>
+        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong>      </footer>
 
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">

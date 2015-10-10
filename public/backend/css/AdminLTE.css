@@ -312,6 +312,7 @@ a:focus {
 .content-header {
   position: relative;
   padding: 15px 15px 0 15px;
+  height:36px;
 }
 .content-header > h1 {
   margin: 0;
@@ -324,7 +325,7 @@ a:focus {
   font-weight: 300;
 }
 .content-header > .breadcrumb {
-  float: right;
+  /*float: right;*/
   background: transparent;
   margin-top: 0;
   margin-bottom: 0;
@@ -332,7 +333,7 @@ a:focus {
   padding: 7px 5px;
   position: absolute;
   top: 15px;
-  right: 10px;
+  left: 10px;
   border-radius: 2px;
 }
 .content-header > .breadcrumb > li > a {
@@ -1764,6 +1765,7 @@ a:focus {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   padding: 10px;
+  
 }
 .no-header .box-body {
   border-top-right-radius: 3px;
