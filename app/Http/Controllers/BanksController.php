@@ -108,19 +108,19 @@ class BanksController extends Controller
     public function applyWithdraw()
     {
         if (!Request::has('money', 'pay_pass')) {
-            return $this->failure('参数错误');
+            return failure('参数错误');
         }
         $user = Auth::user();
         $userBank = UserBank::userId($user->id)->where('is_lock', 1)->first();
         if (!$userBank) {
-            return $this->failure('您还没有锁定银行卡');
+            return failure('您还没有锁定银行卡');
         }
         if ($user->payment_password == '') {
-            return $this->failure('您还没有设置资金密码！');
+            return failure('您还没有设置资金密码！');
         }
 
         if (!Hash::check(Request::input('pay_pass'), $user->payment_password)) {
-            return $this->failure('资金密码错误');
+            return failure('资金密码错误');
         }
 
         return UserWithdraw::apply($user, $userBank, (float)Request::input('money'));
@@ -220,6 +220,6 @@ class BanksController extends Controller
     {
         $id = Request::input('num');
         $r = UserBank::where('id', $id)->delete();
-        return $this->success('删除成功');
+        return success('删除成功');
     }
 }

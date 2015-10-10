@@ -52,7 +52,7 @@ class UserController extends Controller
         $user = Auth::user();
         $user->nickname = $nickname;
         $user->save();
-        return $this->success('修改成功');
+        return success('修改成功');
     }
 
     /**
@@ -66,15 +66,15 @@ class UserController extends Controller
         $old_pass = Request::input('old_pass');
         $user = Auth::user();
         if ($user->password != Hash::make($old_pass)) {
-            return $this->failure('密码错误');
+            return failure('密码错误');
         }
         
         $user->old_password = $user->password;
         $user->password = Hash::make(Request::input('new_pass'));
         if (!$user->save()) {
-            return $this->failure('密码修改失败');
+            return failure('密码修改失败');
         }
-        return $this->success('密码修改成功');
+        return success('密码修改成功');
     }
 
     public function updatePayment()

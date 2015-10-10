@@ -7,17 +7,17 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="/backend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Ionicons -->
     <!-- Theme style -->
-    <link rel="stylesheet" href="/backend/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/admin/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="/backend/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="/admin/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,9 +28,9 @@
     
 
     <!-- jQuery 2.1.4 -->
-    <script src="/backend/js/jquery.min.js"></script>
+    <script src="/admin/js/jquery.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="/backend/js/bootstrap.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
     <style>
     .login-page, .register-page{
           background-color: transparent;

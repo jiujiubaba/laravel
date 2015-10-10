@@ -79,13 +79,13 @@ class AuthController extends Controller
         ];
         $validator = Validator::make(Request::all(), $rules);
         if ($validator->fails()) {
-            return $this->failure('验证码错误');
+            return failure('验证码错误');
         }
         if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
-            return $this->success('登录成功');
+            return success('登录成功');
         }
         
-        return $this->failure('用户名或密码错误');
+        return failure('用户名或密码错误');
     }
     /**
      * 获取验证码
@@ -113,7 +113,6 @@ class AuthController extends Controller
         ];
 
         $a = Admin::saveData($admin);
-
 
         if ($a)
             return 1;
