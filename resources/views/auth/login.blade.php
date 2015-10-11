@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/asset/css/common.css">
     <link rel="stylesheet" href="/asset/css/index.css">
@@ -80,7 +79,7 @@ body{
 .login-area .user-xx,
 
 .login-area .user-login-button{
-	width: 330px;
+	width: 300px;
 	height: 50px;
 	margin: 0 auto;
 	line-height: 50px;
@@ -97,7 +96,7 @@ body{
 }
 
 .user-code{
-	width: 200px;
+	width: 175px;
 	height: 50px;
 	margin: 0 5px 0 0;
 	line-height: 50px;
@@ -272,9 +271,9 @@ body{
 		}
 
     </style>
-
+    <link rel="stylesheet" href="/asset/css/sweet-alert.css">
     <script src="/asset/js/jquery.min.js"></script>
-    <script src="/asset/js/bootstrap.min.js"></script>
+    <script src="/asset/js/sweet-alert.js"></script>
 </head>
 
 <body style="background:url(http://999.niucaivip.com/tpl/black//images/newtpl/dl_07.jpg) no-repeat bottom center fixed #fff; height:830px;">
@@ -298,32 +297,61 @@ body{
         <div style="clear:both; height:62px;"><input type="button" class="user-login-button" value="登录" style="background: #d45656;" id="submit"></div> 
     </form>
     </div>
-	<div style="margin:10px auto; clear:both; text-align:center; color:#adadad; font-size:12px;">为了避免假冒nncny的站点偷窃您的用户名和密码，我们采用新的登录方式以保证您的账户安全</div>
+	<!-- <div style="margin:10px auto; clear:both; text-align:center; color:#adadad; font-size:12px;">为了避免假冒nncny的站点偷窃您的用户名和密码，我们采用新的登录方式以保证您的账户安全</div>
         <div style="font-size:12px; text-align:center;"><a href="javascript:void(0)" onclick="showGetPas()" style=" color:#C30; margin-right:20px; ">忘记密码</a></div>
-    <a href="http://se.360.cn/" target="_blank" style="display:none">360安全浏览器</a>
+    <a href="http://se.360.cn/" target="_blank" style="display:none">360安全浏览器</a> -->
  </body>
 <!-- <script src="/js/index.js"></script> -->
 <script>
+/**
+ * @decription 加载框插件
+ * @param content : string 加载文字
+ * @param w : string 加载框宽度
+ * @param h : string 加载框高度
+ */
+function showLoading(content, w, h) { //显示加载
+    content = content != undefined ? content : '正在处理中, 请稍后...';
+    w = w != undefined ? parseInt(w) : '240';
+    h = h != undefined ? parseInt(h) : '120';
+    var margin = "" + (-(h / 2)) + 'px 0 0 ' + (-(w / 2)) + "px";
+    $('body').stop().append('<div id="HLoading" style="width:' + w + 'px;height:' + h + 'px;background:rgba(0,0,0,0.6);color:#fff;text-align:center;position:fixed;border-radius:3px;left:50%;top:50%;margin:' + margin + ';"><div><i class="icon-spinner icon-spin" style="font-size:60px;margin-top:10px; margin-bottom:20px;"></i></div>' + content + '</div>');
+}
 
-$('#ck').click(function(event) {
-	var _this = $(this);
-	$.get('/getCode',function(data){
-		_this.attr('src', data);
-});
-});
-
-$('#submit').click(function(event) {
-	$(this).val("登录中....");
-	$.post('/loginTo', $('#J-form-login1').serialize(), function(data){
-		if (data.result) {
-			window.location.href = '/';
-		}else{
-			alert(data.message);
-		}
+/**
+ * @decription 隐藏加载框
+ */
+function hideLoading() { //移除加载
+    $('#HLoading').remove();
+}
+$(function(){
+	
+	$('#ck').click(function(event) {
+		var _this = $(this);
+		$.get('/getCode',function(data){
+			_this.attr('src', data);
+		});
 	});
-	console.log($('#J-form-login1').serialize());
-});
 
+	$('#submit').click(function(event) {
+		if ($('#username').val() == '') {
+			return swal('用户名不能为空', '', 'error');
+		} else if($('#passwd').val() == '') {
+			return swal('请填写密码', '', 'error');
+		} else if($('#vcode').val() == '') {
+			return swal('请输入验证码', '', 'error');
+		}
+
+		showLoading();
+		$.post('/loginTo', $('#J-form-login1').serialize(), function(data){
+			hideLoading();
+			if (data.result) {
+				window.location.href = '/';
+			}else{
+				swal(data.message, '', 'error');
+			}
+		});
+	});
+});
 </script>
 </html>
 

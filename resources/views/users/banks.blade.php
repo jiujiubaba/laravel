@@ -128,7 +128,20 @@ $(function(){
     // showLoading();
 
     $('#bt').click(function(event) {
+
+        
         $('#new').modal({ok:function(){
+            if ($('#idcard').val() == '') {
+                return swal('请选择银行卡', '', 'error');
+            }else if ($('#shengfen').val() == '') {
+                return swal('请填写开户行地址', '', 'error');
+            }else if ($('#uname').val() == '') {
+                return swal('请填写开户人姓名', '', 'error');
+            }else if ($('#banknum').val() == '') {
+                return swal('请填写银行卡号', '', 'error');
+            }else if ($('#pass').val() == '') {
+                return swal('请填写资金密码', '', 'error');
+            }
             console.log('ok');
         }});
     });;

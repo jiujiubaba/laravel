@@ -1015,7 +1015,6 @@ a:active {
     width: 600px;
     min-height: 300px;
     margin-left: -285px;
-    margin-top: -150px;
     border-radius: 5px;
     font-weight: bold;
     color: #535e66;
@@ -1023,17 +1022,18 @@ a:active {
 }
 
 .ui-modal .modal-content .modal-header {
-    height: 30px;
+    height: 50px;
     line-height: 30px;
     padding: 10px 20px;
     border-bottom: solid 1px #eef0f1;
+    position: relative;
 }
 
 .ui-modal .modal-content .modal-header .tt {
     font-size: 18px;
     display: block;
     float: left;
-    height: 30px;
+    /*height: 50px;*/
     position: relative;
 }
 
@@ -1054,7 +1054,7 @@ a:active {
 .ui-modal .modal-content .modal-footer {
     border-top: solid 1px #eef0f1;
     padding: 10px;
-    height:30px;
+    height:50px;
 }
 
 .ui-modal .modal-content .modal-footer .btnGroup {

@@ -16,6 +16,7 @@ function swals(type, tips) {
     }, 2500);
 }
 
+
 /**
  * @decription 加载框插件
  * @param content : string 加载文字
@@ -27,8 +28,7 @@ function showLoading(content, w, h) { //显示加载
     w = w != undefined ? parseInt(w) : '240';
     h = h != undefined ? parseInt(h) : '120';
     var margin = "" + (-(h / 2)) + 'px 0 0 ' + (-(w / 2)) + "px";
-    // $body.stop().append('<div class="ll" style="height:600px;  width:100%; position:fixed;top:0px;left:0px;"><div id="HLoading" style="width:160px;height:100px;line-height:100px;background:rgba(0,0,0,0.6);color:#fff;textalign:center;position:fixed;top:50%;left:50%;margin:'+margin+';">加载中</div></div>');
-    $('body').stop().append('<div id="HLoading" class="ui-loading" style="width:' + w + 'px;height:' + h + 'px;margin:' + margin + ';"><div><i class="icon-spinner icon-spin" style="font-size:60px;margin-top:10px; margin-bottom:20px;"></i></div>' + content + '</div>');
+    $('body').stop().append('<div id="HLoading" style="width:' + w + 'px;height:' + h + 'px;background:rgba(0,0,0,0.6);color:#fff;text-align:center;left:50%;top:50%;margin:' + margin + ';"><div><i class="icon-spinner icon-spin" style="font-size:60px;margin-top:10px; margin-bottom:20px;"></i></div>' + content + '</div>');
 }
 
 /**

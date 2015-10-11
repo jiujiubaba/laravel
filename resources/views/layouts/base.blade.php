@@ -7,7 +7,6 @@
     <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <link href="/asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
     @yield('style')
     <!-- css公共样式 -->
@@ -20,7 +19,6 @@
     <!-- <link rel="stylesheet" href="/asset/css/animate.min.css"> -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/3.1.1/font/fontawesome-webfont.svg">
     <script src="/asset/js/jquery.min.js"></script>
-    <script src="/asset/js/bootstrap.min.js"></script>
     <script src="/asset/js/sweet-alert.js"></script>
     <script src="/asset/js/tools.js"></script>
     
