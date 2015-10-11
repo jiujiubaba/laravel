@@ -70,6 +70,9 @@ Route::post('/backend/check', 'Backend\AuthController@checkLogin');
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'admin_auth'], function(){
 	Route::get('/', 'IndexController@index');
 
+	// 系统设置相关路由
+	Route::get('/systems/banks', 'SystemController@banks');
+
 	// 用户管理路由
 	Route::get('/users', 'UsersController@index');
 

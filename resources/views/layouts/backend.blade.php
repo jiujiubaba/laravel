@@ -289,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-cogs"></i>系统设置</a></li>
                 <li><a href="#"><i class="fa fa-commenting-o"></i>公告中心</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>收款设置</a></li>
+                <li><a href="/backend/systems/banks"><i class="fa fa-users"></i>收款设置</a></li>
                 <li><a href="#"><i class="fa fa-gg"></i>菜种管理</a></li>
                 <li><a href="#"><i class="fa fa-gamepad"></i>玩法管理</a></li>
                 <li><a href="#"><i class="fa fa-level-up"></i>等级设置</a></li>

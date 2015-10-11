@@ -26,6 +26,12 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+.fr{
+  float: right;
+}
+
+
 /* Layout */
 .wrapper {
   min-height: 100%;
