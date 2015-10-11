@@ -65,30 +65,16 @@
 
 </div>
 
-<!-- 删除弹出层 -->
-<div id="delete" class="dialog">
-    <div class="dialog-title">
-        <button type="button" class="close closes"><span aria-hidden="true">×</span></button>
-        <h5 class="modal-title" id="myModalLabel">温馨提示</h5>
-    </div>
-    <div class="dialog-body">
-        你确定要删除么？
-    </div>
-    <div class="dialog-footer">
-        <button type="button" class="btn btn-danger closes">取消</button>
-        <button type="button" class="btn btn-success success">确定</button>
-    </div>
-</div>
-
-<div class="modal" id="myModal">
-    <div class="modal-dialog slideInDown animated" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">绑定银行卡</h4>
-            </div>
-            <div class="modal-body">
-                <form id="J-form-banks">
+<!-- 添加银行卡 -->
+<div class="ui-modal" id="new">
+    <div class="ui-modal-backdrop"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="tt">添加银行卡</span>
+            <i class="icon-remove close-icon cancel"></i>
+        </div>
+        <div class="modal-body">
+            <form id="J-form-banks">
                     <div class="table-area">
                         <div class="ui-content mt20">
                             <div>
@@ -123,10 +109,11 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger closes">取消</button>
-                <button type="button" class="btn btn-success success">确定</button>
+        </div>
+        <div class="modal-footer">
+            <div class="btnGroup">
+                <button  type="button" class="ui-btn ok" >确定</button>
+                <button type="button" class="ui-btn cancel">取消</button>
             </div>
         </div>
     </div>
@@ -138,46 +125,54 @@
 <script>
 
 $(function(){
-    var _token = "<?php echo csrf_token(); ?>";
-    $('#bt').modal(function(){
-    // if ($('#idcard').)
-    if ($('#idcard').val() == '') {
-        return swal('error', '请选择银行卡');
-    }else if ($('#shengfen').val() == '') {
-        return swal('error', '请填写开户行地址');
-    }else if ($('#uname').val() == '') {
-        return swal('error', '请填写开户人姓名');
-    }else if ($('#banknum').val() == '') {
-        return swal('error', '请填写银行卡号');
-    }else if ($('#pass').val() == '') {
-        return swal('error', '请填写资金密码');
-    }
+    // showLoading();
 
-    var a= $('#J-form-banks').serialize();
-    $.post('/banks/add', a, function(data){
-        console.log(a);
-    });
-});
-    $('.J-delete-bank').modal(function(arg){
-        console.log(arg);
-        console.log(arg.attr('data-num'));
-        $('body').showLoading();
-        var num = arg.attr('data-num');
-        $.post('/banks/delete',{'num':num,'_token':_token}, function(data){
-            $('body').hideLoading();
-            if (data.result) {
-                location.reload();
-                swal('success', data.message);
-            } else {
-                swal('error', '删除失败');
-            }
-        });
-        return true;
-    });
-    $('#test').click(function(){
-        console.log('sdf');
-        $('body').hideLoading();
-    });
+    $('#bt').click(function(event) {
+        $('#new').modal({ok:function(){
+            console.log('ok');
+        }});
+    });;
+
+    var _token = "<?php echo csrf_token(); ?>";
+//     $('#bt').modal(function(){
+//     // if ($('#idcard').)
+//     if ($('#idcard').val() == '') {
+//         return swal('error', '请选择银行卡');
+//     }else if ($('#shengfen').val() == '') {
+//         return swal('error', '请填写开户行地址');
+//     }else if ($('#uname').val() == '') {
+//         return swal('error', '请填写开户人姓名');
+//     }else if ($('#banknum').val() == '') {
+//         return swal('error', '请填写银行卡号');
+//     }else if ($('#pass').val() == '') {
+//         return swal('error', '请填写资金密码');
+//     }
+
+//     var a= $('#J-form-banks').serialize();
+//     $.post('/banks/add', a, function(data){
+//         console.log(a);
+//     });
+// });
+//     $('.J-delete-bank').modal(function(arg){
+//         console.log(arg);
+//         console.log(arg.attr('data-num'));
+//         $('body').showLoading();
+//         var num = arg.attr('data-num');
+//         $.post('/banks/delete',{'num':num,'_token':_token}, function(data){
+//             $('body').hideLoading();
+//             if (data.result) {
+//                 location.reload();
+//                 swal('success', data.message);
+//             } else {
+//                 swal('error', '删除失败');
+//             }
+//         });
+//         return true;
+//     });
+//     $('#test').click(function(){
+//         console.log('sdf');
+//         $('body').hideLoading();
+//     });
 // $('body').hideLoading();
 
     // $('body').showLoading();
