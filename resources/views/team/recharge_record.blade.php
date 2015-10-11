@@ -4,21 +4,43 @@
 <div class="common-info clearfix">
     <h4 class="content-title">团队管理</h4>
     <ul class="content-nav clearfix">
-        <li class="current"><a href="/team">团队总览</a></li>
+        <li><a href="/team">团队总览</a></li>
         <li><a href="/team/games-record">团队记录</a></li>
         <li><a href="/team/account-change">团队账变</a></li>
-        <li><a href="/team/recharge-record">充值记录</a></li>
+        <li class="current"><a href="/team/recharge-record">充值记录</a></li>
         <li><a href="/team/withdraw-record">提现记录</a></li>
     </ul>
 </div>
 <div class="table-area">
-    <div class="dashed mt30">
-        <h4 class="title">使用提示</h4>
-        <p>1、每个游戏帐户最多绑定 5 张银行卡 ， 您已经成功绑定 1 张。</p>
-        <p>2、银行卡锁定以后，不能增加新的银行卡绑定，同时也不能解绑已绑定的银行卡。 </p>
-        <p>3、新绑定的提款银行卡需要绑定时间超过 6 个小时才能正常取款。</p>
-        <p>4、一个账户只能绑定同一个开户人姓名的银行卡。</p>
+    <div class="info-layout-title mt20">
+        <form action="/" method="get">
+            <input type="hidden" value="safe" name="mod">
+            <input type="hidden" value="rechargelist" name="code">
+            <input type="hidden" value="recharge" name="type"> 充提时间：
+            <input type="text" name="st" value="2015-10-11" class="time-select mr10 input" onclick="WdatePicker({isShowClear:false,readOnly:false,dateFmt:'yyyy-MM-dd',onpicked:function(){$dp.$('et').focus();}})"> 至
+            <input type="text" name="et" id="et" value="2015-10-11" class="time-select input ml10 mr10" onclick="WdatePicker({isShowClear:false,readOnly:false,dateFmt:'yyyy-MM-dd'})"> 编号：
+            <input type="text" class="input" name="bh">
+            <input type="submit" value="查询" class="btn important-thumb w150 text-center no-bgimg no-padding ml10">
+        </form>
     </div>
+    <table class="table text-center mt20">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>类型</th>
+                <th>编号</th>
+                <th>金额（元）</th>
+                <th>时间</th>
+                <th>备注</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="7" align="center">暂无数据</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 @stop
 

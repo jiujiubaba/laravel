@@ -22,12 +22,12 @@ class AgentController extends Controller
     
     public function register()
     {
-
+        return view('agent.register');
     }
 
     public function share()
     {
-
+        return view('agent.share');
     }
 
     public function bonuses()

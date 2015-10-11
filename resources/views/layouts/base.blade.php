@@ -25,6 +25,25 @@
 </head>
 
 <body>
+<div class="notice_wrap">
+ <div class="notice">
+    <span onclick="topUrlGo('/?mod=help&amp;code=noticelist',this)" class="icon-volume-up laba" title="查看公告">&nbsp;</span>
+        <marquee class="layout f-left" id="notice" onmouseover="this.stop()" onmouseout="this.start();" style="width:750px; color:#fff;"><a href="javascript:void(0)" onclick="opnotice(94)">1:关于纽约彩种升级维护;</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="opnotice(93)">2:关于中国银行维护;</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="opnotice(92)">3:豪礼iPhone6 plus ，新款iPhone6s大放送！;</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="opnotice(91)">4:关于农业银行维护;</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="opnotice(89)">5:金秋十月迎国庆,牛彩任性就发RMB;</a>&nbsp;&nbsp;</marquee>
+        <ul class="f-right head-nav" style="margin-right:20px;">
+            <li class="online">
+                <a href="javascript:void(0)" onclick="javascript: window.open('http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=487194&amp;jid=2239530169','','menubar=no,status=yes,scrollbars=yes,top=150')">
+                <i class="icon-headphones mr10"></i>在线客服</a>
+            </li>
+            <li class="bet white">
+                <a href="download/pc.html" target="_blank"><i class="icon-cloud-download mr10"></i>下载中心</a>
+            </li>
+            <li class="exit white">
+            <a href="/logout" class="quit"><i class="icon-off mr10"></i>退出</a>
+            </li>
+       </ul>
+    </div>   
+</div>
+
 <div class="nav">
     <div class="layout">
         <div class="logo">
@@ -60,7 +79,7 @@
             <div class="user-info">
                 <div class="user-level-info">
                     <div>
-                        <a href="javascript:void(0)" class="user-name">{{ Auth::user()->nickname }}</a>
+                        <a href="javascript:void(0)" class="user-name white">{{ Auth::user()->nickname }}</a>
                         <span class="mark" href="javascript:void(0)">vip{{Auth::user()->level}}</span>
                     </div>
                     <div class="process">
@@ -79,9 +98,6 @@
             </div>
             <div class="leftmenu2">
                 <ul class="lottery-list" id="lottery-list">
-                    <li>
-                        <a class="name" href="javascript:void(0)">纽约秒秒彩</a> <a href="javascript:void(0)" class="desc">即开型</a>
-                        <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
                     <li id="s-NYYFC">
                         <a class="name" href="javascript:void(0)">纽约一分彩</a> <a href="javascript:void(0)" class="desc">一分钟一期</a>
                         <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
@@ -90,10 +106,6 @@
                         <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
                     <li id="s-NYWFC">
                         <a class="name" href="javascript:void(0)">纽约五分彩</a> <a href="javascript:void(0)" class="desc">五分钟一期</a>
-                        <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
-                    <li id="s-NY3D">
-                        <a class="name" href="javascript:void(0)">纽约3D</a>
-                        <a href="javascript:void(0)" class="desc"></a>
                         <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
                     <li id="s-CQSSC" class="current">
                         <a class="name" href="javascript:void(0)">重庆时时彩</a> <a href="javascript:void(0)" class="desc">最热门彩种</a>
@@ -144,17 +156,6 @@
                         <a class="name" href="javascript:void(0)">福彩3D</a>
                         <a href="javascript:void(0)" class="desc"></a>
                     </li>
-                    <li id="s-P5(P3)">
-                        <a class="name" href="javascript:void(0)">P5(P3)</a>
-                        <a href="javascript:void(0)" class="desc"></a>
-                    </li>
-                    <li><a class="name" href="javascript:void(0)">双色球</a> <a href="javascript:void(0)" class="desc">即将上线</a></li>
-                    <li><a class="name" href="javascript:void(0)">大乐透</a> <a href="javascript:void(0)" class="desc">即将上线</a></li>
-                    <li onclick="winGo('http://999.niucaivip.com/?mod=game&amp;code=cas',this)" id="s-P5(P3)"><a class="name" href="javascript:void(0)">真人娱乐</a>
-                        <a href="javascript:void(0)" class="desc"></a>
-                    </li>
-                    <li><a class="name" href="javascript:void(0)">电子游戏</a> <a href="javascript:void(0)" class="desc">待上线</a></li>
-                    <li><a class="name" href="javascript:void(0)">斗地主</a> <a href="javascript:void(0)" class="desc">待上线</a></li>
                 </ul>
             </div>
         </div>

@@ -10,9 +10,10 @@ use App\Http\Controllers\Controller;
 class TeamController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     *  团队总览
      *
-     * @return Response
+     * @date   2015-10-11
+     * @return [type]
      */
     public function index()
     {
@@ -20,68 +21,46 @@ class TeamController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     *  团队游戏记录
      *
-     * @return Response
+     * @date   2015-10-11
+     * @return [type]
      */
-    public function create()
+    public function gamesRecord()
     {
-        //
+        return view('team.games_record');
     }
 
     /**
-     * Store a newly created resource in storage.
+     *  团队帐变
      *
-     * @param  Request  $request
-     * @return Response
+     * @date   2015-10-11
+     * @return [type]
      */
-    public function store(Request $request)
+    public function accountChange()
     {
-        //
+        return view('team.account_change');
+    }   
+
+    /**
+     *  团队充值记录
+     *
+     * @date   2015-10-11
+     * @return [type]
+     */
+    public function rechargeRecord()
+    {
+        return view('team.recharge_record');
     }
 
     /**
-     * Display the specified resource.
+     *  团队体现记录
      *
-     * @param  int  $id
-     * @return Response
+     * @date   2015-10-11
+     * @return [type]
      */
-    public function show($id)
+    public function withdrawRecord()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('team.withdraw_record');
     }
 }

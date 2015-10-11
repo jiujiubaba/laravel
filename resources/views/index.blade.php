@@ -1,18 +1,15 @@
 @extends('layouts.base')
 
 @section('content')
-asdfasdf
-<script src="/asset/js/plugins.js"></script>
-<script>
-$('#bt').modal(function(){
-    var a= $('#J-form-banks').serialize();
-    $.post('/banks/add', a, function(data){
-        console.log(a);
-    }); 
+<div class="common-info clearfix">
+    <h4 class="content-title">这里是首页</h4>
+    <h4 class="content-title">&nbsp;</h4>
+</div>
+<div class="table-area">
 
-});
-$.tooltip('asdfasdf');
-</script>
+
+</div>
+<script src="/asset/js/index.js"></script>
 @stop
 
 

@@ -81,4 +81,37 @@ class UserController extends Controller
     {
         
     }
+
+    /**
+     *  我的消息首页
+     *
+     * @date   2015-10-11
+     * @return [type]
+     */
+    public function messages()
+    {
+        return view('users.messages');
+    }
+
+    /**
+     *  发送消息页面
+     *
+     * @date   2015-10-11
+     * @return [type]
+     */
+    public function messagesAdd()
+    {
+        return view('users.messages_add');
+    }
+
+    /**
+     *  已发送消息
+     *
+     * @date   2015-10-11
+     * @return [type]
+     */
+    public function messagesSent()
+    {
+        return view('users.messages_sent');
+    }
 }

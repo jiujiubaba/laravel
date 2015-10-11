@@ -26,7 +26,7 @@
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input class="btn edit-button important-thumb btn-important" type="button" id="update_nickname" data-target="update" value="修 改">
+                <input class="ui-btn edit-button important-thumb btn-important" type="button" id="update_nickname" data-target="update" value="修 改">
             </div>
             
         </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input class="btn edit-button important-thumb btn-important" type="button" id="update_passwd" value="修 改">
+                <input class="ui-btn edit-button important-thumb btn-important" type="button" id="update_passwd" value="修 改">
             </div>
         </div>
     </form>
@@ -83,7 +83,7 @@
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input type="button" id="update_coin_passwd" class="btn important-thumb btn-important edit-button" value="修 改">
+                <input type="button" id="update_coin_passwd" class="ui-btn important-thumb btn-important edit-button" value="修 改">
             </div>
         </div>
         <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">

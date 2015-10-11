@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/account/update-nickname', 'UserController@updateNickname');
 	Route::post('/account/update-password', 'UserController@updatePassword');
 	Route::post('/account/update-payment', 'UserController@updatePayment');
+	Route::get('/account/messages', 'UserController@messages');
+	Route::get('/account/messages-add', 'UserController@messagesAdd');
+	Route::get('/account/messages-sent', 'UserController@messagesSent');
+
 	Route::get('/account/banks', 'BanksController@banks');
 
 	// 银行相关路由

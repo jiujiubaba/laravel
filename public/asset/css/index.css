@@ -1,3 +1,32 @@
+/*顶部通知样式*/
+.notice_wrap {
+    background: #4a4a4a;
+    width: 100%;
+    height: 37px;
+}
+
+.notice_wrap .notice {
+    height: 37px;
+    line-height: 37px;
+    width: 1240px;
+    margin: 0px auto;
+}
+
+.notice_wrap .notice .laba {
+    display: block;
+    float: left;
+    margin-left: 20px;
+    margin-top: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+.notice_wrap .notice a {
+  color: #fff !important;
+}
+
+
 .bet-panel {
     float: right;
     width: 950px;
@@ -768,7 +797,7 @@ a:active {
     width: 219px;
     height: 59px;
     margin: 20px 0 0 0;
-    background: #fff000;
+    /*background: #fff000;*/
     z-index: 1;
 }
 
@@ -983,16 +1012,75 @@ a:active {
     color: #ed3535;
 }
 
+/**
+ * 消息中心页面
+ */
+.message-area {
+    font-size: 14px;
+    line-height: 30px;
+    color: #666
+}
+
+.message-area input {
+    vertical-align: middle
+}
+
+.message-area span {
+    padding: 5px 10px
+}
+
+.message-area .subject,
+.message-area .person,
+.message-area .inner {
+    width: 400px;
+    margin: 25px 0 0 0
+}
+
+.message-area .subject input,
+.message-area .person input,
+.message-area .inner textarea {
+    width: 300px;
+    color: #fff;
+    border: none;
+    background: none;
+    outline: none
+}
+
+.message-area .inner {
+    width: 815px;
+    height: 210px
+}
+
+.message-area .person {
+    width: 500px
+}
+
+.message-area .inner textarea {
+    width: 720px;
+    height: 195px;
+    padding: 5px;
+    line-height: 25px;
+    vertical-align: top
+}
+
+.message-area .proxy {
+    height: 35px;
+    margin: 25px 0 0 30px;
+    line-height: 35px;
+    vertical-align: middle
+}
 
 /*模态层样式*/
+
 .verticalAlign {
     vertical-align: middle;
     display: inline-block;
     height: 100%;
     margin-left: -1px;
 }
-.ui-modal{
-     display: none;
+
+.ui-modal {
+    display: none;
 }
 
 .ui-modal .ui-modal-backdrop {
@@ -1018,7 +1106,6 @@ a:active {
     border-radius: 5px;
     font-weight: bold;
     color: #535e66;
-
 }
 
 .ui-modal .modal-content .modal-header {
@@ -1054,7 +1141,7 @@ a:active {
 .ui-modal .modal-content .modal-footer {
     border-top: solid 1px #eef0f1;
     padding: 10px;
-    height:50px;
+    height: 50px;
 }
 
 .ui-modal .modal-content .modal-footer .btnGroup {
