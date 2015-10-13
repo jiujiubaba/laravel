@@ -5,7 +5,7 @@
 <section class="content-header">
   <ol class="breadcrumb" style="float:left;">
     <li><a href="#"><i class="fa fa-home"></i>首页</a></li>
-    <li class="active">用户列表</li>
+    <li class="active">银行信息</li>
   </ol>
 </section>
 
@@ -15,24 +15,19 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">管理员列表</h3>
+                    <h3 class="box-title">用户银行信息</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <table class="table table-striped ">
                         <tbody>
                             <tr>
+                                <th>会员编号</th>
                                 <th>用户名</th>
-                                <th>ID</th>
-                                <th>类型</th>
-                                <th>可用余额</th>
-                                <th>积分|等级</th>
-                                <th>中奖|返点</th>
-                                <th>投注|盈亏</th>
-                                <th>返点</th>
-                                <th>状态</th>
-                                <th>状态</th>
-                                <th>最后登录</th>
+                                <th>银行名称</th>
+                                <th>银行账户</th>
+                                <th开户姓名</th>
+                                <th>开户行</th>
                                 <th>操作</th>
                             </tr>
                             

@@ -69,12 +69,18 @@ Route::post('/backend/check', 'Backend\AuthController@checkLogin');
 // 后台路由
 Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'admin_auth'], function(){
 	Route::get('/', 'IndexController@index');
+	// 业务流水
+	Route::get('/business/recharge', 'BusinessController@recharge');
+	Route::get('/business/withdraw', 'BusinessController@withdraw');
 
 	// 系统设置相关路由
 	Route::get('/systems/banks', 'SystemController@banks');
+	Route::get('/systems/notices', 'SystemController@notices');
 
 	// 用户管理路由
+	Route::get('/user/stroe', 'UserController@stroe');
 	Route::get('/users', 'UsersController@index');
+	Route::get('/users/banks', 'UserController@banks');
 
 	// 管理员管理路由
 	Route::get('/admins', 'AdminController@index');

@@ -22,17 +22,15 @@
                     <table class="table table-striped ">
                         <tbody>
                             <tr>
+                                <th>用户编号</th>
                                 <th>用户名</th>
-                                <th>ID</th>
-                                <th>类型</th>
-                                <th>可用余额</th>
-                                <th>积分|等级</th>
-                                <th>中奖|返点</th>
-                                <th>投注|盈亏</th>
-                                <th>返点</th>
-                                <th>状态</th>
-                                <th>状态</th>
-                                <th>最后登录</th>
+                                <th>上级关系</th>
+                                <th>体现金额</th>
+                                <th>银行类型</th>
+                                <th>开户姓名</th>
+                                <th>银行账户</th>
+                                <th>开户行</th>
+                                <th>时间</th>
                                 <th>操作</th>
                             </tr>
                             
