@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Backend;
-use Controller, Auth;
-use Request;
+use Controller, Auth, Request,DB;
+use App\UserBank;
 
 class UsersController extends Controller
 {
@@ -30,6 +30,11 @@ class UsersController extends Controller
      */
     public function banks()
     {
-        return view('backend.users.banks');
+        $data['userBanks'] = UserBank::join('users', 'users.id', '=', 'user_banks.user_id')
+            ->join('banks', 'user_banks.bank_id', '=', 'banks.id')
+            ->select('users.id', 'users.username', 'banks.name', 'user_banks.account', 'user_banks.address', 'user_banks.name as uname')
+            ->paginate(10);
+        // dd($data);
+        return view('backend.users.banks', $data);
     }
 }

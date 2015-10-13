@@ -11,7 +11,7 @@ class BanksController extends Controller
     public function banks()
     {
         $user = Auth::user();
-        $banks = Bank::where('status', 1)->select(['id', 'name'])->get();
+        $banks = Bank::where('status', 1)->select(['name', 'alias'])->get();
         $data['banks'] = $banks;
         $data['userBanks'] = [];
         $userBanks = UserBank::where('user_id', $user->id)
@@ -66,7 +66,8 @@ class BanksController extends Controller
 
         $userBank = UserBank::add($user, $bank, $input['address'], $input['uname'], $input['banknum']);
 
-        if (!$bank) {
+        // return $userBank;
+        if (!$userBank) {
             return failure('添加银行失败');
         }
         return success('添加银行成功');

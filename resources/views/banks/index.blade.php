@@ -34,7 +34,7 @@
         <span id="dxmoney" class="fs-12" style="color:#F00; margin-top:5px;"></span>
     </div>
     <div>
-        <input type="submit" class="btn important-nothumb mt30" value="下一步">
+        <input type="submit" class="ui-btn important-nothumb mt30" value="下一步">
     </div>
 </form>
 

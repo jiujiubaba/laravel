@@ -4,14 +4,14 @@ namespace App;
 use App\Perecdent;
 class UserBank extends Perecdent
 {
-    public static function scopeUserId($user_id)
+    public static function scopeUserId($query, $user_id)
     {
-    	return self::where('user_id', $user_id);
+    	return $query->where('user_id', $user_id);
     }
 
-    public function add(User $user, Bank $bank, $address, $name, $account)
+    public static function add(User $user, Bank $bank, $address, $name, $account)
     {
-    	if (UserBank::userId($user->id)->exists()) {
+    	if (UserBank::where('user_id',$user->id)->exists()) {
             $is_lock = 0;
         }else{
             $is_lock = 1;

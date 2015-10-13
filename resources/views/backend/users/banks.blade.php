@@ -25,12 +25,22 @@
                                 <th>会员编号</th>
                                 <th>用户名</th>
                                 <th>银行名称</th>
+                                <th>开户姓名</th>
                                 <th>银行账户</th>
-                                <th开户姓名</th>
                                 <th>开户行</th>
                                 <th>操作</th>
                             </tr>
-                            
+                            @foreach ($userBanks as $userBank)
+                            <tr>
+                                <td>{{ $userBank->id }}</td>
+                                <td>{{ $userBank->username }}</td>
+                                <td>{{ $userBank->name }}</td>
+                                <td>{{ $userBank->uname }}</td>
+                                <td>{{ $userBank->account }}</td>
+                                <td>{{ $userBank->address }}</td>
+                                <td><a href="">修改</a>| <a href="">删除</a></td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -44,6 +54,7 @@
                             <li><a href="#">3</a></li>
                             <li><a href="#">»</a></li>
                         </ul> -->
+                        <?php echo $userBanks->render(); ?>
                     </div>
                 </div>
             </div>

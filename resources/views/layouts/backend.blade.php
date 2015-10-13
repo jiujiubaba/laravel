@@ -277,7 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-user-plus"></i>添加会员</a></li>
                 <li><a href="#"><i class="fa fa-users"></i>用户列表</a></li>
-                <li><a href="#"><i class="fa fa-credit-card"></i>银行信息</a></li>
+                <li><a href="/backend/users/banks"><i class="fa fa-credit-card"></i>银行信息</a></li>
                 <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
                 <li><a href="#"><i class="fa fa-users"></i>用户限额设置</a></li>
               </ul>

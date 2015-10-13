@@ -24,8 +24,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/account/messages', 'UserController@messages');
 	Route::get('/account/messages-add', 'UserController@messagesAdd');
 	Route::get('/account/messages-sent', 'UserController@messagesSent');
-
 	Route::get('/account/banks', 'BanksController@banks');
+
+	// 游戏路由
+
+	// 游戏记录相关路由
+	Route::get('/games-record/bond', 'GamesRecordController@bond');
 
 	// 银行相关路由
 	Route::get('/banks', 'BanksController@index');
@@ -78,9 +82,9 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 	Route::get('/systems/notices', 'SystemController@notices');
 
 	// 用户管理路由
-	Route::get('/user/stroe', 'UserController@stroe');
+	Route::get('/user/stroe', 'UsersController@stroe');
 	Route::get('/users', 'UsersController@index');
-	Route::get('/users/banks', 'UserController@banks');
+	Route::get('/users/banks', 'UsersController@banks');
 
 	// 管理员管理路由
 	Route::get('/admins', 'AdminController@index');

@@ -1109,7 +1109,7 @@ a:active {
 }
 
 .ui-modal .modal-content .modal-header {
-    height: 50px;
+    height: 32px;
     line-height: 30px;
     padding: 10px 20px;
     border-bottom: solid 1px #eef0f1;
@@ -1141,7 +1141,7 @@ a:active {
 .ui-modal .modal-content .modal-footer {
     border-top: solid 1px #eef0f1;
     padding: 10px;
-    height: 50px;
+    height: 32px;
 }
 
 .ui-modal .modal-content .modal-footer .btnGroup {
