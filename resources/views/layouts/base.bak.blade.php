@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/asset/css/index.css">
     <link rel="stylesheet" href="/asset/css/ucenter.css">
     <link rel="stylesheet" href="/asset/css/sweet-alert.css">
+    <link rel="stylesheet" href="/asset/css/plugins.css">
     
     <!-- css动画插件 -->
     <!-- <link rel="stylesheet" href="/asset/css/animate.min.css"> -->

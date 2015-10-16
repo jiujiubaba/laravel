@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.ucenter')
 
 @section('content')
 <div class="common-info clearfix">

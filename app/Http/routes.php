@@ -14,7 +14,8 @@
 // 前台用户相关
 Route::group(['middleware' => 'auth'], function(){
 	// 首页
-	Route::get('/', 'IndexController@index');	
+	Route::get('/', 'IndexController@index');
+	Route::get('/index', function(){return view('index');});	
 	// 我的账户相关路由
 	Route::get('/account', 'UserController@index');
 	Route::get('/account/edit', 'UserController@edit');
@@ -95,20 +96,20 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
  * =================== 测试相关路由 =================
  */
 
+Route::get('/test', function(){
+	return view('test.test');
+});
+
+
 Route::get('/tt', function(){
-	return view('backend.index');
+	return view('test.index');
 });
 
 Route::get('/logout', function(){
 	return Auth::logout();
 });
 
-Route::get('/test', function(){
-	// $hash = md5('asdfasdf');
-	// return base62Encode(111, $hash);
-	$token = md5('123123');
-	return  Session::setName(Config::get('session.admin_cookie'));
-});
+
 Route::get('/r', 'AuthController@register');
 
 Route::get('/rr', function(){

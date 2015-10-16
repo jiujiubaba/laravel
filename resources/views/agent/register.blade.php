@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.ucenter')
 
 @section('content')
 <div class="common-info clearfix">
@@ -50,67 +50,94 @@
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        游戏返点：
+                        <select class="" name="bankname" id="idcard">
+                            <option value="0">0</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.8">0.8</option>
+                            <option value="0.9">0.9</option>
+                            <option value="1">1</option>
+                            <option value="1.1">1.1</option>
+                            <option value="1.2">1.2</option>
+                            <option value="1.3">1.3</option>
+                            <option value="1.4">1.4</option>
+                            <option value="1.5">1.5</option>
+                            <option value="1.6">1.6</option>
+                            <option value="1.7">1.7</option>
+                            <option value="1.8">1.8</option>
+                            <option value="1.9">1.9</option>
+                            <option value="2">2</option>
+                            <option value="2.1">2.1</option>
+                            <option value="2.2">2.2</option>
+                            <option value="2.3">2.3</option>
+                            <option value="2.4">2.4</option>
+                            <option value="2.5">2.5</option>
+                            <option value="2.6">2.6</option>
+                            <option value="2.7">2.7</option>
+                            <option value="2.8">2.8</option>
+                            <option value="2.9">2.9</option>
+                            <option value="3">3</option>
+                            <option value="3.1">3.1</option>
+                            <option value="3.2">3.2</option>
+                            <option value="3.3">3.3</option>
+                            <option value="3.4">3.4</option>
+                            <option value="3.5">3.5</option>
+                            <option value="3.6">3.6</option>
+                            <option value="3.7">3.7</option>
+                            <option value="3.8">3.8</option>
+                            <option value="3.9">3.9</option>
+                            <option value="4">4</option>
+                            <option value="4.1">4.1</option>
+                            <option value="4.2">4.2</option>
+                            <option value="4.3">4.3</option>
+                            <option value="4.4">4.4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="4.6">4.6</option>
+                            <option value="4.7">4.7</option>
+                            <option value="4.8">4.8</option>
+                            <option value="4.9">4.9</option>
+                            <option value="5">5</option>
+                            <option value="5.1">5.1</option>
+                            <option value="5.2">5.2</option>
+                            <option value="5.3">5.3</option>
+                            <option value="5.4">5.4</option>
+                            <option value="5.5">5.5</option>
+                            <option value="5.6">5.6</option>
+                            <option value="5.7">5.7</option>
+                            <option value="5.8">5.8</option>
+                            <option value="5.9">5.9</option>
+                            <option value="6">6</option>
+                            <option value="6.1">6.1</option>
+                            <option value="6.2">6.2</option>
+                            <option value="6.3">6.3</option>
+                            <option value="6.4">6.4</option>     
+                        </select>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="text-center">
-            <input type="submit" id="user-login-button" class="mt20 ml10 btn important-nothumb btn-important" value="立即开户">
+            <input type="submit" id="user-login-button" class="ui-btn mt20 ml10 btn important-nothumb btn-important" value="立即开户">
         </div>
     </form>
 </div>
-
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
 <script>
-
 $(function(){
     var _token = "<?php echo csrf_token(); ?>";
-    $('#bt').modal(function(){
-    // if ($('#idcard').)
-    if ($('#idcard').val() == '') {
-        return swal('error', '请选择银行卡');
-    }else if ($('#shengfen').val() == '') {
-        return swal('error', '请填写开户行地址');
-    }else if ($('#uname').val() == '') {
-        return swal('error', '请填写开户人姓名');
-    }else if ($('#banknum').val() == '') {
-        return swal('error', '请填写银行卡号');
-    }else if ($('#pass').val() == '') {
-        return swal('error', '请填写资金密码');
-    }
-
-    var a= $('#J-form-banks').serialize();
-    $.post('/banks/add', a, function(data){
-        console.log(a);
-    });
-});
-    $('.J-delete-bank').modal(function(arg){
-        console.log(arg);
-        console.log(arg.attr('data-num'));
-        $('body').showLoading();
-        var num = arg.attr('data-num');
-        $.post('/banks/delete',{'num':num,'_token':_token}, function(data){
-            $('body').hideLoading();
-            if (data.result) {
-                location.reload();
-                swal('success', data.message);
-            } else {
-                swal('error', '删除失败');
-            }
-        });
-        return true;
-    });
-    $('#test').click(function(){
-        console.log('sdf');
-        $('body').hideLoading();
-    });
-// $('body').hideLoading();
-
-    // $('body').showLoading();
+    
 })
 </script>
-
 @stop
 
 

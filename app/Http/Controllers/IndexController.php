@@ -15,7 +15,7 @@ class IndexController extends Controller
     public function index()
     {
         // Auth::logout();
-       return view('index');
+       return view('layouts.common');
     }
 
     public function a(){

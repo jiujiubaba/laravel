@@ -103,14 +103,60 @@
     <div class="dashed mt30">
         <h4 class="title">注意</h4>
         <p>只能 编辑 或者 充值您的直属会员</p>
-    </div>              
+    </div>
+                     
+               
 </div>
 @stop
 
 @section('scripts')
+<script src="/asset/js/plugins.js"></script>
 <script>
+
 $(function(){
     var _token = "<?php echo csrf_token(); ?>";
+    $('#bt').modal(function(){
+    // if ($('#idcard').)
+    if ($('#idcard').val() == '') {
+        return swal('error', '请选择银行卡');
+    }else if ($('#shengfen').val() == '') {
+        return swal('error', '请填写开户行地址');
+    }else if ($('#uname').val() == '') {
+        return swal('error', '请填写开户人姓名');
+    }else if ($('#banknum').val() == '') {
+        return swal('error', '请填写银行卡号');
+    }else if ($('#pass').val() == '') {
+        return swal('error', '请填写资金密码');
+    }
+
+    var a= $('#J-form-banks').serialize();
+    $.post('/banks/add', a, function(data){
+        console.log(a);
+    });
+});
+    $('.J-delete-bank').modal(function(arg){
+        console.log(arg);
+        console.log(arg.attr('data-num'));
+        $('body').showLoading();
+        var num = arg.attr('data-num');
+        $.post('/banks/delete',{'num':num,'_token':_token}, function(data){
+            $('body').hideLoading();
+            if (data.result) {
+                location.reload();
+                swal('success', data.message);
+            } else {
+                swal('error', '删除失败');
+            }
+        });
+        return true;
+    });
+    $('#test').click(function(){
+        console.log('sdf');
+        $('body').hideLoading();
+    });
+// $('body').hideLoading();
+
+    // $('body').showLoading();
 })
 </script>
 
