@@ -84,7 +84,6 @@ class BanksController extends Controller
         $data = [];
         $user = Auth::user();
         $data['username'] = $user->username;
-        // $userBank = [];
 
         $userBank = UserBank::where('user_id', $user->id)
                                 ->where('is_lock', 1)
@@ -96,7 +95,7 @@ class BanksController extends Controller
                         ->get();
         }
         
-        $data['cash'] = $user->cash;
+        $data['cashes'] = $user->cashes;
         return view('banks.withdraw', $data);
     }
 
@@ -117,7 +116,7 @@ class BanksController extends Controller
             return failure('您还没有锁定银行卡');
         }
         if ($user->payment_password == '') {
-            return failure('您还没有设置资金密码！');
+            return failure('您还没有设置资金密码！', 1001);
         }
 
         if (!Hash::check(Request::input('pay_pass'), $user->payment_password)) {

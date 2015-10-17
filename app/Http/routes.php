@@ -86,6 +86,7 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 
 	// 用户管理路由
 	Route::get('/users/stroe', 'UsersController@store');
+	Route::post('/users/user-insert', 'UsersController@insert');
 	Route::get('/users', 'UsersController@index');
 	Route::get('/users/banks', 'UsersController@banks');
 

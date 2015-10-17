@@ -33,11 +33,14 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function test()
-    {
-        return 'sdf';
-    }
-
+    /**
+     * 扣除用户余额
+     *
+     * @date    2015-10-17
+     * @version [version]
+     * @param   integer    $money [description]
+     * @return  [type]            [description]
+     */
     public function decreaseCash($money = 0)
     {
         if (!$money) return false;
@@ -45,6 +48,13 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
         return $this->save();
     }
 
+    /**
+     * 获取管理员
+     *
+     * @date    2015-10-17
+     * @version [version]
+     * @return  [type]     [description]
+     */
     public function admin()
     {
         if ($this->category == 1) {

@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">管理员列表</h3>
+                    <h3 class="box-title">用户列表</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
@@ -31,24 +31,31 @@
                                 <th>投注|盈亏</th>
                                 <th>返点</th>
                                 <th>状态</th>
-                                <th>状态</th>
                                 <th>最后登录</th>
                                 <th>操作</th>
                             </tr>
-                            
+                            @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>@if ($user->type) 代理 @else 会员 @endif</td>
+                                <td>{{ $user->cash }}</td>
+                                <td>{{ $user->score }} | {{ $user->level }}</td>
+                                <td>0|0</td>
+                                <td>0|0</td>
+                                <td>{{ $user->fandian }}%</td>
+                                <td>@if ($user->status) 开启 @else 关闭 @endif</td>
+                                <td></td>
+                                <td>统计|帐变|编辑|下级|删</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="box-tools">
-                        <!-- <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul> -->
+                        <?php echo $users->render(); ?>
                     </div>
                 </div>
             </div>

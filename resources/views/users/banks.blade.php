@@ -121,30 +121,80 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
+<!-- <script src="/asset/js/plugins.js"></script> -->
 <script>
++ (function($, window, document) {
+    $.fn.extend({
+        "modal": function(options) {
+            var _this = $(this);
 
+            var config = $.extend(true, {
+                type: 1,
+                ok: $.noop, //点击确定的按钮回调
+                cancel: $.noop, //点击取消的按钮回调
+            }, options);
+
+            console.log(config.type);
+
+            _this.show();
+            
+
+            var $ok = _this.find('.ok');
+            var $cancel = _this.find('.cancel');
+            bind();
+            function bind() {
+                //点击确认按钮
+                $ok.click(doOk);
+
+                //回车键触发确认按钮事件
+                _this.bind("keydown", function(e) {
+                    if (e.keyCode == 13) {
+                        doOk();
+                    }
+                });
+
+                //点击取消按钮
+                $cancel.click(doCancel);
+            }
+
+            //确认按钮事件
+            function doOk() {
+                _this.unbind("keydown");
+                if (config.ok() === true) {
+                    _this.hide();
+                }
+            }
+
+            //取消按钮事件
+            function doCancel() {
+                _this.hide();
+                _this.unbind("keydown");
+                config.cancel();           
+            }
+        }
+    });
+})(jQuery, window, document);
+
+var toastr = window.parent.toastr;
 $(function(){
     $('#bt').click(function(event) {
         $('#new').modal({ok:function(){
             if ($('#idcard').val() == '') {
-                return swal('请选择银行卡', '', 'error');
+                return toastr.warning('请选择银行卡');
             }else if ($('#shengfen').val() == '') {
-                return swal('请填写开户行地址', '', 'error');
+                return toastr.warning('请填写开户行地址');
             }else if ($('#uname').val() == '') {
-                return swal('请填写开户人姓名', '', 'error');
+                return toastr.warning('请填写开户人姓名');
             }else if ($('#banknum').val() == '') {
-                return swal('请填写银行卡号', '', 'error');
+                return toastr.warning('请填写银行卡号');
             }
-            showLoading();
-            var a= $('#J-form-banks').serialize();
-            $.post('/banks/add', a, function(data){
-                hideLoading();
+            
+            $.post('/banks/add', $('#J-form-banks').serialize(), function(data){
                 if (data.result) {
                     location.reload();
-                    swal(data.message, '', 'success');
+                    toastr.success(data.message);
                 } else {
-                    swal(data.message, '', 'error');
+                    toastr.error(data.message);
                 }
             });
         }});

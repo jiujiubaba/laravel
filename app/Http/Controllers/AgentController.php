@@ -1,11 +1,7 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Request, Controller, Auth;
+use App\User;
 
 class AgentController extends Controller
 {
@@ -17,7 +13,11 @@ class AgentController extends Controller
      */
     public function index()
     {
-        return view('agent.index');
+        $user = Auth::user();
+        $data['agents'] = User::whereRaw('find_in_set(?, ancestry_depth)', [$user->ancestry_depth])->paginate(10);
+        $data['user'] = $user;
+
+        return view('agent.index', $data);
     }
     
     public function register()

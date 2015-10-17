@@ -35,7 +35,7 @@
             </div>       
             <div class="mt15">
                 <span class="ui-title inline">账户余额：</span>
-                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{$cash}}">{{ $cash }}</span>元
+                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{ $cashes }}">{{ $cashes }}</span>元
             </div>
             <div class="mt15">
                 <span class="ui-title inline">提款金额</span>
@@ -55,7 +55,7 @@
         <div class="ui-content mt20">         
             <div class="mt15">
                 <span class="ui-title inline">银行名称：</span>
-                <select class="ui-input select" name="bankname" id="idcard">
+                <select class="ui-input select input" name="bankname" id="idcard">
                     <option value="">选择银行卡</option>
                     @foreach ($banks as $bank)
                         <option value="{{ $bank->alias }}">{{ $bank->name }}</option>
@@ -76,7 +76,7 @@
             </div>       
             <div class="mt15">
                 <span class="ui-title inline">账户余额：</span>
-                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{$cash}}">{{ $cash }}</span>元
+                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{ $cashes }}">{{ $cashes }}</span>元
             </div>
             <div class="mt15">
                 <span class="ui-title inline">提款金额</span>
@@ -100,35 +100,54 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
 <script>
+var toastr = window.parent.toastr;
 $(function(){
     $('#apply-withdraw').click(function(){
         var _this = $(this);
-        var money = parseFloat($('#money').val());
-        if (money < 0) {
-            return swal('error', '提款金额不能为0');
-        }else if ($('#pay-pass').val() == '') {
-            return swal('error', '资金密码不能为空');
-        } 
+        var money = $('#money').val();
+        console.log(money);
+        if (money <= 0) {
+            return toastr.warning('提款金额不能为0');
+        }
+
         var myMoney = parseFloat($('#my-money').attr('data-money'));
 
         if (money > myMoney) {
-            return swal('error', '余额不足');
+            return toastr.warning('余额不足');
         }
-        
-        $('body').showDialog('温馨提示', '确定提现么？', function(){
-            $('body').showLoading();
+
+        if ($('#pay-pass').val() == '') {
+            return toastr.warning('资金密码不能为空');
+        } 
+          
+        window.parent.swal({
+            title: "确定提现么?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#5cb85c',
+            confirmButtonText: '确定',
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            //closeOnCancel: false
+        },
+        function(){
+            window.parent.NProgress.start();
             $.post('/banks/apply-withdraw',$('#J-form-withdraw').serialize(), function(data){
-                $('body').hideLoading();
+                window.parent.NProgress.done();
                 if (data.result) {
-                    location.reload();
-                    swal('success', data.message);
+                    location.href = '/withdraw';
+                    toastr.success(data.message);
                 } else {
-                    swal('error', data.message);
+                    toastr.error(data.message, '', 'error');
+                    if (data.code == 1001) {
+                        location.href = '/user/edit'
+                    }
                 }
             });
         });
+
+        
     });
 });
 </script>

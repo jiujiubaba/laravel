@@ -12,14 +12,12 @@
 </div>
 <div class="table-area">
     <form method="get" action="/" name="form1" id="form1">
-        <input type="hidden" name="mod" value="user">
-        <input type="hidden" name="code" value="list">
         <div class="info-layout-title mt20">
             账户余额：
-            <input type="text" class="mr10 w100 input" id="moneymin" name="moneymin" value=""> 至
-            <input type="text" class="input w100 ml10 mr10" id="moneymax" name="moneymax" value=""> 时时彩返点：
-            <input type="text" class="mr10 w100 input" name="rebatesmin" value="">% 至
-            <input type="text" class="input w100 ml10 mr10" name="rebatesmax" value="">%
+            <input type="text" class="mr10 w100 input" id="moneymin" name="money_gt" value=""> 至
+            <input type="text" class="input w100 ml10 mr10" id="moneymax" name="moneylt" value=""> 时时彩返点：
+            <input type="text" class="mr10 w100 input" name="rebates_gt" value="">% 至
+            <input type="text" class="input w100 ml10 mr10" name="rebates_lt" value="">%
         </div>
         <div class="info-layout-title mt5">
             排序：
@@ -37,12 +35,9 @@
                 <option value="1">直属</option>
                 <option value="2">全部</option>
             </select>
-            <script>
-            selectSetItem(G('usertype'), '1')
-            </script>
             用户名：
             <input type="text" class="mr10 w100 input" name="pername" value="">
-            <input type="submit" value="查询" class="btn important-thumb w150 ml10 text-center no-bgimg no-padding">
+            <input type="submit" value="查询" class="btn ui-btn important-thumb w150 ml10 text-center no-bgimg no-padding">
         </div>
     </form>
     <table class="table text-center table-list mt20">
@@ -61,44 +56,31 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($agents as $agent)
             <tr>
-                <td style="background:#ffe2ec"><a style="color:#00C" title="查看下级" href="/?mod=user&amp;code=list&amp;seachid=37198&amp;usertype=1" class="blue">iisiis [自己]</a></td>
-                <td style="background:#ffe2ec">0.0000</td>
-                <td style="background:#ffe2ec">6.5000</td>
-                <td style="background:#ffe2ec">2015-09-12</td>
-                <td style="background:#ffe2ec">2015-10-08</td>
-                <td style="background:#ffe2ec">17</td>
+                <td style="background:#ffe2ec">{{ $agent->username}}@if ($agent->id == $user->id)[自己] @endif</td>
+                <td style="background:#ffe2ec">{{ $agent->cashes }}</td>
+                <td style="background:#ffe2ec">{{ $agent->fandian }}</td>
+                <td style="background:#ffe2ec">{{ $agent->created_at->format('Y-m-d') }}</td>
+                <td style="background:#ffe2ec"></td>
+                <td style="background:#ffe2ec">{{ $agent->sign_in_cnt }}</td>
                 <td style="background:#ffe2ec">
                     <font color="#22de0e">在线</font>
+                
                 </td>
-                <td style="background:#ffe2ec">是</td>
-                <td style="background:#ffe2ec">正常</td>
+                <td style="background:#ffe2ec">@if($agent->type) 是 @else 否 @endif</td>
+                <td style="background:#ffe2ec">@if($agent->status==0) 正常 @else 停用 @endif</td>
                 <td style="background:#ffe2ec">
                     <a href="javascript:void(0)" onclick="openbj('团队余额','/?mod=user&amp;code=team&amp;perid=37198&amp;flag=yes',480,350,true);" class="blue">[团队]</a>
                     <a href="javascript:void(0)" onclick="openbj('下级投注','/?mod=records&amp;code=list&amp;perids=37198&amp;flag=yes',950,450,true);" style="cursor: hand">[投注]</a>
                     <a href="javascript:void(0)" onclick="openbj('下级帐变','/?mod=report&amp;code=orders&amp;perids=37198&amp;flag=yes',950,450,true);" style="cursor: hand">[帐变]</a>
                 </td>
             </tr>
-            <tr>
-                <td>tom123</td>
-                <td>0.0000</td>
-                <td>1.8000</td>
-                <td>2015-10-09</td>
-                <td></td>
-                <td>0</td>
-                <td>离线</td>
-                <td>是</td>
-                <td>正常</td>
-                <td>
-                    <a href="javascript:void(0)" onclick="openbj('团队余额','/?mod=user&amp;code=team&amp;perid=45997&amp;flag=yes',480,350,true);" class="blue">[团队]</a>
-                    <a href="javascript:void(0)" onclick="openbj('下级投注','/?mod=records&amp;code=list&amp;perids=45997&amp;flag=yes',950,450,true);" style="cursor: hand">[投注]</a>
-                    <a href="javascript:void(0)" onclick="openbj('下级帐变','/?mod=report&amp;code=orders&amp;perids=45997&amp;flag=yes',950,450,true);" style="cursor: hand">[帐变]</a>
-                    <a href="javascript:void(0)" onclick="openbj('下级编辑','/do.php?mod=user&amp;code=rebate&amp;perid=45997&amp;flag=yes',680,500,false);" style="cursor: hand">[编辑]</a>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="page text-center mt10">
+        <?php echo $agents->render(); ?>
     </div>
     <div class="dashed mt30">
         <h4 class="title">注意</h4>

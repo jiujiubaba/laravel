@@ -1,10 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\User;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Request, Validator, Auth, App\Bank, Hash;
-
+use Request,Controller, Validator, Auth, App\Bank, Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +16,7 @@ class UserController extends Controller
             'nickname'  => $user->nickname,
             'level'     => $user->level,
             'scores'    => $user->scores,
-            'cash'      => $user->cash,
+            'cash'      => $user->cashes,
             'type'      => $user->type,
             'qq'        => $user->qq,
             'fandian'   => $user->fandian 

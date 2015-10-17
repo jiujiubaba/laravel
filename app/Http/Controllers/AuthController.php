@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\User, App\Admin;
 use Validator;
@@ -8,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Captcha, Hash, Request, Auth;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -82,6 +81,12 @@ class AuthController extends Controller
             return failure('验证码错误');
         }
         if (Auth::attempt(['username' => Request::input('username'), 'password' => Request::input('passwd')])) {
+            $user = Auth::user();
+            $user->last_sign_in_ip = ip2long(Request::getClientIp());
+            $user->last_sign_in_at = Carbon::now();
+            $user->sign_in_cnt += 1;
+            $user->user_tokens = md5($user->username);
+            $user->save();
             return success('登录成功');
         }
         
@@ -96,20 +101,22 @@ class AuthController extends Controller
     }
 
     public function register(){
-        $user = [
+        $user = User::saveData([
             'username'  => 'admin',
             'password'  => Hash::make('123456'),
             'nickname'  => '赵四',
-            'category'  => 1
-        ];
-        $u = User::saveData($user);
+            'category'  => 1,
+            'type'      => 1,
+            'ancestry_depth' => 0,
+            'parent_id' => 0
+        ]);
 
         $admin = [
             'username' => 'admin',
             'password'  => Hash::make('123456'),
             'name'      => 'admin',
             'status'    => 0,
-            'user_id'   => $u->id
+            'user_id'   => $user->id
         ];
 
         $a = Admin::saveData($admin);

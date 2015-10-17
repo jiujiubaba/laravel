@@ -65,6 +65,7 @@
                                     <input type="number" class="form-control" name="fandian" id="fandian" placeholder="请输入返点">
                                 </div>
                             </div>
+                            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         </div>
                     </form>
                 </div>
@@ -125,14 +126,13 @@ $(function(){
             confirmButtonText: '确定',
             closeOnConfirm: false,
             cancelButtonText: "取消",
-            //closeOnCancel: false
         },
         function(){
-            window.parent.NProgress.start();
-            $.post('/account/update-nickname',$('#form3').serialize()+'&_token=' +token, function(data){
-                window.parent.NProgress.done();
+            NProgress.start();
+            $.post('/backend/users/user-insert',$('#j-add-user').serialize(), function(data){
+                NProgress.done();
                 if (data.result) {
-                    toastr.success("昵称修改成功！");
+                    toastr.success(data.message);
                 } else {
                     toastr.error(data.message);
                 }

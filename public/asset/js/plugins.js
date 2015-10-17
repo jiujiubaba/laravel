@@ -74,9 +74,13 @@ function hideLoading() { //移除加载
 
             //确认按钮事件
             function doOk() {
-                _this.hide();
+                
                 _this.unbind("keydown");
-                config.ok();
+                console.log(config.ok());
+
+                if (config.ok() === true) {
+                    _this.hide();
+                }
             }
 
             //取消按钮事件

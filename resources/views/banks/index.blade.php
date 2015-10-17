@@ -11,7 +11,7 @@
     </ul>
 </div>
 <div class="table-area">
-    <form action="/banks/comfirm" method="post" target="_blank" onsubmit="return req()">
+    <form action="/banks/comfirm" method="post" onsubmit="return req()">
     <div class="mt20 clearfix">
         选择银行：
         <ul class="mt20 bank-icon-list">
@@ -42,7 +42,6 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
 <script>
 
 
