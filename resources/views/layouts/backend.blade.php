@@ -14,11 +14,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/admin/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Theme style -->
     <link rel="stylesheet" href="/admin/css/AdminLTE.css">
+    <link rel="stylesheet" href="/admin/css/plugins.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -91,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#">
                           <div class="pull-left">
                             <!-- User Image -->
-                            <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                           </div>
                           <!-- Message title and timestamp -->
                           <h4>
@@ -251,11 +252,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview active">
               <a href="#"><i class="fa fa-bank"></i> <span>业务流水</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="/backend/business/recharge"><i class="fa fa-calendar-check-o"></i>体现请求</a></li>
-                <li><a href="/backend/business/withdraw"><i class="fa fa-calendar-check-o"></i>体现记录</a></li>
-                <li><a href="#"><i class="fa fa-calendar-check-o"></i>充值记录</a></li>
-                <li><a href="#"><i class="fa fa-calendar-check-o"></i>普通投注</a></li>
-                <li><a href="#"><i class="fa fa-calendar-check-o"></i>帐变明细</a></li>
+                <li><a href="/backend/business/recharge"><i class="fa fa-circle-o"></i>体现请求</a></li>
+                <li><a href="/backend/business/withdraw"><i class="fa fa-circle-o"></i>体现记录</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>充值记录</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>普通投注</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>帐变明细</a></li>
               </ul>
             </li>
 
@@ -263,11 +264,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-area-chart"></i> <span>开奖数据</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-users"></i>体现请求</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>体现记录</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>充值记录</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>普通投注</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>帐变明细</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>体现请求</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>体现记录</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>充值记录</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>普通投注</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>帐变明细</a></li>
               </ul>
             </li>
 
@@ -275,11 +276,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-user"></i> <span>用户管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-user-plus"></i>添加会员</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>用户列表</a></li>
+                <li><a href="/backend/users/stroe"><i class="fa fa-circle-o"></i>添加会员</a></li>
+                <li><a href="/backend/users"><i class="fa fa-circle-o"></i>用户列表</a></li>
                 <li><a href="/backend/users/banks"><i class="fa fa-credit-card"></i>银行信息</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>登录日志</a></li>
-                <li><a href="#"><i class="fa fa-users"></i>用户限额设置</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>登录日志</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>用户限额设置</a></li>
               </ul>
             </li>
 
@@ -287,12 +288,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-cogs"></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-cogs"></i>系统设置</a></li>
-                <li><a href="#"><i class="fa fa-commenting-o"></i>公告中心</a></li>
-                <li><a href="/backend/systems/banks"><i class="fa fa-users"></i>收款设置</a></li>
-                <li><a href="#"><i class="fa fa-gg"></i>菜种管理</a></li>
-                <li><a href="#"><i class="fa fa-gamepad"></i>玩法管理</a></li>
-                <li><a href="#"><i class="fa fa-level-up"></i>等级设置</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>系统设置</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>公告中心</a></li>
+                <li><a href="/backend/systems/banks"><i class="fa fa-circle-o"></i>收款设置</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>菜种管理</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>玩法管理</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>等级设置</a></li>
               </ul>
             </li>
 
@@ -300,8 +301,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-star"></i> <span>积分兑换</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-gift"></i>兑换管理</a></li>
-                <li><a href="#"><i class="fa fa-building"></i>兑换记录</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>兑换管理</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>兑换记录</a></li>
               </ul>
             </li>
 
@@ -309,9 +310,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-users"></i> <span>管理人员</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-paw"></i>管理员列表</a></li>
-                <li><a href="#"><i class="fa fa-paw"></i>操作日志</a></li>
-                <li><a href="#"><i class="fa fa-paw"></i>登录日志</a></li>
+                <li><a href="/bankend/admins"><i class="fa fa-circle-o"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>登录日志</a></li>
               </ul>
             </li>
 
@@ -319,9 +320,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><i class="fa fa-calendar"></i> <span>时间管理</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-paw"></i>管理员列表</a></li>
-                <li><a href="#"><i class="fa fa-paw"></i>操作日志</a></li>
-                <li><a href="#"><i class="fa fa-paw"></i>登录日志</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>管理员列表</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>操作日志</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>登录日志</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -329,8 +330,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.sidebar -->
       </aside>
     
-      
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         @yield('content')
@@ -417,7 +416,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/admin/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/admin/js/app.min.js"></script>
-
+    <script src="/admin/js/plugins.js"></script>
+    @yield('scripts')
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the

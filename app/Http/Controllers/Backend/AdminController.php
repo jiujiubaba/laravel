@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Backend;
 
 use Controller;
-use App\Admin;
+use App\Admin, App\Bank;
 
 class AdminController extends Controller
 {

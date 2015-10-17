@@ -15,9 +15,9 @@ class AdminAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->ajax()) {
-            return response('Unauthorized.', 401);
-        }
+        // if ($request->ajax()) {
+        //     return response('Unauthorized.', 401);
+        // }
         
         $user = Auth::user();
         if (!$user) {

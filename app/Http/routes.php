@@ -79,11 +79,13 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 	Route::get('/business/withdraw', 'BusinessController@withdraw');
 
 	// 系统设置相关路由
-	Route::get('/systems/banks', 'SystemController@banks');
+	Route::get('/systems/banks', 'BanksController@banks');
+	Route::post('/systems/bank-store', 'BanksController@store');
+	Route::post('/systems/bank-update', 'BanksController@update');
 	Route::get('/systems/notices', 'SystemController@notices');
 
 	// 用户管理路由
-	Route::get('/user/stroe', 'UsersController@stroe');
+	Route::get('/users/stroe', 'UsersController@store');
 	Route::get('/users', 'UsersController@index');
 	Route::get('/users/banks', 'UsersController@banks');
 

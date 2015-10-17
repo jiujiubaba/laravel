@@ -2,7 +2,7 @@
 use Controller, Request;
 use App\Bank, App\AdminBank;
 
-class SystemController extends Controller
+class BanksController extends Controller
 {
     public function index()
     {
@@ -16,7 +16,7 @@ class SystemController extends Controller
         return view('backend.systems.banks', $data);
     }
 
-    public function addBank()
+    public function store()
     {
     	if (!Request::has('bank', 'name', 'account')) {
     		return failure('参数错误');
@@ -34,5 +34,20 @@ class SystemController extends Controller
     	}
 
     	return success('添加银行成功');
+    }
+
+    public function update()
+    {
+        $id = Request::input('id');
+        $adminBank = AdminBank::find($id);
+        if (!$adminBank){
+            return failure('不存在该条记录');
+        }
+
+        if (!$adminBank->toggleStatus()) {
+            return failure('修改状态失败');
+        }
+
+        return success('状态变更成功');
     }
 }
