@@ -95,6 +95,7 @@ class BanksController extends Controller
                         ->get();
         }
         
+        $data['is_payment'] = $user->payment_password == '' ? true : false;
         $data['cashes'] = $user->cashes;
         return view('banks.withdraw', $data);
     }
@@ -123,7 +124,13 @@ class BanksController extends Controller
             return failure('资金密码错误');
         }
 
-        return UserWithdraw::apply($user, $userBank, (float)Request::input('money'));
+        $money = Request::input('money');
+
+        if (UserWithdraw::apply($user, $userBank, (float)$money)) {
+            return success('申请成功');
+        }
+
+        return failure('申请失败，请联系客服');
     }
 
     /**
@@ -134,7 +141,21 @@ class BanksController extends Controller
      */
     public function withdrawRecord()
     {
-        return view('banks.withdraw_record');
+        $user = Auth::user();
+        $data['withdraws'] = UserWithdraw::leftjoin('user_banks','user_withdraws.user_bank_id', '=', 'user_banks.id')
+                            ->where('user_withdraws.user_id', $user->id)
+                            ->select([
+                                'user_withdraws.money',
+                                'user_withdraws.status',
+                                'user_withdraws.created_at',
+                                'user_banks.name',
+                                'user_banks.account',
+                                'user_banks.bank_name'
+                            ])
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
+                // return $data['withdraws']->toJson();
+        return view('banks.withdraw_record', $data);
     }
 
     /**
@@ -154,17 +175,6 @@ class BanksController extends Controller
         $data = ['banks' => $banks]; 
         
         return view('banks.index', $data);
-    }
-
-    /**
-     * 充值页面
-     *  
-     * @date   2015-10-07
-     * @return [type]     [description]
-     */
-    public function recharge()
-    {
-        return view('banks.alipay');
     }
 
     /**

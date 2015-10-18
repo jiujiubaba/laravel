@@ -20,18 +20,18 @@ class UserWithdraw extends Perecdent
 	        ]);
 
 	        if (!$userWithdraw) {
-	        	return $this->failure('申请失败');
+	        	throw new Exception("申请失败", 1);
 	        }
 
 	        $cashFlow = CashFlow::add($user, $userWithdraw, $money);
 	        if (!$cashFlow) {
-	        	return $userWithdraw->failure('写入流水失败');
+	        	throw new Exception('写入流水失败');
 	        }
 
 	        if (!$user->decreaseCash($money)) {
-	        	return $userWithdraw->failure('扣除余额失败');
+	        	throw new Exception('扣除余额失败');
 	        }
-	        return $userWithdraw->success('申请成功');
+	        return true;
     	});
     	
     }

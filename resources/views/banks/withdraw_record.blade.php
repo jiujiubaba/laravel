@@ -12,7 +12,7 @@
 </div>
 <div class="table-area">
     <div class="info-layout-title mt20">
-        <form action="/" method="get">
+        <form action="#" method="get">
             <input type="hidden" value="safe" name="mod">
             <input type="hidden" value="rechargelist" name="code">
             <input type="hidden" value="recharge" name="type"> 充提时间：
@@ -25,55 +25,55 @@
     <table class="table text-center mt20">
         <thead>
             <tr>
-                <th>序号</th>
-                <th>类型</th>
                 <th>编号</th>
+                <th>银行</th>
+                <th>开户名</th>
+                <th>账号</th>
                 <th>金额（元）</th>
                 <th>时间</th>
-                <th>备注</th>
                 <th>状态</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
+            @if (count($withdraws)) 
+            @foreach ($withdraws as $withdraw)
+            <tr>
+                <th>TX1000123123</th>
+                <th>{{ $withdraw->bank_name }}</th>
+                <th>{{ $withdraw->name }}</th>
+                <th>{{ $withdraw->account }}</th>
+                <th>{{ $withdraw->money }}</th>
+                <th>{{ $withdraw->created_at->format('Y-m-d') }}</th>
+                <th>
+                    @if ($withdraw->status == 1)
+                        正在申请
+                    @elseif ($withdraw->status == 2)
+                        已取消
+                    @elseif ($withdraw->status == 3)
+                        已支付
+                    @elseif ($withdraw->status == 0)
+                        确认到账
+                    @else
+                        提现失败
+                    @endif
+                </th>
+                <th><button class="ui-btn" type="button">确认</button></th>
+            </tr>
+            @endforeach
+            @else
             <tr>
                 <td colspan="7" align="center">暂无数据</td>
             </tr>
+            @endif
         </tbody>
     </table>
 </div>
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
+<script src="/asset/js/common.js"></script>
 <script>
-$(function(){
-    $('#apply-withdraw').click(function(){
-        var _this = $(this);
-        var money = parseFloat($('#money').val());
-        if (money < 0) {
-            return swal('error', '提款金额不能为0');
-        }else if ($('#pay-pass').val() == '') {
-            return swal('error', '资金密码不能为空');
-        } 
-        var myMoney = parseFloat($('#my-money').attr('data-money'));
-
-        if (money > myMoney) {
-            return swal('error', '余额不足');
-        }
-        
-        $('body').showDialog('温馨提示', '确定提现么？', function(){
-            $('body').showLoading();
-            $.post('/banks/apply-withdraw',$('#J-form-withdraw').serialize(), function(data){
-                $('body').hideLoading();
-                if (data.result) {
-                    location.reload();
-                    swal('success', data.message);
-                } else {
-                    swal('error', data.message);
-                }
-            });
-        });
-    });
-});
+    
 </script>
 @stop

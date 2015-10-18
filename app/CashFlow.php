@@ -9,8 +9,8 @@ class CashFlow extends Perecdent
     	return self::saveData([
     		'whoable_type'  => $who->modelName(),
     		'whoable_id'	=> $who->id,
-    		'before'		=> $who->cash,
-    		'after'			=> $who->cash - $money,
+    		'before'		=> $who->cashes,
+    		'after'			=> $who->cashes - $money,
     		'change'		=> $money,
     		'cashable_type'	=> $obj->modelName(),
     		'cashable_id'	=> $obj->id

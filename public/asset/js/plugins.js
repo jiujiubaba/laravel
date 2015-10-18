@@ -106,6 +106,8 @@ function hideLoading() { //移除加载
             id: 0,
         }
 
+        console.log(url);
+
         var config = $.extend(true, c, options);
 
         if (config.type == 'show') {

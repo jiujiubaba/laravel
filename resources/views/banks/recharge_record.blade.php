@@ -12,7 +12,7 @@
 </div>
 <div class="table-area">
     <div class="info-layout-title mt20">
-        <form action="/" method="get">
+        <form action="#" method="get">
             <input type="hidden" value="safe" name="mod">
             <input type="hidden" value="rechargelist" name="code">
             <input type="hidden" value="recharge" name="type"> 充提时间：
@@ -44,36 +44,7 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
 <script>
-$(function(){
-    $('#apply-withdraw').click(function(){
-        var _this = $(this);
-        var money = parseFloat($('#money').val());
-        if (money < 0) {
-            return swal('error', '提款金额不能为0');
-        }else if ($('#pay-pass').val() == '') {
-            return swal('error', '资金密码不能为空');
-        } 
-        var myMoney = parseFloat($('#my-money').attr('data-money'));
 
-        if (money > myMoney) {
-            return swal('error', '余额不足');
-        }
-        
-        $('body').showDialog('温馨提示', '确定提现么？', function(){
-            $('body').showLoading();
-            $.post('/banks/apply-withdraw',$('#J-form-withdraw').serialize(), function(data){
-                $('body').hideLoading();
-                if (data.result) {
-                    location.reload();
-                    swal('success', data.message);
-                } else {
-                    swal('error', data.message);
-                }
-            });
-        });
-    });
-});
 </script>
 @stop

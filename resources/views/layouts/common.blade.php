@@ -35,7 +35,7 @@
                     <a href="download/pc.html" target="_blank"><i class="icon-cloud-download mr10"></i>下载中心</a>
                 </li>
                 <li class="exit white">
-                    <a href="/logout" class="quit"><i class="icon-off mr10"></i>退出</a>
+                    <a href="javascript:void(0)" class="quit" onclick="logout()"><i class="icon-off mr10"></i>退出</a>
                 </li>
             </ul>
         </div>
@@ -87,8 +87,8 @@
                     <a href="javascript:void(0)" title="刷新余额" class="refresh" onclick="GetNewMoney()"><i class="icon-refresh"></i></a>
                 </div>
                 <div class="control">
-                    <a href="javascript:void(0)" onclick="topUrlGo('/?mod=safe&amp;code=recharge',this)" class="btn btn-default">充 值</a>
-                    <a href="javascript:void(0)" onclick="topUrlGo('/?mod=safe&amp;code=platform',this)" class="btn btn-default">提 款</a>
+                    <a href="/banks" target="UCenter" class="btn btn-default">充 值</a>
+                    <a href="/banks/withdraw" target="UCenter" class="btn btn-default">提 款</a>
                 </div>
             </div>
             <div class="leftmenu2">
@@ -164,9 +164,9 @@
 <!-- <script src="./js/index.js"></script> -->
 @yield('scripts')
 <script>
-function GetNewMoney(){
+function GetNewMoney()
+{
     $('#lastmoney').html('正在刷新......');
-
     R('/account/refresh',{
         method: 'post',
         data: {_token: $('#_token').val()},
@@ -175,9 +175,13 @@ function GetNewMoney(){
         }
     });
 }
-
-
-
-
+function logout()
+{
+    console.log('sdf');
+    R('/logout',{
+        data: {_token: $('#_token').val()},  
+        reload:true
+    });
+}
 </script>
 </html>

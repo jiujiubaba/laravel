@@ -102,6 +102,9 @@
 @section('scripts')
 <script>
 var toastr = window.parent.toastr;
+@if ($is_payment)
+    swal("您还没有设置资金密码", "去 \"我的账号\" - \"资料修改\" 设置资金密码吧");
+@endif 
 $(function(){
     $('#apply-withdraw').click(function(){
         var _this = $(this);
@@ -143,6 +146,13 @@ $(function(){
                     if (data.code == 1001) {
                         location.href = '/user/edit'
                     }
+                }
+            });
+            R('/banks/apply-withdraw', {
+            method: "post",
+            data: $('#J-form-withdraw').serialize(),
+                ok:function(data){
+                    location.href = '/banks/withdraw';
                 }
             });
         });

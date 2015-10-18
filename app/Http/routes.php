@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/account', 'UserController@index');
 	Route::get('/account/edit', 'UserController@edit');
 	Route::post('/account/update', 'UserController@update');
-	
+
 	Route::get('/account/messages', 'UserController@messages');
 	Route::get('/account/messages-add', 'UserController@messagesAdd');
 	Route::get('/account/messages-sent', 'UserController@messagesSent');
@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function(){
 	// 积分商城
 	Route::get('/integral', 'IntegralController@index');
 });
-
+Route::get('/logout', 'AuthController@logout');
 Route::get('/login', 'AuthController@login');
 Route::post('/loginTo','AuthController@loginTo');
 Route::get('/getCode', 'AuthController@getCode');
@@ -109,9 +109,7 @@ Route::get('/tt', function(){
 	return view('test.index');
 });
 
-Route::get('/logout', function(){
-	return Auth::logout();
-});
+
 
 
 Route::get('/r', 'AuthController@register');
