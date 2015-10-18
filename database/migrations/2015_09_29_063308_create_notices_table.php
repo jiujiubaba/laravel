@@ -18,7 +18,8 @@ class CreateNoticesTable extends Migration
             $table->integer('status')->comment('状态: 0 不显示 1 显示');
             $table->string('title')->comment('公告标题');
             $table->text('content')->comment('公告内容');
-            $table->text('admin_id')->comment('公告添加人');
+            $table->integer('admin_id')->comment('公告添加人');
+            $table->string('admin_name', 100)->comment('公告添加人姓名');
             $table->softDeletes();
             $table->timestamps();
         });

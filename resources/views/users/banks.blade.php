@@ -134,7 +134,6 @@
                 cancel: $.noop, //点击取消的按钮回调
             }, options);
 
-            console.log(config.type);
 
             _this.show();
             

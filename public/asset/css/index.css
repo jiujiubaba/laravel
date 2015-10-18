@@ -949,11 +949,10 @@ a:active {
 
 .content .balance .refresh {
     position: absolute;
-    top: 12px;
     right: 0;
     width: 15px;
     height: 15px;
-    background: url(../images/newtpl/refresh.png) 0 0 no-repeat;
+    color: #fff;
 }
 
 .content .user-info .control {

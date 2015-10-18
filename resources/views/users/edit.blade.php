@@ -19,14 +19,14 @@
         <div class="ui-content mt20">
             <div>
                 <span class="ui-title inline">新昵称：</span>
-                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="" onblur="checkIsNull(this.value, '昵称不能为空')">
+                <input type="text" id="nickname" name="nickname" class="ui-input input" autocomplete="off" value="">
                 <span class="ml20">
                     <em class="color-red"></em>
                 </span>
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input class="ui-btn edit-button important-thumb btn-important" type="button" id="update_nickname" data-target="update" value="修 改">
+                <button class="ui-btn edit-button important-thumb btn-important" type="button"  onclick="submitNick()"><i class="icon-ok white mr5"></i>修改</button>
             </div>
             
         </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input class="ui-btn edit-button important-thumb btn-important" type="button" id="update_passwd" value="修 改">
+                <button class="ui-btn important-thumb btn-important" type="button" onclick="submitPasswd()"><i class="icon-ok white mr5"></i>修改</button>
             </div>
         </div>
     </form>
@@ -67,7 +67,7 @@
         <div class="ui-content mt20">
             <div>
                 <span class="ui-title inline">旧资金密码：</span>
-                <input type="password" name="old_bank" id="old_bank" class="ui-input input" autocomplete="off" onblur="checkPasswd(this.value)">
+                <input type="password" name="old_bank" id="old_bank" class="ui-input input" autocomplete="off">
                 <span class="ml20"><em class="color-red"></em></span>
             </div>
             <div class="mt15">
@@ -83,7 +83,7 @@
             </div>
             <div class="mt10">
                 <span class="ui-title inline"></span>
-                <input type="button" id="update_coin_passwd" class="ui-btn important-thumb btn-important edit-button" value="修 改">
+                <button class="ui-btn important-thumb btn-important" type="button" onclick="submitCoinPasswd()"><i class="icon-ok white mr5"></i>修改</button>
             </div>
         </div>
         <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
@@ -93,124 +93,112 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
+<script src="/asset/js/common.js"></script>
 <script>
 var toastr = window.parent.toastr;
-$(function(){
-    
-    var token = $('#_token').val();
 
-    // 修改昵称
-    $('#update_nickname').click(function(){
-        var _this = $(this);
-        var val = $('#nickname').val();
-        
-        if (val == '') {
-            return toastr.warning('昵称不能不能为空');
-        }
-
-
-        window.parent.swal({
-            title: "确定修改昵称么?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#5cb85c',
-            confirmButtonText: '确定',
-            closeOnConfirm: false,
-            cancelButtonText: "取消",
-            //closeOnCancel: false
-        },
-        function(){
-            window.parent.NProgress.start();
-            $.post('/account/update-nickname',$('#form3').serialize()+'&_token=' +token, function(data){
-                window.parent.NProgress.done();
-                if (data.result) {
-                    toastr.success("昵称修改成功！");
-                } else {
-                    toastr.error(data.message);
-                }
-            });
+function submitNick(){
+    var action = "&action=nickname";
+    if ($('#nickname').val() == '') {
+        return toastr.warning('昵称不能不能为空');
+    }
+    window.parent.swal({
+        title: "确定修改昵称么?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#5cb85c',
+        confirmButtonText: '确定',
+        closeOnConfirm: false,
+        cancelButtonText: "取消",
+        //closeOnCancel: false
+    },
+    function(){
+        R('/account/update', {
+            method: "post",
+            data: $('#form3').serialize()+'&_token=' +$('#_token').val() + action,
+            ok:function(){
+                window.parent.location.reload();
+            }
         });
     });
+}
 
-    $('#update_passwd').click(function(){
-        var old_value = $('#old_pass').val();
-        var new_value = $('#new_pass').val();
-        var two_new_pass = $('#two_new_pass').val();
+function submitPasswd()
+{
+    var action = "&action=passwd";
+    var old_value = $('#old_pass').val();
+    var new_value = $('#new_pass').val();
+    var two_new_pass = $('#two_new_pass').val();
+    if (old_value == '') {
+        return toastr.warning('旧登录密码不能为空');
+    } else if (old_value.length < 6 || old_value.length > 20) {
+        return toastr.warning('密码应该在6-20位数字字母组成');
+    } else if (new_value == '') {
+        return toastr.warning('新登录密码不能为空');
+    } else if (two_new_pass == '') {
+        return toastr.warning('确认密码不能为空');
+    } else if (new_value != two_new_pass) {
+        return toastr.warning('两次输入密码不一致');
+    }
 
-        if (old_value == '') {
-            return toastr.warning('旧登录密码不能为空');
-        } else if (old_value.length < 6 || old_value.length > 20) {
-            return toastr.warning('密码应该在6-20位数字字母组成');
-        } else if (new_value == '') {
-            return toastr.warning('新登录密码不能为空');
-        } else if (two_new_pass == '') {
-            return toastr.warning('确认密码不能为空');
-        } else if (old_value != two_new_pass) {
-            return toastr.warning('两次输入密码不一致');
-        }
-
-        window.parent.swal({
-            title: "确定修改密码么?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#5cb85c',
-            confirmButtonText: '确定',
-            closeOnConfirm: false,
-            cancelButtonText: "取消",
-            //closeOnCancel: false
-        },
-        function(){
-            window.parent.NProgress.start();
-            $.post('/account/update-password',$('#form1').serialize()+'&_token=' +token, function(data){
-                window.parent.NProgress.done();
-                if (data.result) {
-                    return toastr.success(data.message);
-                } else {
-                    return toastr.error(data.message);
-                }
-            });
-        });
+    window.parent.swal({
+        title: "确定修改密码么?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#5cb85c',
+        confirmButtonText: '确定',
+        closeOnConfirm: false,
+        cancelButtonText: "取消",
+        //closeOnCancel: false
+    },
+    function(){
+        R('/account/update', {
+            method: "post",
+            data: $('#form1').serialize()+'&_token=' + $('#_token').val() + action,
+            ok:function(){
+                window.parent.location.reload();
+            }
+        })
     });
+}
 
-    $('#update_coin_passwd').click(function(){
-        var old_value = $('#old_bank').val();
-        var new_value = $('#new_bank').val();
-        var two_new_pass = $('#two_new_bank').val();
+function submitCoinPasswd()
+{
+    var action = "&action=coinpasswd";
+    var old_bank = $('#old_bank').val();
+    var new_bank = $('#new_bank').val();
+    var two_new_bank = $('#two_new_bank').val();
 
-        if (new_value == '') {
-            return toastr.warning('新资金密码不能为空');
-        } else if (new_value.length < 6 || old_value.length > 20) {
-            return toastr.warning('密码应该在6-20位数字字母组成');
-        } else if (two_new_pass == '') {
-            return toastr.warning('确认资金密码不能为空');
-        } else if (old_value != two_new_pass) {
-            return toastr.warning('两次输入密码不一致');
-        }
+    if (new_bank == '') {
+        return toastr.warning('新资金密码不能为空');
+    } else if (new_bank.length < 6 || new_bank.length > 20) {
+        return toastr.warning('密码应该在6-20位数字字母组成');
+    } else if (two_new_bank == '') {
+        return toastr.warning('确认资金密码不能为空');
+    } else if (new_bank != two_new_bank) {
+        return toastr.warning('两次输入密码不一致');
+    }
 
-        window.parent.swal({
-            title: "确定修改资金密码么?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#5cb85c',
-            confirmButtonText: '确定',
-            closeOnConfirm: false,
-            cancelButtonText: "取消",
-            //closeOnCancel: false
-        },
-        function(){
-            window.parent.NProgress.start();
-            $.post('/account/update-password',$('#form1').serialize()+'&_token=' +token, function(data){
-                window.parent.NProgress.done();
-                if (data.result) {
-                    return toastr.success(data.message);
-                } else {
-                    return toastr.error(data.message);
-                }
-            });
-        });
+    window.parent.swal({
+        title: "确定修改资金密码么?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#5cb85c',
+        confirmButtonText: '确定',
+        closeOnConfirm: false,
+        cancelButtonText: "取消",
+        //closeOnCancel: false
+    },
+    function(){
+        R('/account/update', {
+            method: "post",
+            data: $('#form2').serialize() + action,
+            ok:function(){
+                window.parent.location.reload();
+            }
+        })
     });
-});
+}
 </script>
 @stop
 

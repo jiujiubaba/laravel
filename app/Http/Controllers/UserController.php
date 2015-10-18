@@ -24,6 +24,12 @@ class UserController extends Controller
         return view('users.index', $data);
     }
 
+    public function refresh()
+    {
+        $user = Auth::user();
+        return success('刷新成功',['cashes' => $user->cashes]);
+    }
+
     /**
     * 修改资料页面
     *  
@@ -41,41 +47,55 @@ class UserController extends Controller
      * @date   2015-09-19
      * @return [type]     [description]
      */
-    public function updateNickname()
+    public function update()
     {
-        $nickname = Request::input('nickname');
-        if (!$nickname)
-            return $this->failure('昵称不能为空');
-        $user = Auth::user();
-        $user->nickname = $nickname;
-        $user->save();
-        return success('修改成功');
-    }
-
-    /**
-     * 修改密码
-     *  
-     * @date   2015-09-19
-     * @return [type]     [description]
-     */
-    public function updatePassword()
-    {
-        $old_pass = Request::input('old_pass');
-        $user = Auth::user();
-        if ($user->password != Hash::make($old_pass)) {
-            return failure('密码错误');
+        if (!Request::has('action')) {
+            return failure('非法操作');
         }
-        
-        $user->old_password = $user->password;
-        $user->password = Hash::make(Request::input('new_pass'));
-        if (!$user->save()) {
-            return failure('密码修改失败');
+        $user = Auth::user();
+        if (Request::input('action') == 'nickname') {
+            $nickname = Request::input('nickname');
+            if (!$nickname)
+                return $this->failure('昵称不能为空');         
+            $user->nickname = $nickname;
+            $user->save();
+            return success('修改成功');
         }
-        return success('密码修改成功');
-    }
 
-    public function updatePayment()
-    {
+        if (Request::input('action') == 'passwd') {
+            $old_pass = Request::input('old_pass');
+            $new_pass = Request::input('new_pass');
+            if (!Hash::check($old_pass, $user->password)){
+                return failure('密码错误');
+            }
+            if (Hash::check($new_pass, $user->payment_password)) {
+                return failure('登陆密码不能和支付密码一样');
+            }
+            $user->password = Hash::make($new_pass);
+            if (!$user->save()) {
+                return failure('密码修改失败');
+            }
+            return success('密码修改成功');
+        }
+
+        if (Request::input('action') == 'coinpasswd') {
+            $old_bank = Request::input('old_bank');
+            $new_bank = Request::input('new_bank');
+            if (!$user->payment_password == '') {
+                if (!Hash::check($old_bank, $user->payment_password)){
+                    return failure('资金密码错误');
+                }
+            }
+            
+            if (Hash::check($new_bank, $user->password)) {
+                return failure('支付密码不能和登陆密码一样');
+            }      
+            $user->payment_password = Hash::make($new_bank);
+            if (!$user->save()) {
+                return failure('支付密码修改失败');
+            }
+            return success('支付密码修改成功');
+        }
         
     }
 

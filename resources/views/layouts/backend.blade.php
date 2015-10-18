@@ -278,7 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="treeview-menu">
                 <li><a href="/backend/users/stroe"><i class="fa fa-circle-o"></i>添加会员</a></li>
                 <li><a href="/backend/users"><i class="fa fa-circle-o"></i>用户列表</a></li>
-                <li><a href="/backend/users/banks"><i class="fa fa-credit-card"></i>银行信息</a></li>
+                <li><a href="/backend/users/banks"><i class="fa fa-circle-o"></i>银行信息</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>登录日志</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>用户限额设置</a></li>
               </ul>
@@ -289,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#"><i class="fa fa-cogs"></i> <span>系统设置</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-circle-o"></i>系统设置</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i>公告中心</a></li>
+                <li><a href="/backend/systems/notices"><i class="fa fa-circle-o"></i>公告中心</a></li>
                 <li><a href="/backend/systems/banks"><i class="fa fa-circle-o"></i>收款设置</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>菜种管理</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>玩法管理</a></li>

@@ -33,6 +33,8 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
      */
     protected $hidden = ['password', 'remember_token'];
 
+    
+
     /**
      * 扣除用户余额
      *

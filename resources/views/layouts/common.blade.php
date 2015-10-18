@@ -83,8 +83,8 @@
                 </div>
                 <div class="balance">
                     <span>余额：</span>
-                    <em id="lostmoney">{{ Auth::user()->cash }}</em> 元
-                    <a href="javascript:void(0)" title="刷新余额" class="refresh"><i class="icon-refresh"></i></a>
+                    <em id="lastmoney">{{ Auth::user()->cashes }}</em> 元
+                    <a href="javascript:void(0)" title="刷新余额" class="refresh" onclick="GetNewMoney()"><i class="icon-refresh"></i></a>
                 </div>
                 <div class="control">
                     <a href="javascript:void(0)" onclick="topUrlGo('/?mod=safe&amp;code=recharge',this)" class="btn btn-default">充 值</a>
@@ -158,10 +158,26 @@
         <div class="content-info clearfix bet-panel">
             <iframe id="UCenter" name="UCenter" src="/index" style="width:950px; min-height:100" scrolling="no" frameborder="0" height="900"></iframe>
         </div>
+        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
     </div>
 </body>
 <!-- <script src="./js/index.js"></script> -->
 @yield('scripts')
-</script>
+<script>
+function GetNewMoney(){
+    $('#lastmoney').html('正在刷新......');
 
+    R('/account/refresh',{
+        method: 'post',
+        data: {_token: $('#_token').val()},
+        ok: function(data){
+            $('#lastmoney').html(data.cashes);
+        }
+    });
+}
+
+
+
+
+</script>
 </html>

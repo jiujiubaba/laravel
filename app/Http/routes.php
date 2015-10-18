@@ -17,11 +17,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/', 'IndexController@index');
 	Route::get('/index', function(){return view('index');});	
 	// 我的账户相关路由
+	Route::post('/account/refresh', 'UserController@refresh');
 	Route::get('/account', 'UserController@index');
 	Route::get('/account/edit', 'UserController@edit');
-	Route::post('/account/update-nickname', 'UserController@updateNickname');
-	Route::post('/account/update-password', 'UserController@updatePassword');
-	Route::post('/account/update-payment', 'UserController@updatePayment');
+	Route::post('/account/update', 'UserController@update');
+	
 	Route::get('/account/messages', 'UserController@messages');
 	Route::get('/account/messages-add', 'UserController@messagesAdd');
 	Route::get('/account/messages-sent', 'UserController@messagesSent');
@@ -82,7 +82,8 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 	Route::get('/systems/banks', 'BanksController@banks');
 	Route::post('/systems/bank-store', 'BanksController@store');
 	Route::post('/systems/bank-update', 'BanksController@update');
-	Route::get('/systems/notices', 'SystemController@notices');
+	Route::post('/systems/notices-update', 'NoticesController@update');
+	Route::resource('/systems/notices', 'NoticesController');
 
 	// 用户管理路由
 	Route::get('/users/stroe', 'UsersController@store');

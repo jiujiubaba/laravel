@@ -1049,7 +1049,7 @@ button.toast-close-button {
   background: #29d;
 
   position: fixed;
-  z-index: 1031;
+  z-index: 10000;
   top: 0;
   left: 0;
 
@@ -1076,7 +1076,7 @@ button.toast-close-button {
 #nprogress .spinner {
   display: block;
   position: fixed;
-  z-index: 1031;
+  z-index: 10000;
   top: 10px;
   left: 15px;
 }
