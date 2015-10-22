@@ -44,7 +44,7 @@
                 <th>{{ $withdraw->name }}</th>
                 <th>{{ $withdraw->account }}</th>
                 <th>{{ $withdraw->money }}</th>
-                <th>{{ $withdraw->created_at->format('Y-m-d') }}</th>
+                <th>{{ $withdraw->created_at }}</th>
                 <th>
                     @if ($withdraw->status == 1)
                         正在申请

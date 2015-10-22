@@ -22,6 +22,7 @@ class CreateCashFlowsTable extends Migration
             $table->tinyInteger('type')->comment('0:流入, 1:流出');
             $table->morphs('cashable');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

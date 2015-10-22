@@ -64,4 +64,13 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
         }
         return null;
     }
+
+    public function getMembers()
+    {
+        $parentId = $this->parent_id;
+        $users = self::whereRaw("find_in_set({$parentId},ancestry_depth)")
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+        return $users;
+    }
 }

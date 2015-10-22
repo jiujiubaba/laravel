@@ -1,11 +1,6 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Controller, Auth;
 
 class TeamController extends Controller
 {
@@ -17,6 +12,13 @@ class TeamController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $members = $user->getMembers();
+        $data = [];
+        $data['count'] = count($members);
+        // foreach ($members as $key => $member) {
+            
+        // }
         return view('team.index');
     }
 

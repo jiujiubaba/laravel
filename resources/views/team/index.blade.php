@@ -12,7 +12,7 @@
     </ul>
 </div>
 <div class="table-area">
-    <form method="POST" action="http://vip03.nnncai.com/?mod=report&amp;code=group" name="form1" id="form1">
+    <!-- <form method="POST" action="http://vip03.nnncai.com/?mod=report&amp;code=group" name="form1" id="form1">
         <div class="info-layout-title mt20">
             时间范围：
             <input type="text" class="time-select mr10 input" name="creatdatest" value="2015-10-18" > 至
@@ -27,7 +27,10 @@
             </script>
             <input type="submit" value="查询" class="btn important-thumb w150 text-center no-bgimg no-padding ml10">
         </div>
-    </form>
+    </form> -->
+    <h4 class="ui-form-title mt20">
+                团队<span style=" color:#ea6b6c; font-weight:bold">总览</span>
+            </h4>
     <table class="table text-center mt20">
         <thead>
             <tr>

@@ -33,6 +33,23 @@ class UserWithdraw extends Perecdent
 	        }
 	        return true;
     	});
+    }
+
+    public static function getTeam($user)
+    {
     	
+    	// self::leftjoin('user_banks','user_withdraws.user_bank_id', '=', 'user_banks.id')
+     //                        ->where('user_withdraws.user_id', $user->id)
+     //                        ->whereRaw("find_in_set())
+     //                        ->select([
+     //                            'user_withdraws.money',
+     //                            'user_withdraws.status',
+     //                            'user_withdraws.created_at',
+     //                            'user_banks.name',
+     //                            'user_banks.account',
+     //                            'user_banks.bank_name'
+     //                        ])
+     //                        ->orderBy('created_at', 'desc')
+     //                        ->paginate(10);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-use Request, Auth, Validator, Hash;
+use Request, Auth, Validator, Hash,DB;
 use App\Http\Controllers\Controller;
 use App\Bank, App\UserBank, App\UserWithdraw, App\AdminBank;
 use App\Traits\AbledTrait;
@@ -142,19 +142,13 @@ class BanksController extends Controller
     public function withdrawRecord()
     {
         $user = Auth::user();
-        $data['withdraws'] = UserWithdraw::leftjoin('user_banks','user_withdraws.user_bank_id', '=', 'user_banks.id')
-                            ->where('user_withdraws.user_id', $user->id)
-                            ->select([
-                                'user_withdraws.money',
-                                'user_withdraws.status',
-                                'user_withdraws.created_at',
-                                'user_banks.name',
-                                'user_banks.account',
-                                'user_banks.bank_name'
-                            ])
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(10);
-                // return $data['withdraws']->toJson();
+        // return $user->id;
+        $data['withdraws'] =  DB::table('user_withdraws as w')
+                    ->select(['w.money','w.status','w.created_at','b.name','b.account','b.bank_name'])
+                    ->where('w.user_id', '=', $user->id)
+                    ->join('user_banks as b','w.user_bank_id', '=', 'b.id')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         return view('banks.withdraw_record', $data);
     }
 
