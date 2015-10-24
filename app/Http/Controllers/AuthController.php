@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\User, App\Admin;
+use App\User, App\Admin, App\Link;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -101,30 +101,11 @@ class AuthController extends Controller
     }
 
     public function register(){
-        $user = User::saveData([
-            'username'  => 'admin',
-            'password'  => Hash::make('123456'),
-            'nickname'  => '赵四',
-            'category'  => 1,
-            'type'      => 1,
-            'ancestry_depth' => 0,
-            'parent_id' => 0
-        ]);
-
-        $admin = [
-            'username' => 'admin',
-            'password'  => Hash::make('123456'),
-            'name'      => 'admin',
-            'status'    => 0,
-            'user_id'   => $user->id
-        ];
-
-        $a = Admin::saveData($admin);
-
-        if ($a)
-            return 1;
-        else
-            return 0;
+        $code = Request::input('code');
+        $link = Link::where('code')->first();
+        $data['code'] = $code;
+        return view('auth.register', $data);
+        return 'register';
     }
 
     public function logout()

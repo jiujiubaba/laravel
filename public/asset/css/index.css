@@ -26,6 +26,27 @@
   color: #fff !important;
 }
 
+.table-area .dashed {
+    position: relative;
+    margin:10px 30px;
+    padding: 20px 30px;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #666;
+}
+
+.table-area .dashed h4 {
+    position: absolute;
+    top: -13px;
+    left: 30px;
+    color: #888;
+    width: 70px;
+    text-align: center;
+    background: #fff;
+}
+
 
 .bet-panel {
     float: right;

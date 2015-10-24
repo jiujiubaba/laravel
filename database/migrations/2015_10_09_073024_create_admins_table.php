@@ -30,6 +30,25 @@ class CreateAdminsTable extends Migration
             $table->timestamps();
         });
 
+        $user = User::saveData([
+            'username'  => 'admin',
+            'password'  => Hash::make('123456'),
+            'nickname'  => '赵四',
+            'category'  => 1,
+            'type'      => 1,
+            'ancestry_depth' => 0,
+            'parent_id' => 0
+        ]);
+
+        $admin = [
+            'username' => 'admin',
+            'password'  => Hash::make('123456'),
+            'name'      => 'admin',
+            'status'    => 0,
+            'user_id'   => $user->id
+        ];
+
+        // $a = Admin::saveData($admin);
         // DB::insert('');
     }
 

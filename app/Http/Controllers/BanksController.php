@@ -148,7 +148,7 @@ class BanksController extends Controller
                     ->where('w.user_id', '=', $user->id)
                     ->join('user_banks as b','w.user_bank_id', '=', 'b.id')
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->get(); 
         return view('banks.withdraw_record', $data);
     }
 

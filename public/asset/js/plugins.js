@@ -38,61 +38,6 @@ function hideLoading() { //移除加载
     $('#HLoading').remove();
 }
 
-+ (function($, window, document) {
-    $.fn.extend({
-        "modal": function(options) {
-            var _this = $(this);
-
-            var config = $.extend(true, {
-                type: 1,
-                ok: $.noop, //点击确定的按钮回调
-                cancel: $.noop, //点击取消的按钮回调
-            }, options);
-
-            console.log(config.type);
-
-            _this.show();
-            
-
-            var $ok = _this.find('.ok');
-            var $cancel = _this.find('.cancel');
-            bind();
-            function bind() {
-                //点击确认按钮
-                $ok.click(doOk);
-
-                //回车键触发确认按钮事件
-                _this.bind("keydown", function(e) {
-                    if (e.keyCode == 13) {
-                        doOk();
-                    }
-                });
-
-                //点击取消按钮
-                $cancel.click(doCancel);
-            }
-
-            //确认按钮事件
-            function doOk() {
-                
-                _this.unbind("keydown");
-                console.log(config.ok());
-
-                if (config.ok() === true) {
-                    _this.hide();
-                }
-            }
-
-            //取消按钮事件
-            function doCancel() {
-                _this.hide();
-                _this.unbind("keydown");
-                config.cancel();           
-            }
-        }
-    });
-})(jQuery, window, document);
-
 // 封装ajax 请求
 ;(function(window, $){
     window.R = function (url, options){
@@ -111,7 +56,7 @@ function hideLoading() { //移除加载
         var config = $.extend(true, c, options);
 
         if (config.type == 'show') {
-            url = url + '/' + id;
+            url = url + '/' + config.id;
         }
 
         if (config.type == 'store') {
@@ -119,16 +64,16 @@ function hideLoading() { //移除加载
         }
 
         if (config.type == 'edit') {
-            url = url + '/' + id + '/edit'
+            url = url + '/' + config.id + '/edit'
         }
 
         if (config.type == 'update') {
-            url = url + '/' + id;
+            url = url + '/' + config.id;
             config.method = 'PUT';
         }
 
         if (config.type == 'delete') {
-            url = url + '/' + id;
+            url = url + '/' + config.id;
             config.method = 'DELETE';
         }
 

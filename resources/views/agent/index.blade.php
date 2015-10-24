@@ -6,7 +6,7 @@
     <ul class="content-nav clearfix">
         <li class="current"><a href="/agent">会员列表</a></li>
         <li><a href="/agent/register">会员注册</a></li>
-        <li><a href="/agent/share">注册推广</a></li>
+        <li><a href="/agent/link">注册推广</a></li>
         <li><a href="/agent/bonuses">代理分红</a></li>
     </ul>
 </div>

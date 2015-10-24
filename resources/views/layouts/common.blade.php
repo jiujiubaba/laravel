@@ -95,7 +95,7 @@
                 <ul class="lottery-list" id="lottery-list">
                     <li id="s-NYYFC">
                         <a class="name" href="javascript:void(0)">纽约一分彩</a> <a href="javascript:void(0)" class="desc">一分钟一期</a>
-                        <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
+                        <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"></li>
                     <li id="s-NYSFC">
                         <a class="name" href="javascript:void(0)">纽约三分彩</a> <a href="javascript:void(0)" class="desc">三分钟一期</a>
                         <img style="margin:8px 0" src="http://999.niucaivip.com/tpl/black/images/newtpl/fire.png"> </li>
