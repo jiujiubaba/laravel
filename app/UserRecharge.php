@@ -1,5 +1,5 @@
 <?php namespace App;
-use App\Perecdent, Request;
+use App\Perecdent, Request, DB;
 
 class UserRecharge extends Perecdent
 {
@@ -22,10 +22,10 @@ class UserRecharge extends Perecdent
 		]);
     }
 
-    public function success()
+    public function success($money = 0)
     {
     	$userRecharge = $this;
-    	return DB::transaction(function() use($userRecharge)
+    	return DB::transaction(function() use($userRecharge, $money)
 		{
 			$user = User::find($userRecharge->user_id);
 			if (!$user) {
@@ -37,11 +37,22 @@ class UserRecharge extends Perecdent
 				throw new Exception("确认失败", 1002);
 				
 			}
-		    $cashFlow = CashFlow::add($user, $userRecharge, $userRecharge->money, $type = 1);
+		    $cashFlow = CashFlow::add($user, $userRecharge, $money, $type = 1);
 		    if (!$cashFlow) {
 		    	throw new Exception("写入流水失败", 1001);
 		    }
+
+		    $r = $user->addCash($money);
+		    if (!$r) {
+		    	throw new Exception("用户增加余额失败", 1003);		    	
+		    }
 		    return true;
 		});
+    }
+
+    public function fail()
+    {
+    	$this->status = 2;
+    	return $this->save();
     }
 }

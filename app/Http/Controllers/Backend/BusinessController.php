@@ -12,15 +12,10 @@ class BusinessController extends Controller
     {
         //
     }
-
-    public function recharge()
-    {
-        return view('backend.business.recharge');
-    }
  
     public function withdraw()
     {
-        return view('backend.business.withdraw');
+        
     }
 
     /**

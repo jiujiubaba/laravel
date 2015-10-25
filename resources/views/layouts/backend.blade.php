@@ -252,9 +252,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview active">
               <a href="#"><i class="fa fa-bank"></i> <span>业务流水</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="/backend/business/recharge"><i class="fa fa-circle-o"></i>体现请求</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i>体现请求</a></li>
                 <li><a href="/backend/business/withdraw"><i class="fa fa-circle-o"></i>体现记录</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i>充值记录</a></li>
+                <li><a href="/backend/business/recharge"><i class="fa fa-circle-o"></i>充值记录</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>普通投注</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>帐变明细</a></li>
               </ul>

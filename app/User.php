@@ -46,8 +46,15 @@ class User extends Perecdent implements AuthenticatableContract, CanResetPasswor
     public function decreaseCash($money = 0)
     {
         if (!$money) return false;
-        $this->cashes = $this->cashes - $money;
+        $this->cashes -= $money;
         return $this->save();
+    }
+
+    public function addCash($money = 0)
+    {
+        if (!$money) return false;
+        $this->cashes += $money;
+        return $this->save(); 
     }
 
     /**

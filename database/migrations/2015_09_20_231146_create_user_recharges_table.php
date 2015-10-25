@@ -21,6 +21,7 @@ class CreateUserRechargesTable extends Migration
             $table->string('sn', 30)->comment('充值编号');
             $table->string('remark', 20)->comment('充值备注编号');
             $table->decimal('before',10,2)->comment('充值前金额');
+            $table->decimal('arrival_money', 10, 2)->comment('实际到账金额');
             $table->integer('bank_id')->comment('充值银行id');
             $table->integer('action_ip')->comment('充值ip地址');
             $table->integer('admin_id')->comment('管理员id');

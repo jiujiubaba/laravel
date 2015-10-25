@@ -43,11 +43,11 @@
                         <td>{{ $recharge->created_at }}</td>
                         <td>{{ $recharge->remark }}</td>
                         <td>@if  ($recharge->status == 1)
-                                充值成功
+                                <span class="text-green">充值成功</span>
                             @elseif ($recharge->status == 2)
-                                充值失败
+                                <span class="text-red">充值失败</span>
                             @else
-                                正在充值
+                                <span class="text-blue">正在充值</span>
                             @endif
                         </td>
                     </tr>

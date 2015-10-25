@@ -80,7 +80,9 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 	Route::get('/', 'IndexController@index');
 	// 业务流水
 	Route::get('/business/recharge', 'BusinessController@recharge');
-	Route::get('/business/withdraw', 'BusinessController@withdraw');
+	Route::resource('/business/recharge', 'UserRechargeController');
+	Route::resource('/business/withdraw', 'UserWithdrawController');
+	// Route::get('/business/withdraw', 'BusinessController@withdraw');
 
 	// 系统设置相关路由
 	Route::get('/systems/banks', 'BanksController@banks');

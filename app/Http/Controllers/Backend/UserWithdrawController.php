@@ -1,13 +1,8 @@
-<?php
+<?php namespace App\Http\Controllers\Backend;
 
-namespace App\Http\Controllers;
+use Controller, DB;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-class UserRechargeController extends Controller
+class UserWithdrawController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +11,13 @@ class UserRechargeController extends Controller
      */
     public function index()
     {
-        //
+        $withdraws = DB::table('user_withdraws as w')
+                    ->join('users as u', 'w.user_id', '=', 'u.id')
+                    ->join('user_banks as b', 'w.user_bank_id', '=', 'b.id')
+                    ->select('u.id as user_id', 'u.username', 'u.ancestry', 'w.money', 'b.bank_name', 'b.name', 'b.account', 'b.address', 'w.created_at', 'w.status', 'w.id')
+                    ->paginate();
+
+        return view('backend.business.withdraw', ['withdraws' => $withdraws]);
     }
 
     /**
