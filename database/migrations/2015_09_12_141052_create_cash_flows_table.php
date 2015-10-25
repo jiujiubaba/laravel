@@ -21,6 +21,9 @@ class CreateCashFlowsTable extends Migration
             $table->decimal('change',10,2)->comment('变化的金额');
             $table->tinyInteger('type')->comment('0:流入, 1:流出');
             $table->morphs('cashable');
+            $table->integer('betch')->comment('批次');
+            $table->tinyInteger('status')->comment('状态');
+            $table->string('remark')->comment('备注');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

@@ -6,12 +6,12 @@
     <ul class="content-nav clearfix">
         <li><a href="/agent">会员列表</a></li>
         <li class="current"><a href="/agent/register">会员注册</a></li>
-        <li><a href="/agent/share">注册推广</a></li>
+        <li><a href="/agent/link">注册推广</a></li>
         <li><a href="/agent/bonuses">代理分红</a></li>
     </ul>
 </div>
 <div class="table-area">
-    <form class="message-area" id="J-form-login">
+    <form class="message-area" id="J-form-register">
         <h4 class="ui-form-title mt20">会员<span style=" color:#ea6b6c; font-weight:bold">注册</span></h4>
         <table class="table mt30">
             <thead>
@@ -43,17 +43,24 @@
                 </tr>
                 <tr>
                     <td>
+                        联系QQ：
+                        <input type="number" class="input bg-fff" id="qq" name="qq" autocomplete="off">
+                        <span id="tsmsgqq"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         所 &nbsp;属&nbsp; 组：
-                        <select class="" id="isproxy" name="isproxy">
-                            <option value="1">普通会员</option>
-                            <option selected="" value="0">代理用户</option>
+                        <select class="" id="type" name="type">
+                            <option value="0">普通会员</option>
+                            <option selected="" value="1">代理用户</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         游戏返点：
-                        <select class="" name="bankname" id="idcard">
+                        <select class="" name="fandian" id="fandian">
                             <option value="0">0</option>
                             <option value="0.1">0.1</option>
                             <option value="0.2">0.2</option>
@@ -125,19 +132,15 @@
             </tbody>
         </table>
         <div class="text-center">
-            <input type="submit" id="user-login-button" class="ui-btn mt20 ml10 btn important-nothumb btn-important" value="立即开户">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <button type="button"  class="ui-btn mt20 ml10 btn important-nothumb btn-important" id="J-btn-register">立即开户</button>
         </div>
     </form>
 </div>
 @stop
 
 @section('scripts')
-<script>
-$(function(){
-    var _token = "<?php echo csrf_token(); ?>";
-    
-})
-</script>
+<script src="/asset/js/data.js?v=20002"></script>
 @stop
 
 

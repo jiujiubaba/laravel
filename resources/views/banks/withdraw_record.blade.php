@@ -25,42 +25,40 @@
     <table class="table text-center mt20">
         <thead>
             <tr>
-                <th>编号</th>
+                <th>充值编号</th>
                 <th>银行</th>
                 <th>开户名</th>
                 <th>账号</th>
                 <th>金额（元）</th>
                 <th>时间</th>
                 <th>状态</th>
-                <th>操作</th>
             </tr>
         </thead>
         <tbody>
             @if (count($withdraws)) 
-            @foreach ($withdraws as $withdraw)
-            <tr>
-                <th>TX1000123123</th>
-                <th>{{ $withdraw->bank_name }}</th>
-                <th>{{ $withdraw->name }}</th>
-                <th>{{ $withdraw->account }}</th>
-                <th>{{ $withdraw->money }}</th>
-                <th>{{ $withdraw->created_at }}</th>
-                <th>
-                    @if ($withdraw->status == 1)
-                        正在申请
-                    @elseif ($withdraw->status == 2)
-                        已取消
-                    @elseif ($withdraw->status == 3)
-                        已支付
-                    @elseif ($withdraw->status == 0)
-                        确认到账
-                    @else
-                        提现失败
-                    @endif
-                </th>
-                <th><button class="ui-btn" type="button">确认</button></th>
-            </tr>
-            @endforeach
+                @foreach ($withdraws as $withdraw)
+                <tr>
+                    <th>{{ $withdraw->sn }}</th>
+                    <th>{{ $withdraw->bank_name }}</th>
+                    <th>{{ $withdraw->name }}</th>
+                    <th>{{ $withdraw->account }}</th>
+                    <th>{{ $withdraw->money }}</th>
+                    <th>{{ $withdraw->created_at }}</th>
+                    <th>
+                        @if ($withdraw->status == 1)
+                            正在申请
+                        @elseif ($withdraw->status == 2)
+                            已取消
+                        @elseif ($withdraw->status == 3)
+                            已支付
+                        @elseif ($withdraw->status == 0)
+                            确认到账
+                        @else
+                            提现失败
+                        @endif
+                    </th>
+                </tr>
+                @endforeach
             @else
             <tr>
                 <td colspan="7" align="center">暂无数据</td>
@@ -68,6 +66,9 @@
             @endif
         </tbody>
     </table>
+    <div class="page text-center mt10">
+        <?php echo $withdraws->render(); ?>
+    </div>
 </div>
 @stop
 

@@ -36,9 +36,8 @@
                 <td>{{ $link->fandian }}</td>
                 <td>{{ $link->url }}</td>
                 <td>
-                    <a onclick="openModal('edit', {ok:check, data:{{ $link->id }},loading:load })">编辑</a>
-                    <a class="ml5" target="_blank" href="/joyin.php?id=MzcxOThfMjcxNTMyOQ==">网址</a>
-                    <a class="ml5" onclick="delreg(2715329)" href="javascript:void(0)">删除</a>
+                    <a class="ml5" target="_blank" href="/r?code={{ $link->url }}">网址</a>
+                    <a class="ml5" onclick="delreg({{$link->id}})" href="javascript:void(0)">删除</a>
                 </td>
             </tr>
             @endforeach
@@ -77,7 +76,7 @@
                             <span class="ui-title inline">返点</span>
                             <input type="text" class="ui-input input" id="fandian" name="fandian">
                         </div>
-                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
                     </div>
                 </div>
             </form>
@@ -91,49 +90,6 @@
     </div>
 </div>
 
-<!-- 添加银行卡 -->
-<div class="ui-modal" id="edit">
-    <div class="ui-modal-backdrop"></div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="tt">修改推广链接</span>
-            <i class="icon-remove close-icon cancel"></i>
-        </div>
-        <div class="modal-body">
-            <form id="J-form-links">
-                <div class="table-area">
-                    <div class="ui-content mt20">
-                        <div class="dashed">
-                            <h4 class="title">返点提示</h4>
-                            <p>1、上级设置了返点，其下级才能设置返点，上下级返点差为[0.1]</p>
-                            <p>2、修改下级返点时，所改的返点值不能小于已设的返点值。</p>
-                            <p>3、按要求正确填写好返点值后，请点击"提交"按钮。</p>
-                        </div>
-                        <div class="mt15">
-                            <span class="ui-title inline">会员类型</span>
-                            <select class="ui-input select" name="type" id="type">
-                                <option value="">请选择会员类型</option>
-                                <option value="1">代理</option>
-                                <option value="0">会员</option>
-                            </select>
-                        </div>
-                        <div class="mt15">
-                            <span class="ui-title inline">返点</span>
-                            <input type="text" class="ui-input input" id="fandian" name="fandian">
-                        </div>
-                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer mt30">
-            <div class="btnGroup">
-                <button  type="button" class="ui-btn ok" >确定</button>
-                <button type="button" class="ui-btn cancel">取消</button>
-            </div>
-        </div>
-    </div>
-</div>
 @stop
 
 @section('scripts')
@@ -196,19 +152,6 @@ function openModal(target, options)
 }
 var toastr = window.parent.toastr;
 
-function load(ele, datas)
-{
-    console.log(datas);
-    window.parent.R('/agent/link',{
-        type: 'show',
-        id: datas,
-        ok: function(data){
-            console.log(data);
-        }
-    });
-}
-
-
 function checkLinks(ele)
 {
     if (ele.find('#type').val() == '') {
@@ -217,8 +160,7 @@ function checkLinks(ele)
         return toastr.warning('请填写返点');
     }
     window.parent.R('/agent/link',{
-        type: 'show',
-        reload: true,
+        type: 'store',
         data: ele.find('#J-form-links').serialize(),
         ok: function(data){
             console.log(data);
@@ -228,12 +170,15 @@ function checkLinks(ele)
     return true;  
 }
 
-function check(ele, data){
-    window.parent.R('/agent/link',{
-        type: 'show',
-        id: data,
+
+function delreg(id)
+{
+    window.parent.R('/agent/link', {
+        type: 'delete',
+        id: id,
+        data: {_token: $('#_token').val()},
         ok: function(data){
-            console.log(data);
+            window.location.href="/agent/link";
         }
     });
 }

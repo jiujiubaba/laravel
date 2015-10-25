@@ -1,8 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-use Request, Auth, Validator, Hash,DB;
-use App\Http\Controllers\Controller;
-use App\Bank, App\UserBank, App\UserWithdraw, App\AdminBank;
+use Request, Auth, Validator, Hash, DB ,Controller;
+use App\Bank, App\UserBank, App\UserWithdraw, App\AdminBank, App\UserRecharge;
 use App\Traits\AbledTrait;
 
 class BanksController extends Controller
@@ -17,7 +16,6 @@ class BanksController extends Controller
         $userBanks = UserBank::where('user_id', $user->id)
                             ->where('status', 1)
                             ->get();
-        // dd($userBanks);
         $i = 0;
         foreach ($userBanks as $userBank) {
             $data['userBanks'][] = [
@@ -41,7 +39,7 @@ class BanksController extends Controller
      * @param  Request    $request [description]
      * @return [type]              [description]
      */
-    public function store(Request $request)
+    public function store()
     {
         $input = Request::all();
         // $validator =  Validator::make($input, [
@@ -144,11 +142,11 @@ class BanksController extends Controller
         $user = Auth::user();
         // return $user->id;
         $data['withdraws'] =  DB::table('user_withdraws as w')
-                    ->select(['w.money','w.status','w.created_at','b.name','b.account','b.bank_name'])
+                    ->select(['w.money', 'w.sn', 'w.status','w.created_at','b.name','b.account','b.bank_name'])
                     ->where('w.user_id', '=', $user->id)
                     ->join('user_banks as b','w.user_bank_id', '=', 'b.id')
                     ->orderBy('created_at', 'desc')
-                    ->get(); 
+                    ->paginate(10); 
         return view('banks.withdraw_record', $data);
     }
 
@@ -179,22 +177,26 @@ class BanksController extends Controller
      */
     public function confirm()
     {
-        $money = (int)Request::input('money');
+        $money = Request::input('money');
+        $alias = Request::input('bank');
+        $user = Auth::user();
         if ($money > 50000 || $money < 100)
-            return redirect('/banks')->with('message', 'Login Failed');
+            return redirect('/banks');
 
-        $bank = Bank::where('banks.alias', Request::input('bank'))
-                    ->leftJoin('admin_banks', 'banks.id', '=', 'admin_banks.bank_id')
-                    ->first();
-
+        $bank =  DB::table('banks as b')
+                    ->select(['b.id', 'b.alias', 'b.home_page' ,'a.name','a.account','a.address','a.account'])
+                    ->join('admin_banks as a','b.id', '=', 'a.bank_id')
+                    ->first(); 
+        
         if (!$bank) {
-            return redirect('/banks')->with('message', 'Login Failed');
+            return redirect('/banks');
         }
-        $data['adminBank'] = $bank;
-        $data['money'] = $money;
-        $data['rand'] = str_random(5);
-        // dd($bank->toJson());
-        return view('banks.confirm', $data);
+
+        $userRecharge = UserRecharge::add($user, $money, $bank);
+        $bank->remark = $userRecharge->remark;
+        $bank->money  = $money;
+
+        return view('banks.confirm', ['bank' => $bank]);
 
     }
 
@@ -206,7 +208,13 @@ class BanksController extends Controller
      */
     public function rechargeRecord()
     {
-        return view('banks.recharge_record');
+        $user = Auth::user();
+        $data['recharges'] = DB::table('user_recharges as c')
+                        ->select('b.name','c.money', 'c.created_at', 'c.remark', 'c.status', 'c.sn')
+                        ->join('banks as b', 'c.bank_id', '=', 'b.id')
+                        ->where('c.user_id', $user->id)
+                        ->paginate(10);
+        return view('banks.recharge_record', $data);
     }
 
     public function alipay()

@@ -22,7 +22,7 @@ class CreateUserWithdrawsTable extends Migration
             // $table->string('name',30)->comment('开户名');
             // $table->string('account',32)->comment('银行账户');
             // $table->string('address')->comment('开户行地址');
-            $table->string('withdraw_no')->comment('提现编号');
+            $table->string('sn', 30)->comment('提现编号');
             $table->integer('user_bank_id')->comment('用户设置银行id');
             $table->dateTime('payed_at')->comment('到账时间');
             $table->integer('admin_id')->comment('管理员id');

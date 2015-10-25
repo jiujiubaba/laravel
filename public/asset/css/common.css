@@ -653,6 +653,7 @@ input.disabled {
     line-height: 22px;
     color: #888;
     text-decoration: underline;
+    font-size: 14px !important;
 }
 
 .page a:hover {

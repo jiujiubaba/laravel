@@ -25,21 +25,44 @@
     <table class="table text-center mt20">
         <thead>
             <tr>
-                <th>序号</th>
-                <th>类型</th>
-                <th>编号</th>
+                <th>充值编号</th>
+                <th>充值银行</th>
                 <th>金额（元）</th>
-                <th>时间</th>
+                <th>充值时间</th>
                 <th>备注</th>
                 <th>状态</th>
             </tr>
         </thead>
         <tbody>
+            @if (count($recharges))
+                @foreach ($recharges as $key => $recharge)
+                    <tr>
+                        <td>{{ $recharge->sn }}</td>
+                        <td>{{ $recharge->name }}</td>
+                        <td>{{ $recharge->money }}</td>
+                        <td>{{ $recharge->created_at }}</td>
+                        <td>{{ $recharge->remark }}</td>
+                        <td>@if  ($recharge->status == 1)
+                                充值成功
+                            @elseif ($recharge->status == 2)
+                                充值失败
+                            @else
+                                正在充值
+                            @endif
+                        </td>
+                    </tr>
+
+                @endforeach 
+            @else
             <tr>
                 <td colspan="7" align="center">暂无数据</td>
             </tr>
+            @endif
         </tbody>
     </table>
+    <div class="page text-center mt10">
+        <?php echo $recharges->render(); ?>
+    </div>
 </div>
 @stop
 

@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
 	// 代理管理路由
 	Route::get('/agent', 'AgentController@index');
 	Route::get('/agent/register', 'AgentController@register');
+	Route::post('/agent/store', 'AgentController@store');
 	// Route::get('/agent/share', 'AgentController@share');
 	Route::get('/agent/bonuses', 'AgentController@bonuses');
 	Route::resource('/agent/link', 'LinkController');
@@ -111,6 +112,8 @@ Route::get('/base', function(){
 	
 });
 
+
+Route::get('/rrr', 'AuthController@rrr');
 
 Route::get('/tt', function(){
 	return view('test.index');

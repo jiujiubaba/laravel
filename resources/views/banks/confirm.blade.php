@@ -23,21 +23,25 @@
                 <li class="wid" style="font-size:13px;">附言</li>
             </ul>
             <ul id="ap_content" class="ap_ul">
-                <li class="wid"><span id="cp1">{{ $adminBank->name }}</span> </li>
+                <li class="wid"><span id="cp1">{{ $bank->name }}</span> </li>
                 <li class="wid">
                     招商银行
                 </li>
-                <li style="width:206px;"><span id="cp2">{{ $adminBank->account }}</span> </li>
-                <li class="wid"><span id="cp3">{{$money}}</span> </li>
-                <li class="wid"><span id="cp4">{{ $adminBank->address }}</span> </li>
-                <li class="wid"><span id="cp5" style="color:#00F;font-size:13px">{{ $rand }}</span> </li>
+                <li style="width:206px;"><span id="cp2">{{ $bank->account }}</span> </li>
+                <li class="wid"><span id="cp3">{{$bank->money}}</span> </li>
+                <li class="wid"><span id="cp4">{{ $bank->address }}</span> </li>
+                <li class="wid"><span id="cp5" style="color:#00F;font-size:13px">{{ $bank->remark }}</span> </li>
             </ul>
-            <input type="hidden" name="bank" value="{{ $adminBank->alias }}">
-            <input type="hidden" name="money" value="{{$money}}">
-            <input type="hidden" name="rand" value="{{ $rand }}">
+            <input type="hidden" name="bank" value="{{ $bank->alias }}">
+            <input type="hidden" name="money" value="{{ $bank->money }}">
+            <input type="hidden" name="rand" value="{{ $bank->remark }}">
             <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
             <div class="mt10  text-center" id="fastSure">
-                <input type="submit" class="btn important-nothumb mt30" value="确认，并转到网银支付" style="font-size:12px;">
+                <button type="button" class="ui-btn important-nothumb no-bg-img mt30" onclick="backurl()">确认，并转到网银支付</button>
+                <!-- <a href="#" class="white btn important-nothumb no-bg-img mt30" style="background-color:#999"><span id="remaining_time_fast"></span>附言将过期</a>
+                
+                <a href="/?mod=safe&amp;code=rechargelist&amp;type=recharge" class="timing_ctrl mt30" style="color:#933;margin-left:20px; margin-right:10px;text-decoration: underline;">完成并查看记录</a>
+                <a href="/?mod=safe&amp;code=flashpay&amp;rem=set" class="timing_ctrl mt30" style="color:#933;text-decoration: underline;">再存一笔</a> -->
             </div>
         </div>
     </form>
@@ -60,83 +64,13 @@
 @stop
 
 @section('scripts')
-<script src="/asset/js/plugins.js"></script>
 <script language="javascript">
-$(document).ready(function(){
 
-/* 定义所有class为copy标签，点击后可复制被点击对象的文本 */
-    $(".copy1").zclip({
-        path: "tpl/black/js/ZeroClipboard.swf",
-        copy: function(){
-            return $("#cp1").html();
-        },
-
-        afterCopy:function(){/* 复制成功后的操作 */
-            var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
-            $("body").find(".copy-tips").remove().end().append($copysuc);
-            $(".copy-tips").fadeOut(3000);
-        }
-    });
-
-    $(".copy2").zclip({
-        path: "tpl/black/js/ZeroClipboard.swf",
-        copy: function(){
-            return $("#cp2").html();
-        },
-
-        afterCopy:function(){/* 复制成功后的操作 */
-            var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
-            $("body").find(".copy-tips").remove().end().append($copysuc);
-            $(".copy-tips").fadeOut(3000);
-        }
-    });
-
-    $(".copy3").zclip({
-        path: "tpl/black/js/ZeroClipboard.swf",
-        copy: function(){
-            return $("#cp3").html();
-        },
-
-        afterCopy:function(){/* 复制成功后的操作 */
-            var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
-            $("body").find(".copy-tips").remove().end().append($copysuc);
-            $(".copy-tips").fadeOut(3000);
-        }
-    });
-
-    $(".copy4").zclip({
-        path: "tpl/black/js/ZeroClipboard.swf",
-        copy: function(){
-            return $("#cp4").html();
-        },
-
-        afterCopy:function(){/* 复制成功后的操作 */
-            var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
-            $("body").find(".copy-tips").remove().end().append($copysuc);
-            $(".copy-tips").fadeOut(3000);
-        }
-    });
-
-    $(".copy5").zclip({
-        path: "tpl/black/js/ZeroClipboard.swf",
-        copy: function(){
-            return $("#cp5").html();
-        },
-
-        afterCopy:function(){/* 复制成功后的操作 */
-            var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
-            $("body").find(".copy-tips").remove().end().append($copysuc);
-            $(".copy-tips").fadeOut(3000);
-        }
-    });
-
-});
 
 function backurl(){
-    window.open("http://www.cmbchina.com");
+    window.open("{{ $bank->home_page }}");
     return true;
 }
-
 var tr;
 function timer(y,m,d,h,i,s)  
 {  
@@ -146,7 +80,8 @@ function timer(y,m,d,h,i,s)
     var ss = parseInt(ts / 1000 % 60, 10);
     mm = checkTime(mm);  
     ss = checkTime(ss);  
-    document.getElementById("remaining_time_fast").innerHTML =  mm +"分"+ss+'秒';  
+    document.getElementById("remaining_time_fast").innerHTML =  mm +"分"+ss+'秒'; 
+    console.log(mm +"分"+ss+'秒'); 
     tr = setInterval("timer("+y+", "+m+", "+d+", "+h+", "+i+", "+s+")",1000);  
 }  
 function checkTime(i)    

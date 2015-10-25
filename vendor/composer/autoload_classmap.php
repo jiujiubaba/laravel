@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Controllers\\GamesRecordController' => $baseDir . '/app/Http/Controllers/GamesRecordController.php',
     'App\\Http\\Controllers\\IndexController' => $baseDir . '/app/Http/Controllers/IndexController.php',
     'App\\Http\\Controllers\\IntegralController' => $baseDir . '/app/Http/Controllers/IntegralController.php',
+    'App\\Http\\Controllers\\LinkController' => $baseDir . '/app/Http/Controllers/LinkController.php',
     'App\\Http\\Controllers\\TeamController' => $baseDir . '/app/Http/Controllers/TeamController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

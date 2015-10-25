@@ -80,10 +80,10 @@ class LinkController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        $link = Link::where('user_id', $user->id)->where('id', $id)->first();
-        return success(['link' => $link]);
+        // $link = Link::where('user_id', $user->id)->where('id', $id)->first();
+        // return success(['link' => $link]);
     }
 
     /**
@@ -117,6 +117,13 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Auth::user();
+        $link = Link::where('user_id', $user->id)->where('id', $id)->first();
+        if (!$link) {
+            return failure('无效操作');
+        }
+
+        $link->delete();
+        return success('删除成功');
     }
 }

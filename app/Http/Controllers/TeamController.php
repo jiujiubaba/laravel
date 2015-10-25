@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Controller, Auth;
+use Controller, Auth, DB;
+use App\User;
 
 class TeamController extends Controller
 {
@@ -52,7 +53,19 @@ class TeamController extends Controller
      */
     public function rechargeRecord()
     {
-        return view('team.recharge_record');
+        $user = Auth::user();
+        $parentId = $user->parent_id;
+        $data['self'] = $user->id;
+        $data['recharges'] = DB::table('user_recharges as c')
+                ->join('banks as b', 'c.bank_id', '=', 'b.id')
+                ->join('users as u', 'c.user_id', '=', 'u.id')
+                ->whereRaw("find_in_set($parentId, u.ancestry_depth)")
+                ->orderBy('created_at', 'desc')
+                ->select('b.name','u.id as user_id', 'u.username' , 'c.money', 'c.created_at', 'c.remark', 'c.status', 'c.sn')
+                ->paginate(10);
+        // $u = User::whereRaw("find_in_set($parentId, ancestry_depth)")->get();
+        // return count($data['recharges']);
+        return view('team.recharge_record', $data);
     }
 
     /**
@@ -63,6 +76,16 @@ class TeamController extends Controller
      */
     public function withdrawRecord()
     {
-        return view('team.withdraw_record');
+        $user = Auth::user();
+        $parentId = $user->parent_id;
+        $data['self'] = $user->id;
+        $data['withdraws'] =  DB::table('user_withdraws as w')          
+                    ->join('user_banks as b','w.user_bank_id', '=', 'b.id')
+                    ->join('users as u', 'w.user_id', '=', 'u.id')
+                    ->whereRaw("find_in_set($parentId, u.ancestry_depth)")
+                    ->select(['w.money', 'w.sn', 'w.status','w.created_at','b.name','b.account','b.bank_name', 'u.id as user_id' ,'u.username'])
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10); 
+        return view('team.withdraw_record', $data);
     }
 }

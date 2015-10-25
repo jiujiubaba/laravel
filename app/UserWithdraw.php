@@ -1,7 +1,4 @@
-<?php
-
-namespace App;
-
+<?php namespace App;
 use App\Perecdent,DB;
 
 class UserWithdraw extends Perecdent
@@ -11,11 +8,14 @@ class UserWithdraw extends Perecdent
     	if (!$money) return false;
     	return DB::transaction(function() use ($user, $userBank, $money)
     	{
+    		$sn = 'TX'.date('ymdHis').rand(1000,9999);
+			$sn .= strtoupper(baseEncode($sn));
     		$userWithdraw = self::saveData([
 	            'user_id'       => $user->id,
 	            'username'      => $user->username,
 	            'money'         => $money,
 	            'user_bank_id'  => $userBank->id,
+	            'sn'			=> $sn,
 	            'status'        => 1
 	        ]);
 
@@ -35,21 +35,13 @@ class UserWithdraw extends Perecdent
     	});
     }
 
+    public function hideAccount()
+    {
+
+    }
+
     public static function getTeam($user)
     {
     	
-    	// self::leftjoin('user_banks','user_withdraws.user_bank_id', '=', 'user_banks.id')
-     //                        ->where('user_withdraws.user_id', $user->id)
-     //                        ->whereRaw("find_in_set())
-     //                        ->select([
-     //                            'user_withdraws.money',
-     //                            'user_withdraws.status',
-     //                            'user_withdraws.created_at',
-     //                            'user_banks.name',
-     //                            'user_banks.account',
-     //                            'user_banks.bank_name'
-     //                        ])
-     //                        ->orderBy('created_at', 'desc')
-     //                        ->paginate(10);
     }
 }
