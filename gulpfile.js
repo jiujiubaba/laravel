@@ -35,3 +35,23 @@ gulp.task('scripts', function() {
 
    return merge(tasks);
 });
+
+gulp.task('css', function(){
+	var folders = getFolders(srcPath + 'css');
+
+   	var tasks = folders.map(function(folder) {
+      // 拼接成 foldername.js
+      // 写入输出
+      // 压缩
+      // 重命名为 folder.min.js
+      // 再一次写入输出
+      return gulp.src(path.join(srcPath + 'css', folder, '/*.css'))
+        .pipe(concat(folder + '.css'))
+        .pipe(gulp.dest(destPath + 'css/'))
+        .pipe(uglify())
+        .pipe(rename(folder + '.min.css'))
+        .pipe(gulp.dest(destPath + 'css/'));
+   });
+
+   return merge(tasks);
+});
