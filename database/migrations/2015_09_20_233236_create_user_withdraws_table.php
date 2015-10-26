@@ -18,12 +18,12 @@ class CreateUserWithdrawsTable extends Migration
             $table->integer('user_id')->comment('提现用户id');
             $table->string('username', 100)->comment('用户名');
             $table->decimal('money',10,2)->comment('提现金额');
-            // $table->string('bank_name')->comment('银行名称');
             // $table->string('name',30)->comment('开户名');
             // $table->string('account',32)->comment('银行账户');
             // $table->string('address')->comment('开户行地址');
             $table->string('sn', 30)->comment('提现编号');
             $table->integer('user_bank_id')->comment('用户设置银行id');
+            $table->integer('bank_id')->comment('银行id');
             $table->dateTime('payed_at')->comment('到账时间');
             $table->integer('admin_id')->comment('管理员id');
             $table->dateTime('canceled_at')->comment('取消时间');

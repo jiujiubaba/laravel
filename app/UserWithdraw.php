@@ -15,6 +15,7 @@ class UserWithdraw extends Perecdent
 	            'username'      => $user->username,
 	            'money'         => $money,
 	            'user_bank_id'  => $userBank->id,
+	            'bank_id'		=> $userBank->bank_id,
 	            'sn'			=> $sn,
 	            'status'        => 1
 	        ]);
@@ -23,7 +24,7 @@ class UserWithdraw extends Perecdent
 	        	throw new Exception("申请失败", 1);
 	        }
 
-	        $cashFlow = CashFlow::add($user, $userWithdraw, $money);
+	        $cashFlow = CashFlow::userCashesOut($user, $userWithdraw, $money, '提现');
 	        if (!$cashFlow) {
 	        	throw new Exception('写入流水失败');
 	        }
@@ -35,13 +36,40 @@ class UserWithdraw extends Perecdent
     	});
     }
 
-    public function hideAccount()
+    public function setSuccess($user)
     {
+    	$withdraw = $this;
 
+    	return DB::transaction(function() use ($withdraw, $user) {
+    		$withdraw->status = 3;
+    		if (!$withdraw->save()) {
+    			throw new Exception("状态错误", 1);
+    		}	
+    		return true;
+    	});
     }
 
-    public static function getTeam($user)
+    public function setFailure($user)
     {
-    	
+    	$withdraw = $this;
+
+    	return DB::transaction(function() use ($withdraw, $user) {
+    		
+    		$cashflow = CashFlow::userCashesIn($user, $withdraw, $withdraw->money, '提现失败');
+    		if (!$cashflow) {
+    			throw new Exception("写入流水失败", 1);
+    		}
+
+	        if (!$user->addCash($withdraw->money)) {
+	        	throw new Exception("增加余额失败", 1);
+	        }
+    		$withdraw->status = 4;
+    		if (!$withdraw->save()) {
+    			throw new Exception("状态错误", 1);
+    			
+    		}
+    		return true;
+    	});
     }
+
 }

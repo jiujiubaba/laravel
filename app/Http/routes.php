@@ -81,6 +81,7 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Backend','middleware' => 'a
 	// 业务流水
 	Route::get('/business/recharge', 'BusinessController@recharge');
 	Route::resource('/business/recharge', 'UserRechargeController');
+	Route::get('/business/withdraw-record', 'UserWithdrawController@record');
 	Route::resource('/business/withdraw', 'UserWithdrawController');
 	// Route::get('/business/withdraw', 'BusinessController@withdraw');
 

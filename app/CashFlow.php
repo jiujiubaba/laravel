@@ -3,17 +3,35 @@ use App\Perecdent;
 
 class CashFlow extends Perecdent
 {
-    public static function add($who, Perecdent $obj, $money = 0, $type = 0, $remark=  '')
-    {
-    	return self::saveData([
-    		'whoable_type'  => $who->modelName(),
-    		'whoable_id'	=> $who->id,
-    		'before'		=> $who->cashes,
-    		'after'			=> $who->cashes - $money,
-    		'change'		=> $money,
-            'type'          => $type,
-    		'cashable_type'	=> $obj->modelName(),
-    		'cashable_id'	=> $obj->id
-    	]);
+    const CASH_OUT = 1;
+    const CASH_IN = 0;
+
+    public static function userCashesOut($who, $relateObj, $money = 0, $remark = ''){
+        return self::saveData([
+            'whoable_id'    => $who->id,
+            'whoable_type'  => $who->modelName(),
+            'before'        => $who->cashes,
+            'after'         => $who->cashes - $money,
+            'change'        => $money,
+            'type'          => self::CASH_OUT,
+            'remark'        => $remark,
+            'cashable_id'   => $relateObj->id,
+            'cashable_type' => $relateObj->modelName()
+        ]);
+    }
+
+
+    public static function userCashesIn($who, $relateObj, $money = 0, $remark = ''){
+        return self::saveData([
+            'whoable_id'    => $who->id,
+            'whoable_type'  => $who->modelName(),
+            'before'        => $who->cashes,
+            'after'         => $who->cashes + $money,
+            'change'        => $money,
+            'type'          => self::CASH_IN,
+            'remark'        => $remark,
+            'cashable_id'   => $relateObj->id,
+            'cashable_type' => $relateObj->modelName(),
+        ]);
     }
 }

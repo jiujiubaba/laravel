@@ -22,7 +22,6 @@
                     <table class="table table-striped ">
                         <tbody>
                             <tr>
-                                <th>用户编号</th>
                                 <th>用户名</th>
                                 <th>上级关系</th>
                                 <th>充值金额</th>
@@ -38,7 +37,6 @@
                             @if (count($recharges))
                                 @foreach ($recharges as $recharge)
                                     <tr>
-                                        <td>{{ $recharge->user_id }}</td>
                                         <td>{{ $recharge->username }}</td>
                                         <td>{{ $recharge->ancestry }}</td>
                                         <td>{{ $recharge->money }}</td>
@@ -67,7 +65,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="12">暂无充值记录</td>
+                                    <td colspan="12" class="text-center">暂无充值记录</td>
                                 </tr>
                             @endif
                         </tbody>

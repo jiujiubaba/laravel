@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('level')->comment('用户等级');
             $table->tinyInteger('scores')->comment('用户积分');
             $table->decimal('cashes', 10, 3)->comment('用户余额');
+            // $table->decimal('frozen_cashes', 10, 3)->comment('冻结款');
 
             // 统计相关
             $table->integer('max_limit')->default(0)->comment('代理最大限额');
