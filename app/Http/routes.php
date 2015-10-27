@@ -127,5 +127,18 @@ Route::get('/logout', function(){
 	return Auth::logout();
 });
 
+
+Route::get('/ttt', function(){
+	return view('test.test1');
+});
+
+Route::post('/tttt', function(){
+	// throw new Exception("Error Processing Request", 1);
+	s
+	return failure('错误1');
+	// {
+	
+});
+
 // Route::get('/rrr', 'AuthController@register');
 

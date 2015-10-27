@@ -3,6 +3,12 @@ const BASE = '8X1ntRHhJrIOQumxLKfCl7WY2ZgsMiFSBwkvU6G95aejcTNPDpAyd34EzV0bqo';
 const HEX = 62;
 const PREFIX = '/s/';
 
+class NoPermissionException extends Exception {
+}
+
+class ResultException extends Exception {
+}
+
 
 /**
  * 成功时返回
@@ -32,13 +38,20 @@ function success(){
  * @param  integer    $code    [description]
  * @return [type]              [description]
  */
-function failure($message, $code = 1){
+function appError($message, $code = 1){
     return [
 		'result' => false,
 		'message' => $message,
 		'error_code' => $code
 	];
 
+}
+
+function failure($message, $code = 1000){
+    if(is_null($code)){
+        throw new ResultException($message);
+    }
+    throw new ResultException($message, $code);
 }
 
 /**
