@@ -40,27 +40,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        // if ($request->ajax()) {
-        //     return response('ajax', 200);
-        // }else{
-        //     return response('not ajax', 200);
-        // }
-
-        // if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
-        //     return abort(404);
-        // if ($e instanceof \Illuminate\Session\TokenMismatchException) 
-        //     return response('缺失token', 401);
-        // if ($e instanceof \ResultException) {
-        //     return response($e->getMessage(), 200);
-        // }
-        // 
         if (Request::ajax()) {
             if ($e instanceof \Illuminate\Session\TokenMismatchException) 
                 return response()->json(appError('token丢失', 1001), 200);
             if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
                 return response()->json(appError('不存在路由', 404), 404);
-            if ($e instanceof \Symfony\Component\HttpKernel\Exception\FatalErrorException)
-                return response()->json(appError($e->getMessage(), $e->getStatusCode()), 500);
+            // if ($e instanceof \Symfony\Component\HttpKernel\Exception\FatalErrorException)
+            //     return response()->json(appError($e->getMessage(), 500), 500);
         }
 
         if ($e instanceof \ResultException) {
@@ -69,6 +55,7 @@ class Handler extends ExceptionHandler
 
             return response()->json(appError($e->getMessage(), $statusCode), 200);
         }
+        
         return parent::render($request, $e);
     }
 }
