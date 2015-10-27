@@ -24,7 +24,7 @@ class UserWithdraw extends Perecdent
 	        	throw new Exception("申请失败", 1);
 	        }
 
-	        $cashFlow = CashFlow::userCashesOut($user, $userWithdraw, $money, '提现');
+	        $cashFlow = CashFlow::userCashesOut($user, $userWithdraw, $money, 1, '提现');
 	        if (!$cashFlow) {
 	        	throw new Exception('写入流水失败');
 	        }
@@ -55,7 +55,7 @@ class UserWithdraw extends Perecdent
 
     	return DB::transaction(function() use ($withdraw, $user) {
     		
-    		$cashflow = CashFlow::userCashesIn($user, $withdraw, $withdraw->money, '提现失败');
+    		$cashflow = CashFlow::userCashesIn($user, $withdraw, $withdraw->money, 2, '提现失败');
     		if (!$cashflow) {
     			throw new Exception("写入流水失败", 1);
     		}
