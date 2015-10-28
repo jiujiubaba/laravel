@@ -75,7 +75,7 @@ body.jconfirm-noscroll {
     position: relative;
     width: 420px;
    	margin: 0px auto;
-   	padding: 10px 5px;
+   	/*color: #888 !important;*/
 }
 
 .jconfirm .jconfirm-box div.closeIcon {
@@ -98,18 +98,22 @@ body.jconfirm-noscroll {
     font-size: 24px;
     font-weight: bold;
     font-family: inherit;
-    padding: 10px 15px 5px
+    padding: 15px;
+    color:#888 !important;
+    border-bottom: 1px solid #dedede;
 }
 
 .jconfirm .jconfirm-box div.content {
     padding-top: 10px;
-    padding: 10px 15px 10px
+    padding: 15px;
+    color:#888 !important;
+
 }
 
 .jconfirm .jconfirm-box div.content:empty {
     height: 40px;
     position: relative;
-    opacity: .6
+    opacity: .6;
 }
 
 .jconfirm .jconfirm-box div.content:empty:before {
