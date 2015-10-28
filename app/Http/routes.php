@@ -137,7 +137,7 @@ Route::get('/tttt', function(){
 	// s
 	// return failure('错误1');
 	// {
-	return response()->json('hello world', 200);
+	return view('test.test2');
 });
 
 // Route::get('/rrr', 'AuthController@register');

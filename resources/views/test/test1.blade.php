@@ -18,21 +18,10 @@
 		<!-- <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>"> -->
 		<button type="button" id="tj" onclick="tt()">提交</button>
 	<!-- </form> -->
-	
+		<iframe src="/tttt" frameborder="0" height="300" width="700"></iframe>
 </body>
 <script>
-function tt(){
-	$.confirm({
-	    title: '提示!',
-	     content: 'Imagine this is a complex form and you have to attach events all over the form or any element <br><button type="button" class="examplebutton">I\'m alive!</button>',
-	    confirm: function(){
-	        // alert('Confirmed!');
-	    },
-	    cancel: function(){
-	        // alert('Canceled!')
-	    }
-	});
-}
+
 
 
 
