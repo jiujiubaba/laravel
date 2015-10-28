@@ -132,12 +132,12 @@ Route::get('/ttt', function(){
 	return view('test.test1');
 });
 
-Route::post('/tttt', function(){
-	// throw new Exception("Error Processing Request", 1);
-	s
-	return failure('错误1');
+Route::get('/tttt', function(){
+	// // throw new Exception("Error Processing Request", 1);
+	// s
+	// return failure('错误1');
 	// {
-	
+	return response()->json('hello world', 200);
 });
 
 // Route::get('/rrr', 'AuthController@register');

@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 var minifycss = require('gulp-minify-css');
 
 var srcPath = './resources/assets/';
-var destPath = './frontend/asset/';
+var destPath = './public/asset/';
 
 function getFolders(dir) {
     return fs.readdirSync(dir)
