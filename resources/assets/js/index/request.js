@@ -25,10 +25,11 @@ var Request = function(){
 			// 请求前执行
 			beforeSend: function(XMLHttpRequest){
 				// console.log('error', XMLHttpRequest);
+				 NProgress.start();
 			},
 			// 请求完成执行
 			complete: function(){
-
+				NProgress.done();
 			},
 			// 处理ajax返回状态码
 			statusCode: {
@@ -83,3 +84,5 @@ var Request = function(){
 		this.ajax(url + '/' + id, 'DELETE', data, callback);
 	};
 };
+
+var res = new Request();

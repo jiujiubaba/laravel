@@ -165,29 +165,21 @@
         <div class="content-info clearfix bet-panel">
             <iframe id="UCenter" name="UCenter" src="/index" style="width:950px; min-height:100" scrolling="no" frameborder="0" height="900"></iframe>
         </div>
-        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
     </div>
 </body>
-<!-- <script src="./js/index.js"></script> -->
 @yield('scripts')
 <script>
 function GetNewMoney()
 {
     $('#lastmoney').html('正在刷新......');
-    R('/account/refresh',{
-        method: 'post',
-        data: {_token: $('#_token').val()},
-        ok: function(data){
-            $('#lastmoney').html(data.cashes);
-        }
+    res.post('/account/refresh', '' ,function(data){
+        $('#lastmoney').html(data.cashes);
     });
 }
 
-var r= new Request();
+// var r= new Request();
 
-r.post('/account/refresh', '' ,function(data){
-    console.log(data);
-});
+
 
 
 // $.alert({
@@ -203,10 +195,8 @@ r.post('/account/refresh', '' ,function(data){
 
 function logout()
 {
-    console.log('sdf');
-    R('/logout',{
-        data: {_token: $('#_token').val()},  
-        reload:true
+    res.get('/logout', '' ,function(data){
+        window.location.reload();
     });
 }
 </script>
