@@ -1,4 +1,3 @@
-
 /*!
  * jquery-confirm v1.7.9 (http://craftpip.github.io/jquery-confirm/)
  * Author: Boniface Pereira
@@ -334,7 +333,7 @@ var jconfirm, Jconfirm;
         icon: "",
         confirmButton: "确定",
         cancelButton: "取消",
-        confirmButtonClass: "btn-default",
+        confirmButtonClass: "ui-btn",
         cancelButtonClass: "btn-default",
         theme: "white",
         animation: "scale",

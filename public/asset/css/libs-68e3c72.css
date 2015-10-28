@@ -1,0 +1,775 @@
+/*!
+ * jquery-confirm v1.7.9 (http://craftpip.github.io/jquery-confirm/)
+ * Author: boniface pereira
+ * Website: www.craftpip.com
+ * Contact: hey@craftpip.com
+ *
+ * Copyright 2013-2015 jquery-confirm
+ * Licensed under MIT (https://github.com/craftpip/jquery-confirm/blob/master/LICENSE)
+ */
+
+body.jconfirm-noscroll {
+    overflow: hidden!important
+}
+
+@-webkit-keyframes jconfirm-rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes jconfirm-rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.jconfirm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999999;
+    font-family: inherit;
+    overflow: hidden
+}
+
+.jconfirm .jconfirm-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transition: all .4s;
+    transition: all .4s
+}
+
+.jconfirm .jconfirm-bg.seen {
+    opacity: 1
+}
+
+.jconfirm .jconfirm-scrollpane {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto
+}
+
+.jconfirm .jconfirm-box {
+    background: white;
+    border-radius: 4px;
+    position: relative;
+    width: 420px;
+   	margin: 0px auto;
+   	padding: 10px 5px;
+}
+
+.jconfirm .jconfirm-box div.closeIcon {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    opacity: .6;
+    text-align: center;
+    display: none
+}
+
+.jconfirm .jconfirm-box div.closeIcon:hover {
+    opacity: 1
+}
+
+.jconfirm .jconfirm-box div.title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: inherit;
+    padding: 10px 15px 5px
+}
+
+.jconfirm .jconfirm-box div.content {
+    padding-top: 10px;
+    padding: 10px 15px 10px
+}
+
+.jconfirm .jconfirm-box div.content:empty {
+    height: 40px;
+    position: relative;
+    opacity: .6
+}
+
+.jconfirm .jconfirm-box div.content:empty:before {
+    content: '';
+    height: 20px;
+    width: 20px;
+    border: solid 2px #aaa;
+    position: absolute;
+    left: 50%;
+    margin-left: -45px;
+    border-radius: 20%;
+    -webkit-animation: jconfirm-rotate 1s infinite;
+    animation: jconfirm-rotate 1s infinite
+}
+
+.jconfirm .jconfirm-box div.content:empty:after {
+    content: 'loading..';
+    position: absolute;
+    left: 50%;
+    margin-left: -15px
+}
+
+.jconfirm .jconfirm-box .buttons {
+    padding: 10px 15px
+}
+
+.jconfirm .jconfirm-box .buttons button+button {
+    margin-left: 5px
+}
+
+.jconfirm .jquery-clear {
+    clear: both
+}
+
+.jconfirm.rtl {
+    direction: rtl
+}
+
+.jconfirm.rtl div.closeIcon {
+    left: 12px;
+    right: auto
+}
+
+.jconfirm.white .jconfirm-bg {
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.jconfirm.white .jconfirm-box {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px
+}
+
+.jconfirm.white .jconfirm-box .buttons {
+    float: right
+}
+
+.jconfirm.white .jconfirm-box .buttons button {
+    border: 0;
+    background-image: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: none;
+    -webkit-transition: background .1s;
+    transition: background .1s;
+    color: white
+}
+
+.jconfirm.white .jconfirm-box .buttons button.btn-default {
+    box-shadow: none;
+    color: #333
+}
+
+.jconfirm.white .jconfirm-box .buttons button.btn-default:hover {
+    background: #ddd
+}
+
+.jconfirm.black .jconfirm-bg {
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.jconfirm.black .jconfirm-box {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    background: #444;
+    border-radius: 5px;
+    color: white
+}
+
+.jconfirm.black .jconfirm-box .buttons {
+    float: right
+}
+
+.jconfirm.black .jconfirm-box .buttons button {
+    border: 0;
+    background-image: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: none;
+    -webkit-transition: background .1s;
+    transition: background .1s;
+    color: white
+}
+
+.jconfirm.black .jconfirm-box .buttons button.btn-default {
+    box-shadow: none;
+    color: #fff;
+    background: 0
+}
+
+.jconfirm.black .jconfirm-box .buttons button.btn-default:hover {
+    background: #666
+}
+
+.jconfirm.hololight .jconfirm-bg {
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.jconfirm.hololight .jconfirm-box {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    overflow: hidden
+}
+
+.jconfirm.hololight .jconfirm-box div.title {
+    font-weight: inherit;
+    border-bottom: solid 2px #76cfdf;
+    color: #76cfdf
+}
+
+.jconfirm.hololight .jconfirm-box .buttons {
+    border-top: solid 2px #e7e7e7;
+    width: 100%;
+    float: none;
+    padding: 0
+}
+
+.jconfirm.hololight .jconfirm-box .buttons button {
+    margin: 0;
+    border: 0;
+    background: #fff;
+    border-radius: 0;
+    width: 50%;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666
+}
+
+.jconfirm.hololight .jconfirm-box .buttons button+button {
+    border-left: solid 2px #e7e7e7
+}
+
+.jconfirm.holodark .jconfirm-bg {
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.jconfirm.holodark .jconfirm-box {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    background: #333;
+    overflow: hidden
+}
+
+.jconfirm.holodark .jconfirm-box div.closeIcon {
+    color: white
+}
+
+.jconfirm.holodark .jconfirm-box div.title {
+    font-weight: inherit;
+    border-bottom: solid 2px #76cfdf;
+    color: #76cfdf
+}
+
+.jconfirm.holodark .jconfirm-box div.content {
+    color: white
+}
+
+.jconfirm.holodark .jconfirm-box .buttons {
+    border-top: solid 2px rgba(255, 255, 255, 0.2);
+    width: 100%;
+    float: none;
+    padding: 0
+}
+
+.jconfirm.holodark .jconfirm-box .buttons button {
+    margin: 0;
+    border: 0;
+    background: #333;
+    border-radius: 0;
+    width: 50%;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: none
+}
+
+.jconfirm.holodark .jconfirm-box .buttons button+button {
+    border-left: solid 2px rgba(255, 255, 255, 0.2)
+}
+
+.jconfirm .jconfirm-box.hilight {
+    box-shadow: 0 0 20px red
+}
+
+.jconfirm {
+    -webkit-perspective: 400px;
+    perspective: 400px
+}
+
+.jconfirm .jconfirm-box {
+    opacity: 1;
+    -webkit-transition-property: -webkit-transform, opacity, box-shadow;
+    transition-property: transform, opacity, box-shadow
+}
+
+.jconfirm .jconfirm-box.anim-top,
+.jconfirm .jconfirm-box.anim-left,
+.jconfirm .jconfirm-box.anim-right,
+.jconfirm .jconfirm-box.anim-bottom,
+.jconfirm .jconfirm-box.anim-opacity,
+.jconfirm .jconfirm-box.anim-zoom,
+.jconfirm .jconfirm-box.anim-scale,
+.jconfirm .jconfirm-box.anim-none,
+.jconfirm .jconfirm-box.anim-rotate,
+.jconfirm .jconfirm-box.anim-rotatex,
+.jconfirm .jconfirm-box.anim-rotatey,
+.jconfirm .jconfirm-box.anim-scaley,
+.jconfirm .jconfirm-box.anim-scalex {
+    opacity: 0
+}
+
+.jconfirm .jconfirm-box.anim-rotate {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.jconfirm .jconfirm-box.anim-rotatex {
+    -webkit-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center
+}
+
+.jconfirm .jconfirm-box.anim-rotatey {
+    -webkit-transform: rotatey(90deg);
+    -ms-transform: rotatey(90deg);
+    transform: rotatey(90deg);
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center
+}
+
+.jconfirm .jconfirm-box.anim-scaley {
+    -webkit-transform: scaley(1.5);
+    -ms-transform: scaley(1.5);
+    transform: scaley(1.5);
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center
+}
+
+.jconfirm .jconfirm-box.anim-scalex {
+    -webkit-transform: scalex(1.5);
+    -ms-transform: scalex(1.5);
+    transform: scalex(1.5);
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center
+}
+
+.jconfirm .jconfirm-box.anim-top {
+    -webkit-transform: translate(0px, -100px);
+    -ms-transform: translate(0px, -100px);
+    transform: translate(0px, -100px)
+}
+
+.jconfirm .jconfirm-box.anim-left {
+    -webkit-transform: translate(-100px, 0px);
+    -ms-transform: translate(-100px, 0px);
+    transform: translate(-100px, 0px)
+}
+
+.jconfirm .jconfirm-box.anim-right {
+    -webkit-transform: translate(100px, 0px);
+    -ms-transform: translate(100px, 0px);
+    transform: translate(100px, 0px)
+}
+
+.jconfirm .jconfirm-box.anim-bottom {
+    -webkit-transform: translate(0px, 100px);
+    -ms-transform: translate(0px, 100px);
+    transform: translate(0px, 100px)
+}
+
+.jconfirm .jconfirm-box.anim-zoom {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2)
+}
+
+.jconfirm .jconfirm-box.anim-scale {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8)
+}
+
+.jconfirm .jconfirm-box.anim-none {
+    display: none
+}
+
+.jconfirm.supervan .jconfirm-bg {
+    background-color: rgba(54, 70, 93, 0.95)
+}
+
+.jconfirm.supervan .jconfirm-box {
+    background-color: transparent
+}
+
+.jconfirm.supervan .jconfirm-box div.closeIcon {
+    color: white
+}
+
+.jconfirm.supervan .jconfirm-box div.title {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-weight: normal
+}
+
+.jconfirm.supervan .jconfirm-box div.content {
+    text-align: center;
+    color: white
+}
+
+.jconfirm.supervan .jconfirm-box .buttons {
+    text-align: center
+}
+
+.jconfirm.supervan .jconfirm-box .buttons button {
+    font-size: 16px;
+    border-radius: 2px;
+    background: #303f53;
+    text-shadow: none;
+    border: 0;
+    color: white;
+    width: 25%;
+    padding: 10px
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #29d;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.toast-title {
+    font-weight: bold;
+}
+
+.toast-message {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.toast-message a,
+.toast-message label {
+    color: #ffffff;
+}
+
+.toast-message a:hover {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+.toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    -webkit-text-shadow: 0 1px 0 #ffffff;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.8;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=80);
+    filter: alpha(opacity=80);
+}
+
+.toast-close-button:hover,
+.toast-close-button:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=40);
+    filter: alpha(opacity=40);
+}
+
+
+/*Additional properties for button version
+ iOS requires the button element instead of an anchor tag.
+ If you want the anchor version, it requires `href="#"`.*/
+
+button.toast-close-button {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.toast-top-center {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-center {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-left {
+    top: 12px;
+    left: 12px;
+}
+
+.toast-top-right {
+    top: 12px;
+    right: 12px;
+}
+
+.toast-bottom-right {
+    right: 12px;
+    bottom: 12px;
+}
+
+.toast-bottom-left {
+    bottom: 12px;
+    left: 12px;
+}
+
+#toast-container {
+    position: fixed;
+    z-index: 999999;
+    pointer-events: none;
+    /*overrides*/
+}
+
+#toast-container * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#toast-container > div {
+    position: relative;
+    pointer-events: auto;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    -moz-box-shadow: 0 0 12px #999999;
+    -webkit-box-shadow: 0 0 12px #999999;
+    box-shadow: 0 0 12px #999999;
+    color: #ffffff;
+    opacity: 0.8;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=80);
+    filter: alpha(opacity=80);
+}
+
+#toast-container >:hover {
+    -moz-box-shadow: 0 0 12px #000000;
+    -webkit-box-shadow: 0 0 12px #000000;
+    box-shadow: 0 0 12px #000000;
+    opacity: 1;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: alpha(opacity=100);
+    cursor: pointer;
+}
+
+#toast-container > .toast-info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
+}
+
+#toast-container > .toast-error {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=") !important;
+}
+
+#toast-container > .toast-success {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important;
+}
+
+#toast-container > .toast-warning {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=") !important;
+}
+
+#toast-container.toast-top-center > div,
+#toast-container.toast-bottom-center > div {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#toast-container.toast-top-full-width > div,
+#toast-container.toast-bottom-full-width > div {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toast {
+    background-color: #030303;
+}
+
+.toast-success {
+    background-color: #51a351;
+}
+
+.toast-error {
+    background-color: #bd362f;
+}
+
+.toast-info {
+    background-color: #2f96b4;
+}
+
+.toast-warning {
+    background-color: #f89406;
+}
+
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000000;
+    opacity: 0.4;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=40);
+    filter: alpha(opacity=40);
+}
+
+
+/*Responsive Design*/
+
+@media all and (max-width: 240px) {
+    #toast-container > div {
+        padding: 8px 8px 8px 50px;
+        width: 11em;
+    }
+    #toast-container .toast-close-button {
+        right: -0.2em;
+        top: -0.2em;
+    }
+}
+
+@media all and (min-width: 241px) and (max-width: 480px) {
+    #toast-container > div {
+        padding: 8px 8px 8px 50px;
+        width: 18em;
+    }
+    #toast-container .toast-close-button {
+        right: -0.2em;
+        top: -0.2em;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+    #toast-container > div {
+        padding: 15px 15px 15px 50px;
+        width: 25em;
+    }
+}
