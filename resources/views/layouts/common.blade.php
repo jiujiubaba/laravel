@@ -6,19 +6,26 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
     <!-- css公共样式 -->
-    <link rel="stylesheet" href="/asset/css/common.css">
+<!--     <link rel="stylesheet" href="/asset/css/common.css">
+
     <link rel="stylesheet" href="/asset/css/index.css">
-    <link rel="stylesheet" href="/asset/css/plugins.css">
+    <link rel="stylesheet" href="/asset/css/plugins.css"> -->
+    <link rel="stylesheet" href="/asset/css/common-68e3c72.min.css">
+
+    <link rel="stylesheet" href="/asset/css/index-68e3c72.min.css">
+    <link rel="stylesheet" href="/asset/css/libs-68e3c72.min.css">
+
     <!-- 自定义样式 -->
     @yield('style')
     <!-- css动画插件 -->
     <!-- <link rel="stylesheet" href="/asset/css/animate.min.css"> -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/3.1.1/font/fontawesome-webfont.svg">
     <script src="/asset/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/asset/js/plugins.js"></script>
-    <script src="/asset/js/tools.js"></script>
+    <script type="text/javascript" src="/asset/js/libs-68e3c72.min.js"></script>
+    <script src="/asset/js/index-68e3c72.min.js"></script>
 </head>
 
 <body>
@@ -175,6 +182,25 @@ function GetNewMoney()
         }
     });
 }
+
+var r= new Request();
+
+r.post('/account/refresh', '' ,function(data){
+    console.log(data);
+});
+
+
+// $.alert({
+//     title: 'Alert!',
+//     content: 'Simple alert!',
+//     confirm: function(){
+//         alert('Confirmed!');
+//     }
+// });
+
+
+
+
 function logout()
 {
     console.log('sdf');
