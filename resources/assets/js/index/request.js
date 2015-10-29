@@ -3,7 +3,7 @@ var Request = function(){
 		$.ajax({
 			headers: {
 	        	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-	        	'Accept': "application/game.play"
+	        	//'Accept': "application/game.play"
 	    	},
 			type: method,
 			timeout: 3000,

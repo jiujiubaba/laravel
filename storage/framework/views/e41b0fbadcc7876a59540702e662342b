@@ -1,6 +1,4 @@
-@extends('layouts.ucenter')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="common-info clearfix">
     <h4 class="content-title">我的账户</h4>
     <ul class="content-nav clearfix">
@@ -89,9 +87,9 @@
     </form>
 </div>
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script>
 var toastr = window.parent.toastr;
 
@@ -125,5 +123,7 @@ function submitNick(){
 
 
 </script>
-@stop
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layouts.ucenter', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

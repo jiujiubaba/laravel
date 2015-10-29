@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 
     <!-- 图标插件 -->
     <link href="http://cdn.bootcss.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
@@ -18,16 +18,16 @@
     <link rel="stylesheet" href="/asset/css/ucenter-68e3c72.min.css">
 
     <!-- 自定义样式 -->
-    @yield('style')
+    <?php echo $__env->yieldContent('style'); ?>
 
     <!-- 公用js -->
     <script src="/asset/js/jquery.min.js"></script>
 
 </head>
 <body style="background:#fff">
-@yield('content')
+<?php echo $__env->yieldContent('content'); ?>
 </body>
 <script src="/asset/js/common-68e3c72.min.js"></script>
 <script src="/asset/js/data-68e3c72.min.js"></script>
-@yield('scripts')
+<?php echo $__env->yieldContent('scripts'); ?>
 </html>

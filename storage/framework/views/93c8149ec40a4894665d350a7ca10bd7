@@ -1,6 +1,4 @@
-@extends('layouts.ucenter')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="common-info clearfix">
     <h4 class="content-title">银行充提</h4>
     <ul class="content-nav clearfix">
@@ -15,27 +13,27 @@
         <h4 class="ui-form-title mt20">
             账户<span style=" color:#ea6b6c; font-weight:bold">提现</span>
         </h4>
-        @if ($userBank)
+        <?php if($userBank): ?>
         <div class="ui-content mt20">         
             <div class="mt15">
                 <span class="ui-title inline">银行名称：</span>
-                <span class="ui-input input" style="display:inline-block"> {{ $userBank->bank_name }}</span>
+                <span class="ui-input input" style="display:inline-block"> <?php echo e($userBank->bank_name); ?></span>
             </div> 
             <div class="mt15">
                 <span class="ui-title inline">卡/折号：</span>
-                <span class="ui-input input" style="display:inline-block"> {{ $userBank->account }}</span>
+                <span class="ui-input input" style="display:inline-block"> <?php echo e($userBank->account); ?></span>
             </div>
             <div class="mt15">
                 <span class="ui-title inline">银行开户地址：</span>
-                <span class="ui-input input" style="display:inline-block"> {{ $userBank->address }}</span>
+                <span class="ui-input input" style="display:inline-block"> <?php echo e($userBank->address); ?></span>
             </div>
             <div class="mt15">
                 <span class="ui-title inline">用户名：</span>
-                <span class="ui-input input" style="display:inline-block"> {{ $username }}</span>
+                <span class="ui-input input" style="display:inline-block"> <?php echo e($username); ?></span>
             </div>       
             <div class="mt15">
                 <span class="ui-title inline">账户余额：</span>
-                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{ $cashes }}">{{ $cashes }}</span>元
+                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="<?php echo e($cashes); ?>"><?php echo e($cashes); ?></span>元
             </div>
             <div class="mt15">
                 <span class="ui-title inline">提款金额</span>
@@ -51,15 +49,15 @@
                 <input class="ui-btn" type="button" id="apply-withdraw" data-target="update" value="提款">
             </div>
         </div>
-        @else
+        <?php else: ?>
         <div class="ui-content mt20">         
             <div class="mt15">
                 <span class="ui-title inline">银行名称：</span>
                 <select class="ui-input select input" name="bankname" id="idcard">
                     <option value="">选择银行卡</option>
-                    @foreach ($banks as $bank)
-                        <option value="{{ $bank->alias }}">{{ $bank->name }}</option>
-                    @endforeach
+                    <?php foreach($banks as $bank): ?>
+                        <option value="<?php echo e($bank->alias); ?>"><?php echo e($bank->name); ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div> 
             <div class="mt15">
@@ -76,7 +74,7 @@
             </div>       
             <div class="mt15">
                 <span class="ui-title inline">账户余额：</span>
-                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="{{ $cashes }}">{{ $cashes }}</span>元
+                <span class="ui-input input" style="display:inline-block" id="my-money" data-money="<?php echo e($cashes); ?>"><?php echo e($cashes); ?></span>元
             </div>
             <div class="mt15">
                 <span class="ui-title inline">提款金额</span>
@@ -94,17 +92,18 @@
         </div>
     
 
-        @endif
+        <?php endif; ?>
     </form>
 </div>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script>
 var toastr = window.parent.toastr;
-@if ($is_payment)
+<?php if($is_payment): ?>
     swal("您还没有设置资金密码", "去 \"我的账号\" - \"资料修改\" 设置资金密码吧");
-@endif 
+<?php endif; ?> 
 
 </script>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.ucenter', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
